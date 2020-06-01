@@ -1,7 +1,7 @@
 {
-  "name": "imtrying",
+  "name": "melijn",
   "version": "1.0.0",
-  "description": "My excellent Nuxt.js project",
+  "description": "Melijn website",
   "author": "Merlijn",
   "private": true,
   "scripts": {
@@ -14,11 +14,12 @@
   "dependencies": {
     "@fortawesome/fontawesome-free-brands": "^5.0.13",
     "@fortawesome/free-solid-svg-icons": "^5.13.0",
-    "@nuxtjs/axios": "^5.3.6",
+    "@nuxtjs/axios": "^5.10.3",
     "@nuxtjs/bulma": "^1.2.7",
     "@nuxtjs/dotenv": "^1.4.0",
     "@nuxtjs/pwa": "^3.0.0-0",
     "@nuxtjs/style-resources": "^1.0.0",
+    "axios": "^0.19.2",
     "font-awesome": "^4.7.0",
     "node-sass": "^4.13.1",
     "nuxt": "^2.0.0",

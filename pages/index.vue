@@ -49,7 +49,7 @@
       <div class="hero-body">
         <div class="container">
           <div class="columns">
-            <div class="column is-6">
+            <div class="column is-6 text-column-hero">
               <h1 class="title">
                 Audio
               </h1>
@@ -71,13 +71,69 @@
     <section class="hero is-dark">
       <div class="hero-body">
         <div class="container">
-          <h1 class="title">
-            Moderation
-          </h1>
-          <h2 class="subtitle">
-            Moderate your server with chat-filters, automated punishment system, all you punishment needs like ban, tempban, softban, ..mute, ..kick etc<br>
-            Easily view and remove punishment cases if mistakes we're made.
-          </h2>
+          <div class="columns">
+            <div class="column is-5">
+              <figure class="image">
+                <img src="@/static/img/music.gif">
+              </figure>
+            </div>
+            <div class="column is-6 text-column-hero">
+              <h1 class="title">
+                Moderation
+              </h1>
+              <h2 class="subtitle">
+                Moderate your server with chat-filters, automated punishment system, all you punishment needs like ban, tempban, softban, ..mute, ..kick etc<br>
+                Easily view and remove punishment cases if mistakes we're made.
+              </h2>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <hr>
+    <section class="hero is-dark">
+      <div class="hero-body">
+        <div class="container">
+          <div class="columns">
+            <div class="column is-6 text-column-hero">
+              <h1 class="title">
+                Verification
+              </h1>
+              <h2 class="subtitle">
+                To keep spammers, self-bots, raids and people that say "I didn't find the rules" from infiltrating your server. Or to simply have a password protected private server.<br>
+                You can require users to pass a verification check like: password, reaction or google-recaptchaV2
+              </h2>
+            </div>
+            <div class="column is-5">
+              <figure class="image">
+                <img src="@/static/img/music.gif">
+              </figure>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <hr>
+    <section class="hero is-dark">
+      <div class="hero-body">
+        <div class="container">
+          <div class="columns">
+            <div class="column is-5">
+              <figure class="image">
+                <img src="@/static/img/music.gif">
+              </figure>
+            </div>
+            <div class="column is-6 text-column-hero">
+              <h1 class="title">
+                Reaction Roles
+              </h1>
+              <h2 class="subtitle">
+                Create role groups. Setup emotes that grant a role or multiple roles or one out of many roles by chance.<br>
+                Auto create a nicelly formatted role menu. You can even customize te line format.<br>
+                Or go fully custom and just set the channelId (optional: and messageIds)
+              </h2>
+            </div>
+          </div>
         </div>
       </div>
     </section>
@@ -86,34 +142,7 @@
       <div class="hero-body">
         <div class="container">
           <h1 class="title">
-            Verification
-          </h1>
-          <h2 class="subtitle">
-            To keep spammers, self-bots, raids and people that say "I didn't find the rules" from infiltrating your server. Or to simply have a password protected private server.<br>
-            You can require users to pass a verification check like: password, reaction or google-recaptchaV2
-          </h2>
-        </div>
-      </div>
-    </section>
-    <hr>
-    <section class="hero is-dark">
-      <div class="hero-body">
-        <div class="container">
-          <h1 class="title">
-            Self Roles
-          </h1>
-          <h2 class="subtitle">
-            Log important actions like message deletes, with all usefull info included.
-          </h2>
-        </div>
-      </div>
-    </section>
-    <hr>
-    <section class="hero is-dark">
-      <div class="hero-body">
-        <div class="container">
-          <h1 class="title">
-            View the rest of the feature on our documentation page
+            And much more which you discover <a class="text-link" href="/commands">here</a>.
           </h1>
         </div>
       </div>
@@ -168,7 +197,7 @@ export default {
 
     #arrow-wrapper {
       position: absolute;
-      bottom: 35px;
+      bottom: 60px;
       left: 50%;
       transition: 0.5s ease-in-out;
       transform: translateX(-50%);
@@ -187,7 +216,7 @@ export default {
         transform: translateX(-50%) translateY(0vh);
       }
       50% {
-        transform: translateX(-50%) translateY(-5vh);
+        transform: translateX(-50%) translateY(-4vh);
       }
       100% {
         transform: translateX(-50%) translateY(0vh);
@@ -218,6 +247,11 @@ export default {
     }
   }
   .columns {
+    .text-column-hero {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
     .welcome-text {
       text-align: left;
 

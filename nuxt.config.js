@@ -20,8 +20,9 @@ export default {
     ],
     link: [{
       rel: 'icon',
-      type: 'image/x-icon',
-      href: '/favicon.ico'
+      type: 'image/png',
+      sizes: '200x200',
+      href: '@static/img/fabicon.png'
     }]
   },
   /*
