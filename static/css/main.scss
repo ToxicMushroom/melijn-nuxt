@@ -1,0 +1,12 @@
+@import '~bulma/sass/utilities/initial-variables'; 
+@import '~bulma/sass/utilities/functions';
+
+// Colours
+$primary: $blue-dark;
+$blue: $blue-darker;
+$scheme-main: $bar-color;
+$info: $patreon-orange;
+
+/* Import the rest of Bulma */
+@import '~bulma/bulma';
+
