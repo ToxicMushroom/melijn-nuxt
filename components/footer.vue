@@ -1,7 +1,7 @@
 <template>
   <div class="foot">
     <div class="left">
-      Copyright © 2018-2020 ToxicMushroom#2610. All rights reserved.
+      Copyright © 2020 ToxicMushroom#2610. All rights reserved.
     </div>
 
     <div class="right">
