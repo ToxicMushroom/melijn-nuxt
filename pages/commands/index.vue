@@ -25,10 +25,10 @@
         <li><a :class="{'active': 'animal' == selectedCategory}" @click="categoryClick">Animal</a></li>
       </ul>
     </aside>
-    <div class="categories">
+    <div class="categories" :style="fancy">
       <div v-for="category in commands" :id="category[0]" :key="category[0]" class="category" :class="{'visible': category[0].toLowerCase() == selectedCategory}">
         <div v-for="cmd in category[1]" :key="cmd[0]">
-          <tree :tree-data="cmd" :tree-colors="colors" />
+          <tree :tree-data="cmd" />
         </div>
       </div>
     </div>
@@ -53,6 +53,18 @@ export default {
     return {
       selectedCategory: 'music',
       colors: ['#1F363D', '#152429', '#2D5462', '#3E6680', '#fff', '#fff']
+    }
+  },
+  computed: {
+    fancy () {
+      return {
+        '--color1': this.colors[0],
+        '--color2': this.colors[1],
+        '--color3': this.colors[2],
+        '--color4': this.colors[3],
+        '--color5': this.colors[4],
+        '--color6': this.colors[5]
+      }
     }
   },
   methods: {

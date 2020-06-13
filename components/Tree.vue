@@ -1,6 +1,6 @@
 <template>
   <ul class="tree-list">
-    <node-tree :node="treeData" :colrs="treeColors" :level="0" />
+    <node-tree :node="treeData" :level="0" />
   </ul>
 </template>
 
@@ -13,10 +13,6 @@ export default {
   },
   props: {
     treeData: {
-      type: Array,
-      required: true
-    },
-    treeColors: {
       type: Array,
       required: true
     }

@@ -2,10 +2,10 @@
 <template>
   <li class="node-tree">
     <div class="accordion">
-      <button :class="{ 'accordion-button--active': isActive }" class="accordion-button" :style="acolordionctitle" @click="myFilter">
+      <button :class="[{ 'accordion-button--active': isActive }, (level % 2) ? 'accordionbtncolor2' : 'accordionbtncolor1']" class="accordion-button" @click="myFilter">
         {{ cmdName }}
       </button>
-      <div class="accordion-content" :style="acolordioncontent">
+      <div class="accordion-content" :class="(level % 2) ? 'accordioncolor2' : 'accordioncolor1'">
         <!-- eslint-disable vue/no-v-html -->
         <table>
           <tr>
@@ -49,7 +49,7 @@
         </table>
         <br>
         <ul v-if="node[9] && node[9].length">
-          <node v-for="child in node[9]" :key="child[0]" :colrs="colrs" :node="child" :level="level + 1" />
+          <node v-for="child in node[9]" :key="child[0]" :node="child" :level="level + 1" />
         </ul>
       </div>
     </div>
@@ -63,10 +63,6 @@ export default {
   name: 'Node',
   props: {
     node: {
-      type: Array,
-      required: true
-    },
-    colrs: {
       type: Array,
       required: true
     },
@@ -148,32 +144,6 @@ export default {
         .replace(/`(.*?)`/ig, '<span class="code">$1</span>')
       return arg
     },
-    acolordioncontent () {
-      if (this.level % 2) {
-        return {
-          '--accordion-color': this.colrs[0]
-          // '--accordion-color': '#1F363D'
-        }
-      } else {
-        return {
-          '--accordion-color': this.colrs[1]
-          // '--accordion-color': '#152429'
-        }
-      }
-    },
-    acolordionctitle () {
-      if (this.level % 2) {
-        return {
-          // '--accordion-button-color': this.colrs[2] // Keep
-          '--accordion-button-color': '#2D5462' // Keep
-        }
-      } else {
-        return {
-          // '--accordion-button-color': this.colrs[3]
-          '--accordion-button-color': '#3E6680'
-        }
-      }
-    },
     melijnHelp () {
       const arg = this.node[10]
         .replace(/\r*\n/g, '<br>')
@@ -211,13 +181,36 @@ span.is-purple {
 
 <style lang="scss" scoped>
 .accordion {
+  .accordionbtncolor2 {
+    background-color: var(--color4)
+  }
+
+  .accordionbtncolor1 {
+    background-color: var(--color3)
+  }
+
+  .accordionbtncolor2.accordion-button--active {
+    background-color: var(--color6)
+  }
+
+  .accordionbtncolor1.accordion-button--active {
+    background-color: var(--color5)
+  }
+
+  .accordioncolor2 {
+    background-color: var(--color2)
+  }
+
+  .accordioncolor1 {
+    background-color: var(--color1)
+  }
+
   .accordion-button {
     display: block;
     cursor: pointer;
     font-size: 18px;
     width: 100%;
     padding: 15px;
-    background-color: var(--accordion-button-color);
     border: none;
     color: $grey-light;
     text-align: left;
@@ -228,10 +221,6 @@ span.is-purple {
     content: '\25be';
     float: right;
     transform: scale(1.5);
-  }
-
-  .accordion-button--active {
-    background-color: $dark;
   }
 
   .accordion-button--active + .accordion-content {
@@ -248,8 +237,6 @@ span.is-purple {
     overflow: auto;
 
     padding: 15px 15px 0 15px;
-
-    background-color: var(--accordion-color);
 
     color: $grey-lite;
     table {
