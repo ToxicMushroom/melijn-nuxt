@@ -72,8 +72,17 @@ export default {
           icons: ['faPlusSquare', 'faAngleDown', 'faQuestionCircle']
         }
       ]
-    }]
+    }],
+    '@nuxtjs/proxy'
   ],
+  proxy: {
+    '/api': {
+      target: 'http://localhost:8080/',
+      pathRewrite: {
+        '^/api': '/fullCommands'
+      }
+    }
+  },
 
   // Style resource module
   // https://github.com/nuxt-community/style-resources-module

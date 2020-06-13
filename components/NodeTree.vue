@@ -49,7 +49,7 @@
         </table>
         <br>
         <ul v-if="node[9] && node[9].length">
-          <node v-for="child in node[9]" :key="child[0]" :node="child" :level="level + 1" />
+          <node v-for="child in node[9]" :key="child[0]" :colrs="colrs" :node="child" :level="level + 1" />
         </ul>
       </div>
     </div>
@@ -63,6 +63,10 @@ export default {
   name: 'Node',
   props: {
     node: {
+      type: Array,
+      required: true
+    },
+    colrs: {
       type: Array,
       required: true
     },
@@ -147,21 +151,25 @@ export default {
     acolordioncontent () {
       if (this.level % 2) {
         return {
-          '--accordion-color': '#1F363D'
+          '--accordion-color': this.colrs[0]
+          // '--accordion-color': '#1F363D'
         }
       } else {
         return {
-          '--accordion-color': '#152429'
+          '--accordion-color': this.colrs[1]
+          // '--accordion-color': '#152429'
         }
       }
     },
     acolordionctitle () {
       if (this.level % 2) {
         return {
+          // '--accordion-button-color': this.colrs[2] // Keep
           '--accordion-button-color': '#2D5462' // Keep
         }
       } else {
         return {
+          // '--accordion-button-color': this.colrs[3]
           '--accordion-button-color': '#3E6680'
         }
       }
@@ -195,6 +203,10 @@ span.code {
   border-radius: 8px;
   background-color: $darkest;
 }
+span.is-purple {
+  background-color: pink;
+  font-weight: bold;
+}
 </style>
 
 <style lang="scss" scoped>
@@ -209,6 +221,7 @@ span.code {
     border: none;
     color: $grey-light;
     text-align: left;
+    border-bottom: 1px solid grey;
   }
 
   .accordion-button::after {
