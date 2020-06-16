@@ -16,13 +16,13 @@
         Categories
       </p>
       <ul class="menu-list">
-        <li><a :class="{'active': 'music' == selectedCategory}" @click="categoryClick">Music 🎵</a></li>
-        <li><a :class="{'active': 'moderation' == selectedCategory}" @click="categoryClick">Moderation ⚒</a></li>
-        <li><a :class="{'active': 'administration' == selectedCategory}" @click="categoryClick">Administration 🛠</a></li>
-        <li><a :class="{'active': 'utility' == selectedCategory}" @click="categoryClick">Utility 📖</a></li>
-        <li><a :class="{'active': 'image' == selectedCategory}" @click="categoryClick">Image 🖼</a></li>
-        <li><a :class="{'active': 'anime' == selectedCategory}" @click="categoryClick">Anime >‿‿◕</a></li>
-        <li><a :class="{'active': 'animal' == selectedCategory}" @click="categoryClick">Animal 🐱</a></li>
+        <li><a name="music" :class="{'active': 'music' == selectedCategory}" @click="categoryClick">Music 🎵</a></li>
+        <li><a name="moderation" :class="{'active': 'moderation' == selectedCategory}" @click="categoryClick">Moderation ⚒</a></li>
+        <li><a name="administration" :class="{'active': 'administration' == selectedCategory}" @click="categoryClick">Administration 🛠</a></li>
+        <li><a name="utility" :class="{'active': 'utility' == selectedCategory}" @click="categoryClick">Utility 📖</a></li>
+        <li><a name="image" :class="{'active': 'image' == selectedCategory}" @click="categoryClick">Image 🖼</a></li>
+        <li><a name="anime" :class="{'active': 'anime' == selectedCategory}" @click="categoryClick">Anime >‿‿◕</a></li>
+        <li><a name="animal" :class="{'active': 'animal' == selectedCategory}" @click="categoryClick">Animal 🐱</a></li>
       </ul>
     </aside>
     <div class="categories" :style="fancy">
@@ -70,15 +70,15 @@ export default {
   methods: {
     categoryClick (event) {
       const clicked = event.target
-      if (this.selectedCategory === clicked.textContent.toLowerCase()) {
+      if (this.selectedCategory === clicked.name.toLowerCase()) {
         return
       } else {
-        this.selectedCategory = clicked.textContent.toLowerCase()
+        this.selectedCategory = clicked.name.toLowerCase()
       }
 
       for (let i = 0; i < this.commands.length; i++) {
         const entry = this.commands[i]
-        if (entry[0].toLowerCase() === clicked.textContent.toLowerCase()) {
+        if (entry[0].toLowerCase() === clicked.name.toLowerCase()) {
           this.activeCommands = entry[1]
         }
       }
