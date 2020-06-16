@@ -1,7 +1,4 @@
 export default {
-  env: {
-    baseUrl: 'https://v2.melijn.com'
-  },
   mode: 'universal',
   /*
    ** Headers of the page
@@ -84,7 +81,7 @@ export default {
   ],
   proxy: {
     '/api': {
-      target: 'http://localhost:8181/',
+      target: 'http://localhost:8181',
       pathRewrite: {
         '^/api': '/fullCommands'
       }

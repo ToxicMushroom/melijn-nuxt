@@ -26,11 +26,13 @@
       </ul>
     </aside>
     <div class="categories" :style="fancy">
-      <div v-for="category in commands" :id="category[0]" :key="category[0]" class="category" :class="{'visible': category[0].toLowerCase() == selectedCategory}">
-        <div v-for="cmd in category[1]" :key="cmd[0]">
-          <tree :tree-data="cmd" />
+      <client-only placeholder="Loading...">
+        <div v-for="category in commands" :id="category[0]" :key="category[0]" class="category" :class="{'visible': category[0].toLowerCase() == selectedCategory}">
+          <div v-for="cmd in category[1]" :key="cmd[0]">
+            <tree :tree-data="cmd" />
+          </div>
         </div>
-      </div>
+      </client-only>
     </div>
   </div>
 </template>
