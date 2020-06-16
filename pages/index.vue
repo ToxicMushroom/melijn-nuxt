@@ -42,7 +42,7 @@
             </div>
           </div>
         </div>
-        <div id="arrow-wrapper">
+        <div id="arrow-wrapper" @click="scroll">
           <div id="arrow" />
         </div>
       </section>
@@ -77,7 +77,7 @@
           <div class="columns">
             <div class="column is-5">
               <figure class="image">
-                <img src="@/static/img/music.gif">
+                <img src="@/static/img/moderation.gif">
               </figure>
             </div>
             <div class="column is-6 text-column-hero">
@@ -86,7 +86,7 @@
               </h1>
               <h2 class="subtitle">
                 Moderate your server with chat-filters, automated punishment system, all you punishment needs like ban, tempban, softban, ..mute, ..kick etc<br>
-                Easily view and remove punishment cases if mistakes we're made.
+                Easily view and remove punishment cases if mistakes were made.
               </h2>
             </div>
           </div>
@@ -109,7 +109,7 @@
             </div>
             <div class="column is-5">
               <figure class="image">
-                <img src="@/static/img/music.gif">
+                <img src="@/static/img/verification.gif">
               </figure>
             </div>
           </div>
@@ -123,7 +123,7 @@
           <div class="columns">
             <div class="column is-5">
               <figure class="image">
-                <img src="@/static/img/music.gif">
+                <img src="@/static/img/selfroles.gif">
               </figure>
             </div>
             <div class="column is-6 text-column-hero">
@@ -145,7 +145,7 @@
       <div class="hero-body">
         <div class="container">
           <h1 class="title">
-            And much more which you discover <a class="text-link" href="/commands">here</a>.
+            And much more which you can discover <a class="text-link" href="/commands">here</a>.
           </h1>
         </div>
       </div>
@@ -156,8 +156,10 @@
 <script>
 
 export default {
-  components: {
-
+  methods: {
+    scroll (event) {
+      window.scroll(0, window.innerHeight)
+    }
   }
 }
 </script>
@@ -200,11 +202,15 @@ export default {
 
     #arrow-wrapper {
       position: absolute;
-      bottom: 60px;
+      bottom: 0;
+      padding: 50px;
       left: 50%;
       transition: 0.5s ease-in-out;
       transform: translateX(-50%);
       animation: idle-up-down 2s ease-in-out 0.5s infinite;
+      &:hover {
+        cursor: pointer;
+      }
       #arrow {
         border-right: 3px solid $grey;
         border-bottom: 3px solid $grey;
@@ -240,7 +246,8 @@ export default {
 
     @media (max-width: $tablet) {
       #arrow-wrapper {
-        bottom: 22px;
+        bottom: 0;
+        padding: 30px;
         animation: idle-up-down-small 2s ease-in-out 0.5s infinite;
         #arrow{
           width: 64px;

@@ -16,13 +16,13 @@
         Categories
       </p>
       <ul class="menu-list">
-        <li><a :class="{'active': 'music' == selectedCategory}" @click="categoryClick">Music</a></li>
-        <li><a :class="{'active': 'moderation' == selectedCategory}" @click="categoryClick">Moderation</a></li>
-        <li><a :class="{'active': 'administration' == selectedCategory}" @click="categoryClick">Administration</a></li>
-        <li><a :class="{'active': 'utility' == selectedCategory}" @click="categoryClick">Utility</a></li>
-        <li><a :class="{'active': 'image' == selectedCategory}" @click="categoryClick">Image</a></li>
-        <li><a :class="{'active': 'anime' == selectedCategory}" @click="categoryClick">Anime</a></li>
-        <li><a :class="{'active': 'animal' == selectedCategory}" @click="categoryClick">Animal</a></li>
+        <li><a :class="{'active': 'music' == selectedCategory}" @click="categoryClick">Music 🎵</a></li>
+        <li><a :class="{'active': 'moderation' == selectedCategory}" @click="categoryClick">Moderation ⚒</a></li>
+        <li><a :class="{'active': 'administration' == selectedCategory}" @click="categoryClick">Administration 🛠</a></li>
+        <li><a :class="{'active': 'utility' == selectedCategory}" @click="categoryClick">Utility 📖</a></li>
+        <li><a :class="{'active': 'image' == selectedCategory}" @click="categoryClick">Image 🖼</a></li>
+        <li><a :class="{'active': 'anime' == selectedCategory}" @click="categoryClick">Anime >‿‿◕</a></li>
+        <li><a :class="{'active': 'animal' == selectedCategory}" @click="categoryClick">Animal 🐱</a></li>
       </ul>
     </aside>
     <div class="categories" :style="fancy">
@@ -52,7 +52,7 @@ export default {
   data () {
     return {
       selectedCategory: 'music',
-      colors: ['#1F363D', '#152429', '#2D5462', '#3E6680', '#fff', '#fff']
+      colors: ['#171F21', '#152429', '#364440', '#334C4D', '#495A56', '#475F61']
     }
   },
   computed: {
@@ -117,7 +117,7 @@ export default {
   }
 }
 .categories {
-  margin: 0 40px;
+  margin: 0 40px 40px 40px;
 
   .category {
     display: none;
