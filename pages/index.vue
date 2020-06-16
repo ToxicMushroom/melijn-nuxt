@@ -33,7 +33,7 @@
                   </a>
                   <a href="https://www.patreon.com/melijn" target="_blank" class="button is-info">
                     <span class="icon is-small">
-                      <fa :icon="['fas', 'patreon']" />
+                      <fa :icon="['fab', 'patreon']" />
                     </span>
                     <span>Patreon</span>
                   </a>
