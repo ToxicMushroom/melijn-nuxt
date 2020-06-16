@@ -70,6 +70,10 @@ export default {
         {
           set: '@fortawesome/free-solid-svg-icons',
           icons: ['faPlusSquare', 'faAngleDown', 'faQuestionCircle']
+        },
+        {
+          set: '@fortawesome/free-brands-svg-icons',
+          icons: ['faPatreon']
         }
       ]
     }],
