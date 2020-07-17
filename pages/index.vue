@@ -1,8 +1,9 @@
 <template>
   <div class="wrapper">
     <div id="chonky-boy">
-      <section id="welcome" class="hero is-fullheight-with-navbar">
-        <div class="hero-body">
+      <section id="welcome" class="hero">
+        <div class="background" />
+        <div class="welcome-content">
           <div class="container">
             <div class="columns is-centered is-vcentered">
               <div class="column is-4 has-text-centered">
@@ -19,19 +20,19 @@
                 </h2>
 
                 <div class="buttons">
-                  <a href="https://discordapp.com/oauth2/authorize?client_id=368362411591204865&scope=bot&permissions=322268358" target="_blank" class="button is-primary is-focused">
+                  <a href="https://discordapp.com/oauth2/authorize?client_id=368362411591204865&scope=bot&permissions=322268358" target="_blank" class="button is-primary is-focused is-medium">
                     <span class="icon is-small">
                       <fa :icon="['fas', 'plus-square']" />
                     </span>
                     <span>Invite</span>
                   </a>
-                  <a href="https://discordapp.com/invite/E2RfZA9" target="_blank" class="button is-link">
+                  <a href="https://discordapp.com/invite/E2RfZA9" target="_blank" class="button is-link is-medium">
                     <span class="icon is-small">
                       <fa :icon="['fas', 'question-circle']" />
                     </span>
                     <span>Support</span>
                   </a>
-                  <a href="https://www.patreon.com/melijn" target="_blank" class="button is-info">
+                  <a href="https://www.patreon.com/melijn" target="_blank" class="button is-info is-medium">
                     <span class="icon is-small">
                       <fa :icon="['fab', 'patreon']" />
                     </span>
@@ -47,8 +48,19 @@
         </div>
       </section>
     </div>
-    <hr>
-    <section class="hero is-dark">
+    <div class="wave">
+      <svg
+        width="100%"
+        height="100%"
+        viewBox="0 0 461 60"
+        version="1.1"
+        xmlns="http://www.w3.org/2000/svg"
+        xmlns:xlink="http://www.w3.org/1999/xlink"
+        xml:space="preserve"
+        xmlns:serif="http://www.serif.com/"
+      ><path d="M0,15.36c0,0 93.676,-15.657 230.4,0.24c137.073,15.938 230.4,-4.08 230.4,-4.08l0,48.48l-460.8,0l0,-44.64Z" style="fill:#4d4d4d;" /></svg>
+    </div>
+    <section class="hero is-dark feature">
       <div class="hero-body">
         <div class="container">
           <div class="columns">
@@ -57,44 +69,42 @@
                 Audio
               </h1>
               <h2 class="subtitle">
-                We have dedicated servers for audio streaming. Supports YouTube, SoundCloud, Spotify, Twitch and more...<br>With premium you can stream from any <a class="text-link" href="https://bintray.com/sedmelluq/com.sedmelluq/lavaplayer" target="_blank">supported</a> http url.<br>
+                We have dedicated servers for audio streaming. Supports YouTube, SoundCloud, Spotify, Twitch, Discord Attachments and <a class="text-link" href="https://bintray.com/sedmelluq/com.sedmelluq/lavaplayer" target="_blank">more...</a><br>
                 Melijn has many <a class="text-link" href="/commands#music">commands</a> to make listening with others fun.
               </h2>
             </div>
             <div class="column is-5">
-              <figure class="image">
-                <img src="@/static/img/music.gif">
-              </figure>
+              <span class="icon">
+                <fa :icon="['fas', 'music']" />
+              </span>
             </div>
           </div>
         </div>
       </div>
     </section>
-    <hr>
-    <section class="hero is-dark">
+    <section class="hero is-dark dark2 feature">
       <div class="hero-body">
         <div class="container">
           <div class="columns">
             <div class="column is-5">
-              <figure class="image">
-                <img src="@/static/img/moderation.gif">
-              </figure>
+              <span class="icon">
+                <fa :icon="['fas', 'hammer']" />
+              </span>
             </div>
             <div class="column is-6 text-column-hero">
               <h1 class="title">
                 Moderation
               </h1>
               <h2 class="subtitle">
-                Moderate your server with chat-filters, automated punishment system, all you punishment needs like ban, tempban, softban, ..mute, ..kick etc<br>
-                Easily view and remove punishment cases if mistakes were made.
+                Moderate your server with chat-filters, automated punishment system, fullfills all your punishment needs like ban, tempban, softban, ..mute, ..kick etc<br>
+                Easily view and remove punishment cases.
               </h2>
             </div>
           </div>
         </div>
       </div>
     </section>
-    <hr>
-    <section class="hero is-dark">
+    <section class="hero is-dark feature">
       <div class="hero-body">
         <div class="container">
           <div class="columns">
@@ -103,28 +113,27 @@
                 Verification
               </h1>
               <h2 class="subtitle">
-                To keep spammers, self-bots, raids and people that say "I didn't find the rules" from infiltrating your server. Or to simply have a password protected private server.<br>
-                You can require users to pass a verification check like: password, reaction or google-recaptchaV2
+                To keep spammers, self-bots, raids and people that tell you: "I didn't find the rules" from infiltrating your server. Or to simply have a password protected private server.<br>
+                You can require users to pass a verification check (supports: password, reaction or google-recaptchaV2)
               </h2>
             </div>
             <div class="column is-5">
-              <figure class="image">
-                <img src="@/static/img/verification.gif">
-              </figure>
+              <span class="icon">
+                <fa :icon="['fas', 'shield-alt']" />
+              </span>
             </div>
           </div>
         </div>
       </div>
     </section>
-    <hr>
-    <section class="hero is-dark">
+    <section class="hero is-dark dark2 feature">
       <div class="hero-body">
         <div class="container">
           <div class="columns">
             <div class="column is-5">
-              <figure class="image">
-                <img src="@/static/img/selfroles.gif">
-              </figure>
+              <span class="icon">
+                <fa :icon="['fas', 'user-tag']" />
+              </span>
             </div>
             <div class="column is-6 text-column-hero">
               <h1 class="title">
@@ -140,12 +149,11 @@
         </div>
       </div>
     </section>
-    <hr>
     <section class="hero is-dark">
       <div class="hero-body">
         <div class="container">
           <h1 class="title">
-            And much more which you can discover <a class="text-link" href="/commands">here</a>.
+            And much more which you can <a class="text-link" href="/commands">discover</a>.
           </h1>
         </div>
       </div>
@@ -160,6 +168,35 @@ export default {
     scroll (event) {
       window.scroll(0, window.innerHeight)
     }
+  },
+  head () {
+    return {
+      title: 'Melijn - Discord Bot',
+      meta: [
+        {
+          hid: 'description',
+          name: 'description',
+          content:
+            'Melijn is a multipurpose discord bot with lot\'s of functionality and advanced commands.'
+        },
+        {
+          hid: 'og:title',
+          property: 'og:title',
+          content: 'Melijn - Discord Bot'
+        },
+        {
+          hid: 'og:url',
+          property: 'og:url',
+          content: `https://v2.melijn.com/${this.$route.params.id}`
+        },
+        {
+          hid: 'og:description',
+          property: 'og:description',
+          content:
+            'Melijn is a multipurpose discord bot with lot\'s of functionality and advanced commands.'
+        }
+      ]
+    }
   }
 }
 </script>
@@ -167,6 +204,15 @@ export default {
 <style lang="scss" scoped>
 
 .wrapper {
+  .wave {
+    transform: translateY(1px);
+    svg {
+      path {
+        fill: $box-color !important;
+      }
+      display: block;
+    }
+  }
   hr {
     background-color: $grey;
     margin: 0;
@@ -179,9 +225,53 @@ export default {
     justify-content: center;
     flex-wrap: nowrap;
 
+    .welcome-content {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-evenly;
+      height: 725px;
+      padding: 0 100px;
+      z-index: 2;
+    }
+
+    .background {
+      position: absolute;
+      height: 100vh;
+      left: 0;
+      right: 0;
+      top: 0;
+      z-index: 0;
+      overflow: hidden;
+
+      background-image: url("~static/img/background.svg");
+      background-position: 50%;
+
+      background-repeat: no-repeat;
+      background-size: cover;
+    }
     .columns {
       padding: 50px 0;
       background-color: $box-color;
+
+      .welcome-text {
+        text-align: left;
+
+        .title {
+          font-family: 'Open Sans', sans-serif;
+          display: block;
+          font-weight: 300;
+          font-size: 3rem;
+          color: var(--lightest);
+        }
+
+        .subtitle {
+          font-weight: 300;
+          font-size: 2rem;
+          color: var(--light-grey);
+          word-spacing: 0.25rem;
+        }
+      }
 
       @media (max-width: $tablet) {
         .welcome-text {
@@ -208,6 +298,7 @@ export default {
       transition: 0.5s ease-in-out;
       transform: translateX(-50%);
       animation: idle-up-down 2s ease-in-out 0.5s infinite;
+      z-index: 5;
       &:hover {
         cursor: pointer;
       }
@@ -256,31 +347,34 @@ export default {
       }
     }
   }
-  .columns {
-    .text-column-hero {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-    }
-    .welcome-text {
-      text-align: left;
-
-      .title {
-        font-family: 'Open Sans', sans-serif;
-        display: block;
-        font-weight: 300;
-        font-size: 2.5rem;
-        color: var(--lightest);
+  .feature.dark2 {
+    background-color: #242529;
+  }
+  .feature {
+    padding: 25px 0;
+    .columns {
+      .column.is-5 {
+        display: flex;
+        justify-content: center;
+        span.icon {
+          height: 150px;
+          width: 150px;
+          svg {
+            height: 150px;
+            width: 150px;
+          }
+        }
       }
 
-      .subtitle {
-        font-weight: 300;
-        font-size: 1.5rem;
-        color: var(--light-grey);
-        word-spacing: 0.25rem;
+      .text-column-hero {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
       }
     }
   }
 }
-
+#self-roles-img {
+  width: 285px;
+}
 </style>

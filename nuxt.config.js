@@ -1,28 +1,26 @@
 export default {
   mode: 'universal',
+  server: {
+    port: 3000, // default: 3000
+    host: '0.0.0.0' // default: localhost
+  },
   /*
    ** Headers of the page
    */
   head: {
     title: process.env.npm_package_name || '',
-    meta: [{
-      charset: 'utf-8'
-    },
-    {
-      name: 'viewport',
-      content: 'width=device-width, initial-scale=1'
-    },
-    {
-      hid: 'description',
-      name: 'description',
-      content: process.env.npm_package_description || ''
-    }
+    meta: [
+      { charset: 'utf-8' },
+      { name: 'viewport', content: 'width=device-width, initial-scale=1' },
+      { name: 'theme-color', content: '#A1B4ED' },
+      { name: 'msapplication-TileColor', content: '#A1B4ED' },
+      { hid: 'description', name: 'description', content: process.env.npm_package_description || '' }
     ],
     link: [{
       rel: 'icon',
-      type: 'image/svg',
-      sizes: '200x200',
-      href: '/fabicon.svg'
+      type: 'image/png',
+      sizes: '100x100',
+      href: '/fabicon.png'
     }]
   },
   /*
@@ -68,8 +66,25 @@ export default {
       component: 'fa',
       imports: [
         {
+          set: '@fortawesome/free-regular-svg-icons',
+          icons: ['faMoneyBillAlt']
+        },
+        {
           set: '@fortawesome/free-solid-svg-icons',
-          icons: ['faPlusSquare', 'faAngleDown', 'faQuestionCircle']
+          icons: [
+            'faPlusSquare',
+            'faAngleDown',
+            'faQuestionCircle',
+            'faMusic',
+            'faHammer',
+            'faShieldAlt',
+            'faUserTag',
+            'faWrench',
+            'faInfo',
+            'faImages',
+            'faToriiGate',
+            'faPaw'
+          ]
         },
         {
           set: '@fortawesome/free-brands-svg-icons',

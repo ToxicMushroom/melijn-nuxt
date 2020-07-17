@@ -3,7 +3,7 @@
   <li class="node-tree">
     <div class="accordion">
       <button :class="[{ 'accordion-button--active': isActive }, (level % 2) ? 'accordionbtncolor2' : 'accordionbtncolor1']" class="accordion-button" @click="myFilter">
-        {{ cmdName }}
+        {{ cmdName }}<span class="btn-arrow"><fa :icon="['fas', 'angle-down']" /></span>
       </button>
       <div class="accordion-content" :class="(level % 2) ? 'accordioncolor2' : 'accordioncolor1'">
         <!-- eslint-disable vue/no-v-html -->
@@ -180,7 +180,16 @@ span.is-purple {
 </style>
 
 <style lang="scss" scoped>
+.btn-arrow {
+  display: inline-box;
+  float: right;
+  transition: 0.2s ease-in-out;
+}
+
 .accordion {
+  box-shadow: 0 0 5px 0 #00000021;
+  border-radius: 8px;
+
   .accordionbtncolor2 {
     background-color: var(--color4)
   }
@@ -211,25 +220,37 @@ span.is-purple {
     font-size: 18px;
     width: 100%;
     padding: 15px;
+    margin: 15px 0 0 0;
     border: none;
     color: $grey-light;
     text-align: left;
-    border-bottom: 1px solid grey;
+    border-radius: 8px;
   }
 
-  .accordion-button::after {
-    content: '\25be';
-    float: right;
-    transform: scale(1.5);
+  // .accordion-button::after {
+  //   content: '\25be';
+  //   float: right;
+  //   transform: scale(1.5);
+  // }
+
+  .accordion-button--active {
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
   }
 
   .accordion-button--active + .accordion-content {
     display: block;
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
   }
 
-  .accordion-button--active::after {
-    content: '\25b4';
+  .accordion-button--active .btn-arrow {
+    transform: rotate(-180deg);
   }
+
+  // .accordion-button--active::after {
+  //   content: '\25b4';
+  // }
 
   .accordion-content {
     font-size: 18px;

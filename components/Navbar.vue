@@ -52,7 +52,7 @@
       <div class="navbar-item">
         <div class="buttons" disabled>
           <a class="button is-primary" disabled>
-            <strong>Log in</strong>
+            <strong>Login</strong>
           </a>
         </div>
       </div>
@@ -103,6 +103,7 @@ hr {
   margin: 5px 10px;
 }
 .navbar {
+  background: none;
   height: 60px;
   .navbar-brand {
     .navbar-item {
@@ -127,23 +128,27 @@ hr {
     }
     a.navbar-item {
       &:hover, &:focus {
-        background-color: $dark;
+        color: $grey-light;
+        background: none;
       }
 
       color: $grey-lite;
     }
     div.navbar-item.has-dropdown {
       &:hover, &:focus {
-        background-color: $dark;
-         .navbar-link {
-           background-color: $dark;
-         }
+        background: none;
+        color: $grey-light;
+        .navbar-link {
+          color: $grey-light;
+          background: none;
+        }
       }
 
       .navbar-link {
         color: $grey-lite;
         &:hover, &:focus {
-          background-color: $dark;
+          background: none;
+          color: $grey-light;
         }
       }
 
