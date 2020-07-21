@@ -99,7 +99,7 @@ export default {
   data () {
     return {
       selectedCategory: 'music',
-      colors: ['#171F21', '#152429', '#364440', '#334C4D', '#495A56', '#475F61'],
+      colors: ['#252529', '#34343A', '#505056', '#505056', '#505056', '#505056'],
       commandLoader: 0,
       search: ''
     }
@@ -137,7 +137,20 @@ export default {
       }
     },
     isVisible (cmd) {
-      return cmd[0] === this.search || this.search === ''
+      const searchQuery = this.search.toLowerCase()
+      const aliases = cmd[3]
+      const res = cmd[0].toLowerCase().includes(searchQuery) || this.search === ''
+
+      if (res) {
+        return res
+      }
+
+      for (let i = 0; i < aliases.length; i++) {
+        if (aliases[i].toLowerCase().includes(searchQuery)) {
+          return true
+        }
+      }
+      return res
     }
   },
   head () {
