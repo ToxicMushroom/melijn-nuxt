@@ -1,10 +1,10 @@
 <template>
   <nav class="navbar" role="navigation" aria-label="main navigation">
     <div class="navbar-brand">
-      <a class="navbar-item" href="/">
+      <nuxt-link to="/" class="navbar-item">
         <img src="@/static/img/icon.svg" alt="Melijn icon" width="60" height="60">
         <h1>Melijn</h1>
-      </a>
+      </nuxt-link>
       <a
         role="button"
         class="navbar-burger"
@@ -19,12 +19,12 @@
       </a>
     </div>
     <div class="navbar-end">
-      <a class="navbar-item" href="/">
+      <nuxt-link to="/" class="navbar-item">
         Home
-      </a>
-      <a class="navbar-item" href="/commands">
+      </nuxt-link>
+      <nuxt-link to="/commands" class="navbar-item">
         Commands
-      </a>
+      </nuxt-link>
       <div class="navbar-item has-dropdown is-hoverable">
         <a class="navbar-link">
           More
@@ -37,14 +37,14 @@
           <a class="navbar-item" href="/about" disabled>
             About
           </a>
-          <a class="navbar-item" href="/support" disabled>
+          <a class="navbar-item" href="https://discord.com/invite/tfQ9s7u" target="_blank">
             Support server
           </a>
           <a class="navbar-item" href="/contact" disabled>
             Contact
           </a>
           <hr class="navbar-divider">
-          <a class="navbar-item" href="/invite" target="_blank" disabled>
+          <a class="navbar-item" href="https://discord.com/oauth2/authorize?client_id=368362411591204865&scope=bot&permissions=457043158" target="_blank">
             Invite Melijn
           </a>
         </div>
@@ -72,14 +72,14 @@
         <a class="navbar-item" href="/about">
           About
         </a>
-        <a class="navbar-item" href="/support">
+        <a class="navbar-item" href="https://discord.com/invite/tfQ9s7u" target="_blank">
           Support server
         </a>
         <a class="navbar-item" href="/contact">
           Contact
         </a>
         <hr>
-        <a class="navbar-item" href="/invite" target="_blank">
+        <a class="navbar-item" href="https://discord.com/oauth2/authorize?client_id=368362411591204865&scope=bot&permissions=457043158" target="_blank">
           Invite Melijn
         </a>
       </div>

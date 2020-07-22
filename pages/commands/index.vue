@@ -1,16 +1,5 @@
 <template>
   <div>
-    <client-only placeholder="Loading...">
-      <div class="color-pickers">
-        <color-picker v-model="colors[0]" />
-        <color-picker v-model="colors[1]" />
-        <color-picker v-model="colors[2]" />
-        <color-picker v-model="colors[3]" />
-        <color-picker v-model="colors[4]" />
-        <color-picker v-model="colors[5]" />
-      </div>
-    </client-only>
-
     <aside class="menu">
       <p class="menu-label">
         Categories
@@ -70,50 +59,36 @@
       </p>
     </div>
 
-    <div class="categories" :style="fancy">
-      <client-only placeholder="Loading...">
-        <div v-for="category in commands" :id="category[0]" :key="category[0]" class="category" :class="{'visible': category[0].toLowerCase() == selectedCategory}">
-          <div v-for="cmd in category[1]" :key="cmd[0]">
-            <tree v-show="isVisible(cmd)" :tree-data="cmd" />
-          </div>
+    <div class="categories">
+      <!-- <client-only placeholder="Loading..."> -->
+      <div v-for="category in commands" :id="category[0]" :key="category[0]" class="category" :class="{'visible': category[0].toLowerCase() == selectedCategory}">
+        <div v-for="cmd in category[1]" :key="cmd[0]">
+          <tree v-show="isVisible(cmd)" :tree-data="cmd" />
         </div>
-      </client-only>
+      </div>
+      <!-- </client-only> -->
     </div>
   </div>
 </template>
 
 <script>
-import { VueColorpicker } from 'vue-pop-colorpicker'
 import Tree from '@/components/Tree'
+let commands
 
 export default {
   components: {
-    Tree,
-    'color-picker': VueColorpicker
+    Tree
   },
   async asyncData ({ $axios }) {
-    const commands = Object.entries(await $axios.$get('http://localhost:3000/api'))
+    commands = !commands ? Object.entries(await $axios.$get('http://localhost:3000/api')) : commands
     const activeCommands = commands[0][1]
     return { commands, activeCommands }
   },
   data () {
     return {
       selectedCategory: 'music',
-      colors: ['#252529', '#34343A', '#505056', '#505056', '#505056', '#505056'],
       commandLoader: 0,
       search: ''
-    }
-  },
-  computed: {
-    fancy () {
-      return {
-        '--color1': this.colors[0],
-        '--color2': this.colors[1],
-        '--color3': this.colors[2],
-        '--color4': this.colors[3],
-        '--color5': this.colors[4],
-        '--color6': this.colors[5]
-      }
     }
   },
   mounted () {
@@ -193,6 +168,12 @@ export default {
 
 #searchbar {
   margin: 30px;
+  @media (max-width: $tablet) {
+    margin: 30px 15px;
+  }
+  @media (max-width: $phone) {
+    margin: 20px 10px;
+  }
   p {
     input {
       color: $grey-lite;
@@ -210,7 +191,15 @@ export default {
   width: calc(100% - 60px);
   background-color: $darkr;
   border-radius: 5px;
-
+  @media (max-width: $tablet) {
+    margin: 30px 15px;
+    width: calc(100% - 30px);
+  }
+  @media (max-width: $phone) {
+    margin: 20px 10px;
+    width: calc(100% - 20px);
+    padding: 5px;
+  }
   .menu-label {
     color: white;
   }
@@ -232,8 +221,16 @@ export default {
   }
 }
 .categories {
-  margin: 0 40px 40px 40px;
-
+  margin: 10px 40px 40px 40px;
+  @media (max-width: $tablet) {
+    margin: 30px 15px;
+    width: calc(100% - 30px);
+  }
+  @media (max-width: $phone) {
+    margin: 20px 10px;
+    width: calc(100% - 20px);
+    padding: 5px;
+  }
   .category {
     display: none;
   }

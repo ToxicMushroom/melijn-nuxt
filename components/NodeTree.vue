@@ -5,7 +5,7 @@
       <button :class="[{ 'accordion-button--active': isActive }, (level % 2) ? 'accordionbtncolor2' : 'accordionbtncolor1']" class="accordion-button" @click="myFilter">
         {{ cmdName }}<span class="btn-arrow"><fa :icon="['fas', 'angle-down']" /></span>
       </button>
-      <div class="accordion-content" :class="(level % 2) ? 'accordioncolor2' : 'accordioncolor1'">
+      <div v-if="isActive" class="accordion-content" :class="(level % 2) ? 'accordioncolor2' : 'accordioncolor1'">
         <!-- eslint-disable vue/no-v-html -->
         <table>
           <tr>
@@ -180,6 +180,10 @@ span.is-purple {
 </style>
 
 <style lang="scss" scoped>
+$color1: #252529;
+$color2: #34343A;
+$color3: #505056;
+
 .btn-arrow {
   display: inline-box;
   float: right;
@@ -189,29 +193,41 @@ span.is-purple {
 .accordion {
   box-shadow: 0 0 5px 0 #00000021;
   border-radius: 8px;
+  @media (max-width: $tablet) {
+    border-radius: 6px;
+  }
+  @media (max-width: $phone) {
+    border-radius: 4px;
+  }
 
   .accordionbtncolor2 {
-    background-color: var(--color4)
+    //background-color: var(--color4)
+    background-color: $color3;
   }
 
   .accordionbtncolor1 {
-    background-color: var(--color3)
+    //background-color: var(--color3)
+    background-color: $color3;
   }
 
   .accordionbtncolor2.accordion-button--active {
-    background-color: var(--color6)
+    //background-color: var(--color6)
+    background-color: $color3;
   }
 
   .accordionbtncolor1.accordion-button--active {
-    background-color: var(--color5)
+    //background-color: var(--color5)
+    background-color: $color3;
   }
 
   .accordioncolor2 {
-    background-color: var(--color2)
+    //background-color: var(--color2)
+    background-color: $color2;
   }
 
   .accordioncolor1 {
-    background-color: var(--color1)
+    //background-color: var(--color1)
+    background-color: $color1;
   }
 
   .accordion-button {
@@ -225,13 +241,19 @@ span.is-purple {
     color: $grey-light;
     text-align: left;
     border-radius: 8px;
+    @media (max-width: $tablet) {
+      font-size: 16px;
+      padding: 12px;
+      border-radius: 6px;
+      margin: 12px 0 0 0;
+    }
+    @media (max-width: $phone) {
+      font-size: 14px;
+      padding: 8px;
+      margin: 8px 0 0 0;
+      border-radius: 4px;
+    }
   }
-
-  // .accordion-button::after {
-  //   content: '\25be';
-  //   float: right;
-  //   transform: scale(1.5);
-  // }
 
   .accordion-button--active {
     border-bottom-left-radius: 0;
@@ -242,6 +264,14 @@ span.is-purple {
     display: block;
     border-bottom-left-radius: 8px;
     border-bottom-right-radius: 8px;
+    @media (max-width: $tablet) {
+      border-bottom-left-radius: 6px;
+      border-bottom-right-radius: 6px;
+    }
+    @media (max-width: $phone) {
+      border-bottom-left-radius: 4px;
+      border-bottom-right-radius: 4px;
+    }
   }
 
   .accordion-button--active .btn-arrow {
@@ -257,7 +287,13 @@ span.is-purple {
     display: none;
     overflow: auto;
 
-    padding: 15px 15px 0 15px;
+    padding: 15px 10px 0 15px;
+    @media (max-width: $tablet) {
+      padding: 15px 5px 0 10px;
+    }
+    @media (max-width: $phone) {
+      padding: 15px 5px 0 5px;
+    }
 
     color: $grey-lite;
     table {
@@ -271,6 +307,12 @@ span.is-purple {
         th {
           color: $grey-lite;
           padding-left: 6px;
+          @media (max-width: $tablet) {
+            font-size: 14px;
+          }
+          @media (max-width: $phone) {
+            font-size: 11px;
+          }
         }
       }
     }

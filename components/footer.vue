@@ -87,33 +87,48 @@
 
   .left {
     flex-direction: column;
-     margin: 0 0.5em 0 1em;
+    margin: 0 0.5em 0 1em;
+    @media (max-width: $phone) {
+      font-size: 9px;
+    }
   }
 
   .right {
     flex-direction: row;
-     margin: 0 1em 0 0.5em;
+    margin: auto 1em auto 0.5em;
+    @media (max-width: $phone) {
+      margin: auto 0.5em auto 0.25em;
+    }
+  }
+}
+
+svg#twitter, svg#github, svg#discord, svg#youtube {
+  height: 52px;
+  width: 36px;
+  overflow: visible;
+  @media (max-width: $phone) {
+    width: 22px;
+    height: 30px;
+  }
+}
+
+#twitter-link, #youtube-link, #discord-link, #github-link {
+  margin-right: 10px;
+  display: inline-block;
+  width: 40px;
+  height: 52px;
+  color: #ffffff;
+  text-align: center;
+  line-height: 0px;
+  @media (max-width: $phone) {
+    width: 25px;
+    height: 30px;
+    margin-right: 6px;
   }
 }
 </style>
 
 <style scoped>
-
-#twitter-link, #youtube-link, #discord-link, #github-link {
-    margin-right: 10px;
-    display: inline-block;
-    width: 40px;
-    height: 52px;
-    color: #ffffff;
-    text-align: center;
-    line-height: 0px;
-}
-
-svg#twitter, svg#github, svg#discord, svg#youtube {
-    height: 52px;
-    width: 36px;
-    overflow: visible;
-}
 
 svg .discord-path, svg .youtube-path, svg .github-path, svg .twitter-path {
     fill: white;

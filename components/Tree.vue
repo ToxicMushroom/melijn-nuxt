@@ -23,7 +23,6 @@ export default {
 
 <style>
 .tree-list ul {
-  padding-left: 16px;
   margin: 0 0 16px;
 }
 </style>
