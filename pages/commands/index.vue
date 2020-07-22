@@ -80,7 +80,7 @@ export default {
     Tree
   },
   async asyncData ({ $axios }) {
-    commands = !commands ? Object.entries(await $axios.$get('http://localhost:3000/api')) : commands
+    commands = !commands ? Object.entries(await $axios.$get('api')) : commands
     const activeCommands = commands[0][1]
     return { commands, activeCommands }
   },
