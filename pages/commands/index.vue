@@ -63,7 +63,7 @@
       <!-- <client-only placeholder="Loading..."> -->
       <div v-for="category in commands" :id="category[0]" :key="category[0]" class="category" :class="{'visible': category[0].toLowerCase() == selectedCategory}">
         <div v-for="cmd in category[1]" :key="cmd[0]">
-          <tree v-show="isVisible(cmd)" :tree-data="cmd" />
+          <tree v-if="isVisible(cmd)" :tree-data="cmd" />
         </div>
       </div>
       <!-- </client-only> -->

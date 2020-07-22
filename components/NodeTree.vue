@@ -2,7 +2,7 @@
 <template>
   <li class="node-tree">
     <div class="accordion">
-      <button :class="[{ 'accordion-button--active': isActive }, (level % 2) ? 'accordionbtncolor2' : 'accordionbtncolor1']" class="accordion-button" @click="myFilter">
+      <button :class="{ 'accordion-button--active': isActive, [className]: true }" class="accordion-button" @click="myFilter">
         {{ cmdName }}<span class="btn-arrow"><fa :icon="['fas', 'angle-down']" /></span>
       </button>
       <div v-if="isActive" class="accordion-content" :class="(level % 2) ? 'accordioncolor2' : 'accordioncolor1'">
@@ -16,35 +16,35 @@
           </tr>
           <tr>
             <th>Syntax</th>
-            <th>{{ node[2].replace(/%prefix%/g, '>') }}</th>
+            <th>{{ syntax }}</th>
           </tr>
-          <tr v-if="melijnArguments.length > 0">
+          <tr v-if="args.length > 0">
             <th>Arguments</th>
-            <th v-html="melijnArguments" />
+            <th v-html="args" />
           </tr>
-          <tr v-if="discordChannelPerms.length > 0">
+          <tr v-if="channelPermissions.length > 0">
             <th>Discord Channel Permissions</th>
-            <th v-html="discordChannelPerms" />
+            <th v-html="channelPermissions" />
           </tr>
-          <tr v-if="discordPerms.length > 0">
+          <tr v-if="permissions.length > 0">
             <th>Discord Permissions</th>
-            <th v-html="discordPerms" />
+            <th v-html="permissions" />
           </tr>
-          <tr v-if="node[7].size > 0">
+          <tr v-if="conditions.length > 0">
             <th>Runconditions</th>
-            <th>{{ node[7].join(" & ") }}</th>
+            <th>{{ conditions }}</th>
           </tr>
           <tr>
             <th>Permission</th>
             <th>{{ node[8] }}</th>
           </tr>
-          <tr v-if="melijnHelp.length > 0">
+          <tr v-if="help.length > 0">
             <th>Extra Help</th>
-            <th v-html="melijnHelp" />
+            <th v-html="help" />
           </tr>
-          <tr v-if="melijnExamples.length > 0">
+          <tr v-if="examples.length > 0">
             <th>Examples</th>
-            <th v-html="melijnExamples" />
+            <th v-html="examples" />
           </tr>
         </table>
         <br>
@@ -58,6 +58,43 @@
 
 <script>
 import { red, blue, green, purple } from '~/constants/constants.js'
+
+function createName (node) {
+  const name = node[0]
+  const arr = node[3]
+  if (arr.length > 0) {
+    return name + ' | ' + arr.join(' | ')
+  } else {
+    return name
+  }
+}
+
+function createPermissions (perms) {
+  return perms.reduce((total, element) => {
+    let className
+
+    if (red.includes(element)) {
+      className = 'is-danger'
+    } else if (blue.includes(element)) {
+      className = 'is-info'
+    } else if (green.includes(element)) {
+      className = 'is-success'
+    } else if (purple.includes(element)) {
+      className = 'is-purple'
+    } else {
+      className = 'is-light'
+    }
+
+    return `<span class="tag ${className}">${element}</span>`
+  }, '')
+}
+
+function createHtml (input) {
+  return input
+    .replace(/\r*\n/g, '<br>')
+    .replace(/%prefix%/g, '>')
+    .replace(/`(.*?)`/ig, '<span class="code">$1</span>')
+}
 
 export default {
   name: 'Node',
@@ -73,95 +110,41 @@ export default {
   },
   data () {
     return {
-      isActive: false
+      isActive: false,
+      cmdName: '',
+      syntax: '',
+      args: '',
+      permissions: '',
+      channelPermissions: '',
+      conditions: '',
+      permission: '',
+      help: '',
+      examples: '',
+      className: ''
     }
   },
-  computed: {
-    cmdName () {
-      const name = this.node[0]
-      const arr = this.node[3]
-      if (arr.length > 0) {
-        return name + ' | ' + arr.join(' | ')
-      } else {
-        return name
-      }
-    },
-    perm () {
-      if (this.node[8]) {
-        return 'yes'
-      } else {
-        return 'no'
-      }
-    },
-    discordPerms () {
-      const perms = this.node[6]
-      let total = ''
-      perms.forEach((element) => {
-        total += '<span class="tag '
-        if (red.includes(element)) {
-          total += 'is-danger'
-        } else if (blue.includes(element)) {
-          total += 'is-info'
-        } else if (green.includes(element)) {
-          total += 'is-success'
-        } else if (purple.includes(element)) {
-          total += 'is-purple'
-        } else {
-          total += 'is-light'
-        }
-
-        total += '">' + element + '</span>'
-      })
-
-      return total
-    },
-    discordChannelPerms () {
-      const perms = this.node[5]
-      let total = ''
-      perms.forEach((element) => {
-        total += '<span class="tag '
-        if (red.includes(element)) {
-          total += 'is-danger'
-        } else if (blue.includes(element)) {
-          total += 'is-info'
-        } else if (green.includes(element)) {
-          total += 'is-success'
-        } else if (purple.includes(element)) {
-          total += 'is-purple'
-        } else {
-          total += 'is-light'
-        }
-
-        total += '">' + element + '</span>'
-      })
-
-      return total
-    },
-    melijnArguments () {
-      const arg = this.node[4]
-        .replace(/\r*\n/g, '<br>')
-        .replace(/%prefix%/g, '>')
-        .replace(/`(.*?)`/ig, '<span class="code">$1</span>')
-      return arg
-    },
-    melijnHelp () {
-      const arg = this.node[10]
-        .replace(/\r*\n/g, '<br>')
-        .replace(/%prefix%/g, '>')
-        .replace(/`(.*?)`/ig, '<span class="code">$1</span>')
-      return arg
-    },
-    melijnExamples () {
-      const arg = this.node[11]
-        .replace(/\r*\n/g, '<br>')
-        .replace(/%prefix%/g, '>')
-        .replace(/`(.*?)`/ig, '<span class="code">$1</span>')
-      return arg
+  watch: {
+    node () {
+      this.refresh()
     }
+  },
+  mounted () {
+    this.refresh()
   },
   methods: {
     myFilter (event) {
       this.isActive = !this.isActive
+    },
+    refresh () {
+      this.cmdName = createName(this.node)
+      this.syntax = this.node[2].replace(/%prefix%/g, '>')
+      this.args = createHtml(this.node[4])
+      this.channelPermissions = createPermissions(this.node[5])
+      this.permissions = createPermissions(this.node[6])
+      this.conditions = this.node[7].join(' & ')
+      this.help = createHtml(this.node[10])
+      this.examples = createHtml(this.node[11])
+      this.className = (this.level % 2) ? 'accordionbtncolor2' : 'accordionbtncolor1'
     }
   }
 }
