@@ -86,7 +86,37 @@
     </section>
   </div>
 </template>
-
+<script>
+export default {
+  head () {
+    return {
+      title: 'Melijn - Legal',
+      meta: [
+        {
+          hid: 'description',
+          name: 'description',
+          content: 'Privacy policy and terms of use of Melijn.'
+        },
+        {
+          hid: 'og:title',
+          property: 'og:title',
+          content: 'Melijn - Legal'
+        },
+        {
+          hid: 'og:url',
+          property: 'og:url',
+          content: `https://v2.melijn.com/${this.$route.params.id}`
+        },
+        {
+          hid: 'og:description',
+          property: 'og:description',
+          content: 'Privacy policy and terms of use of Melijn.'
+        }
+      ]
+    }
+  }
+}
+</script>
 <style lang="scss" scoped>
 .section {
     h1 {

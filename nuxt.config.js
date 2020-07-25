@@ -61,6 +61,7 @@ export default {
     '@nuxtjs/axios',
     '@nuxtjs/pwa',
     '@nuxt/content',
+    'cookie-universal-nuxt',
     ['nuxt-compress', {
       gzip: {
         cache: true
@@ -145,6 +146,13 @@ export default {
         theme: false
       }
     }
+  },  
+  publicRuntimeConfig: {
+    discordAPI: process.env.DISCORD_API
+  },
+  privateRuntimeConfig: {
+    melijnSecret: process.env.MELIJN_SECRET, 
+    melijnId: process.env.MELIJN_ID
   },
 
   // Style resource module

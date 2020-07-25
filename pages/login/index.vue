@@ -7,22 +7,21 @@
 <script>
 export default {
   mounted () {
-    window.location.replace('https://discord.com/oauth2/authorize?client_id=368362411591204865&scope=bot&permissions=457043158&redirect_uri=' +
-    window.location.origin + '&response_type=code')
+    this.$cookies.set('test', 'test')
   },
   head () {
     return {
-      title: 'Melijn - Invite',
+      title: 'Melijn - Login',
       meta: [
         {
           hid: 'description',
           name: 'description',
-          content: 'Invite Melijn.'
+          content: 'Login on Melijn with your discord account.'
         },
         {
           hid: 'og:title',
           property: 'og:title',
-          content: 'Melijn - Invite'
+          content: 'Melijn - Login'
         },
         {
           hid: 'og:url',
@@ -32,7 +31,7 @@ export default {
         {
           hid: 'og:description',
           property: 'og:description',
-          content: 'Invite Melijn.'
+          content: 'Login on Melijn with your discord account.'
         }
       ]
     }

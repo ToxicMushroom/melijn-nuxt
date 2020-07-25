@@ -11,6 +11,33 @@ export default {
     const article = await $content('articles', params.slug).fetch()
 
     return { article }
+  },
+  head () {
+    return {
+      title: 'Melijn - Articles',
+      meta: [
+        {
+          hid: 'description',
+          name: 'description',
+          content: 'List of articles about Melijn.'
+        },
+        {
+          hid: 'og:title',
+          property: 'og:title',
+          content: 'Melijn - Articles'
+        },
+        {
+          hid: 'og:url',
+          property: 'og:url',
+          content: `https://v2.melijn.com/${this.$route.params.id}`
+        },
+        {
+          hid: 'og:description',
+          property: 'og:description',
+          content: 'List of articles about Melijn.'
+        }
+      ]
+    }
   }
 }
 </script>

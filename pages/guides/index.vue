@@ -21,6 +21,33 @@ export default {
     return {
       article
     }
+  },
+  head () {
+    return {
+      title: 'Melijn - Guides',
+      meta: [
+        {
+          hid: 'description',
+          name: 'description',
+          content: 'List of guides for Melijn.'
+        },
+        {
+          hid: 'og:title',
+          property: 'og:title',
+          content: 'Melijn - Guides'
+        },
+        {
+          hid: 'og:url',
+          property: 'og:url',
+          content: `https://v2.melijn.com/${this.$route.params.id}`
+        },
+        {
+          hid: 'og:description',
+          property: 'og:description',
+          content: 'List of guides for Melijn.'
+        }
+      ]
+    }
   }
 }
 </script>

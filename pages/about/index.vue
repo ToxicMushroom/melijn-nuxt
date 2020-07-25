@@ -238,7 +238,37 @@
     </div>
   </div>
 </template>
-
+<script>
+export default {
+  head () {
+    return {
+      title: 'Melijn - About',
+      meta: [
+        {
+          hid: 'description',
+          name: 'description',
+          content: 'Page with info about melijn.'
+        },
+        {
+          hid: 'og:title',
+          property: 'og:title',
+          content: 'Melijn - About'
+        },
+        {
+          hid: 'og:url',
+          property: 'og:url',
+          content: `https://v2.melijn.com/${this.$route.params.id}`
+        },
+        {
+          hid: 'og:description',
+          property: 'og:description',
+          content: 'Page with info about melijn.'
+        }
+      ]
+    }
+  }
+}
+</script>
 <style lang="scss" scoped>
 .wrapper {
   display: flex;
