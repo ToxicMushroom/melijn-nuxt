@@ -25,28 +25,31 @@
       <nuxt-link to="/commands" class="navbar-item">
         Commands
       </nuxt-link>
+      <nuxt-link to="/guides" class="navbar-item">
+        Guides
+      </nuxt-link>
       <div class="navbar-item has-dropdown is-hoverable">
         <a class="navbar-link">
           More
         </a>
 
         <div class="navbar-dropdown" disabled>
-          <a class="navbar-item" href="/guides" disabled>
-            Guides
-          </a>
-          <a class="navbar-item" href="/about" disabled>
+          <nuxt-link to="/about" class="navbar-item">
             About
-          </a>
-          <a class="navbar-item" href="https://discord.com/invite/tfQ9s7u" target="_blank">
+          </nuxt-link>
+          <nuxt-link to="/legal" class="navbar-item">
+            Privacy & Terms
+          </nuxt-link>
+          <a class="navbar-item" rel="noopener noreferrer nofollow" href="https://discord.com/invite/tfQ9s7u" target="_blank">
             Support server
           </a>
-          <a class="navbar-item" href="/contact" disabled>
-            Contact
+          <a class="navbar-item" rel="noopener noreferrer nofollow" href="mailto:contact@melijn.me" target="_blank">
+            Email Contact
           </a>
           <hr class="navbar-divider">
-          <a class="navbar-item" href="https://discord.com/oauth2/authorize?client_id=368362411591204865&scope=bot&permissions=457043158" target="_blank">
+          <nuxt-link class="navbar-item" to="/invite" target="_blank">
             Invite Melijn
-          </a>
+          </nuxt-link>
         </div>
       </div>
       <div class="navbar-item">
@@ -59,29 +62,32 @@
     </div>
     <div class="navbar-menu" :class="{ 'is-active': showNav }">
       <div class="navbar-end">
-        <a class="navbar-item" href="/">
+        <nuxt-link to="/" class="navbar-item" @click="showNav = !showNav">
           Home
-        </a>
-        <a class="navbar-item" href="/commands">
+        </nuxt-link>
+        <nuxt-link to="/commands" class="navbar-item" @click="showNav = !showNav">
           Commands
-        </a>
-        <hr>
-        <a class="navbar-item" href="/guides">
+        </nuxt-link>
+        <nuxt-link to="/guides" class="navbar-item" @click="showNav = !showNav">
           Guides
-        </a>
-        <a class="navbar-item" href="/about">
+        </nuxt-link>
+        <hr>
+        <nuxt-link to="/about" class="navbar-item" @click="showNav = !showNav">
           About
-        </a>
-        <a class="navbar-item" href="https://discord.com/invite/tfQ9s7u" target="_blank">
+        </nuxt-link>
+        <nuxt-link to="/legal" class="navbar-item" @click="showNav = !showNav">
+          Privacy & Terms
+        </nuxt-link>
+        <a class="navbar-item" rel="noopener noreferrer nofollow" href="https://discord.com/invite/tfQ9s7u" target="_blank" @click="showNav = !showNav">
           Support server
         </a>
-        <a class="navbar-item" href="/contact">
-          Contact
+        <a class="navbar-item" rel="noopener noreferrer nofollow" href="mailto:contact@melijn.me" target="_blank" @click="showNav = !showNav">
+          Email Contact
         </a>
         <hr>
-        <a class="navbar-item" href="https://discord.com/oauth2/authorize?client_id=368362411591204865&scope=bot&permissions=457043158" target="_blank">
+        <nuxt-link class="navbar-item" to="/invite" target="_blank" @click="showNav = !showNav">
           Invite Melijn
-        </a>
+        </nuxt-link>
       </div>
     </div>
   </nav>

@@ -1,59 +1,55 @@
 
 <template>
-  <li class="node-tree">
-    <div class="accordion">
-      <button :class="{ 'accordion-button--active': isActive, [className]: true }" class="accordion-button" @click="myFilter">
-        {{ cmdName }}<span class="btn-arrow"><fa :icon="['fas', 'angle-down']" /></span>
-      </button>
-      <div v-if="isActive" class="accordion-content" :class="(level % 2) ? 'accordioncolor2' : 'accordioncolor1'">
-        <!-- eslint-disable vue/no-v-html -->
-        <table>
-          <tr>
-            <th>Description</th>
-            <th class="description">
-              {{ node[1] }}
-            </th>
-          </tr>
-          <tr>
-            <th>Syntax</th>
-            <th>{{ syntax }}</th>
-          </tr>
-          <tr v-if="args.length > 0">
-            <th>Arguments</th>
-            <th v-html="args" />
-          </tr>
-          <tr v-if="channelPermissions.length > 0">
-            <th>Discord Channel Permissions</th>
-            <th v-html="channelPermissions" />
-          </tr>
-          <tr v-if="permissions.length > 0">
-            <th>Discord Permissions</th>
-            <th v-html="permissions" />
-          </tr>
-          <tr v-if="conditions.length > 0">
-            <th>Runconditions</th>
-            <th>{{ conditions }}</th>
-          </tr>
-          <tr>
-            <th>Permission</th>
-            <th>{{ node[8] }}</th>
-          </tr>
-          <tr v-if="help.length > 0">
-            <th>Extra Help</th>
-            <th v-html="help" />
-          </tr>
-          <tr v-if="examples.length > 0">
-            <th>Examples</th>
-            <th v-html="examples" />
-          </tr>
-        </table>
-        <br>
-        <ul v-if="node[9] && node[9].length">
-          <node v-for="child in node[9]" :key="child[0]" :node="child" :level="level + 1" />
-        </ul>
-      </div>
+  <div class="accordion">
+    <button :class="{ 'accordion-button--active': isActive, [className]: true }" class="accordion-button" @click="myFilter">
+      {{ cmdName }}<span class="btn-arrow"><fa :icon="['fas', 'angle-down']" /></span>
+    </button>
+    <div v-if="isActive" class="accordion-content" :class="(level % 2) ? 'accordioncolor2' : 'accordioncolor1'">
+      <!-- eslint-disable vue/no-v-html -->
+      <table>
+        <tr>
+          <th>Description</th>
+          <th class="description">
+            {{ node[1] }}
+          </th>
+        </tr>
+        <tr>
+          <th>Syntax</th>
+          <th>{{ syntax }}</th>
+        </tr>
+        <tr v-if="args.length > 0">
+          <th>Arguments</th>
+          <th v-html="args" />
+        </tr>
+        <tr v-if="channelPermissions.length > 0">
+          <th>Discord Channel Permissions</th>
+          <th v-html="channelPermissions" />
+        </tr>
+        <tr v-if="permissions.length > 0">
+          <th>Discord Permissions</th>
+          <th v-html="permissions" />
+        </tr>
+        <tr v-if="conditions.length > 0">
+          <th>Runconditions</th>
+          <th>{{ conditions }}</th>
+        </tr>
+        <tr>
+          <th>Permission</th>
+          <th>{{ node[8] }}</th>
+        </tr>
+        <tr v-if="help.length > 0">
+          <th>Extra Help</th>
+          <th v-html="help" />
+        </tr>
+        <tr v-if="examples.length > 0">
+          <th>Examples</th>
+          <th v-html="examples" />
+        </tr>
+      </table>
+      <br>
+      <node v-for="child in node[9]" :key="child[0]" :node="child" :level="level + 1" />
     </div>
-  </li>
+  </div>
 </template>
 
 <script>

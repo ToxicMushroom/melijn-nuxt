@@ -200,7 +200,9 @@
               </h1>
               <h2 class="subtitle">
                 We have dedicated servers for audio streaming. Supports YouTube, SoundCloud, Spotify, Twitch, Discord Attachments and <a class="text-link" href="https://bintray.com/sedmelluq/com.sedmelluq/lavaplayer" target="_blank">more...</a><br>
-                Melijn has many <a class="text-link" href="/commands#music">commands</a> to make listening with others fun.
+                Melijn has many <nuxt-link class="text-link" to="/commands#music">
+                  commands
+                </nuxt-link> to make listening with others fun.
               </h2>
             </div>
             <div class="column is-5">
@@ -283,7 +285,9 @@
       <div class="hero-body">
         <div class="container">
           <h1 class="title">
-            And much more which you can <a class="text-link" href="/commands">discover</a>.
+            And much more which you can <nuxt-link class="text-link" to="/commands">
+              discover
+            </nuxt-link>.
           </h1>
         </div>
       </div>

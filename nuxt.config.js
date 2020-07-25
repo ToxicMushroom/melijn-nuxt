@@ -60,6 +60,15 @@ export default {
     // Doc: https://axios.nuxtjs.org/usage
     '@nuxtjs/axios',
     '@nuxtjs/pwa',
+    '@nuxt/content',
+    ['nuxt-compress', {
+      gzip: {
+        cache: true
+      },
+      brotli: {
+        threshold: 10240
+      }
+    }],
     // Doc: https://github.com/nuxt-community/dotenv-module
     '@nuxtjs/dotenv',
     ['nuxt-fontawesome', {
@@ -83,22 +92,57 @@ export default {
             'faInfo',
             'faImages',
             'faToriiGate',
-            'faPaw'
+            'faPaw',
+            'faLink'
           ]
         },
         {
           set: '@fortawesome/free-brands-svg-icons',
-          icons: ['faPatreon']
+          icons: [
+            'faPatreon',
+            'faGithub',
+            'faTwitter',
+            'faDiscord'
+          ]
         }
       ]
     }],
     '@nuxtjs/proxy'
   ],
+  generate: {
+    async routes () {
+      const content = await require('@nuxt/content')
+      const articles = content
+        .$content('articles')
+        .only(['path'])
+        .feth()
+      const guides = content
+        .$content('guides')
+        .only(['path'])
+        .feth()
+      return [].concat(
+        articles.map(article => article.patch),
+        guides.map(guide => guide.patch)
+      )
+    },
+    fallback: true
+  },
   proxy: {
     '/api': {
       target: 'http://localhost:8181',
       pathRewrite: {
         '^/api': '/fullCommands'
+      }
+    }
+  },
+  content: {
+    apiPrefix: '_content',
+    markdown: {
+      remarkPlugins: [],
+      remarkExternalLinks: [],
+      rehypePlugins: [],
+      prism: {
+        theme: false
       }
     }
   },

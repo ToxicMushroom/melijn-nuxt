@@ -6,41 +6,41 @@
       </p>
       <ul class="menu-list">
         <li>
-          <a name="music" :class="{'active': 'music' == selectedCategory}" @click="categoryClick">Music <span class="icon">
+          <a id="music" :class="{'active': 'music' == selectedCategory}" @click="categoryClick">Music <span class="icon">
             <fa :icon="['fas', 'music']" /></span></a>
         </li>
         <li>
-          <a name="moderation" :class="{'active': 'moderation' == selectedCategory}" @click="categoryClick">Moderation <span class="icon">
+          <a id="moderation" :class="{'active': 'moderation' == selectedCategory}" @click="categoryClick">Moderation <span class="icon">
             <fa :icon="['fas', 'hammer']" />
           </span></a>
         </li>
         <li>
-          <a name="administration" :class="{'active': 'administration' == selectedCategory}" @click="categoryClick">Administration <span class="icon">
+          <a id="administration" :class="{'active': 'administration' == selectedCategory}" @click="categoryClick">Administration <span class="icon">
             <fa :icon="['fas', 'wrench']" />
           </span></a>
         </li>
         <li>
-          <a name="utility" :class="{'active': 'utility' == selectedCategory}" @click="categoryClick">Utility <span class="icon">
+          <a id="utility" :class="{'active': 'utility' == selectedCategory}" @click="categoryClick">Utility <span class="icon">
             <fa :icon="['fas', 'info']" />
           </span></a>
         </li>
         <li>
-          <a name="image" :class="{'active': 'image' == selectedCategory}" @click="categoryClick">Image <span class="icon">
+          <a id="image" :class="{'active': 'image' == selectedCategory}" @click="categoryClick">Image <span class="icon">
             <fa :icon="['fas', 'images']" />
           </span></a>
         </li>
         <li>
-          <a name="anime" :class="{'active': 'anime' == selectedCategory}" @click="categoryClick">Anime <span class="icon">
+          <a id="anime" :class="{'active': 'anime' == selectedCategory}" @click="categoryClick">Anime <span class="icon">
             <fa :icon="['fas', 'torii-gate']" />
           </span></a>
         </li>
         <li>
-          <a name="economy" :class="{'active': 'economy' == selectedCategory}" @click="categoryClick">Economy <span class="icon">
+          <a id="economy" :class="{'active': 'economy' == selectedCategory}" @click="categoryClick">Economy <span class="icon">
             <fa :icon="['far', 'money-bill-alt']" />
           </span></a>
         </li>
         <li>
-          <a name="animal" :class="{'active': 'animal' == selectedCategory}" @click="categoryClick">Animal <span class="icon">
+          <a id="animal" :class="{'active': 'animal' == selectedCategory}" @click="categoryClick">Animal <span class="icon">
             <fa :icon="['fas', 'paw']" />
           </span></a>
         </li>
@@ -63,7 +63,7 @@
       <!-- <client-only placeholder="Loading..."> -->
       <div v-for="category in commands" :id="category[0]" :key="category[0]" class="category" :class="{'visible': category[0].toLowerCase() == selectedCategory}">
         <div v-for="cmd in category[1]" :key="cmd[0]">
-          <tree v-if="isVisible(cmd)" :tree-data="cmd" />
+          <node-tree class="cmd" :class="{'visible': isVisible(cmd) }" :node="cmd" :level="0" />
         </div>
       </div>
       <!-- </client-only> -->
@@ -72,43 +72,48 @@
 </template>
 
 <script>
-import Tree from '@/components/Tree'
-let commands
+import NodeTree from '@/components/NodeTree'
 
+let commands
 export default {
   components: {
-    Tree
+    NodeTree
   },
   async asyncData ({ $axios }) {
     commands = !commands ? Object.entries(await $axios.$get('api')) : commands
-    const activeCommands = commands[0][1]
+    const activeCommands = []
     return { commands, activeCommands }
   },
   data () {
     return {
-      selectedCategory: 'music',
+      selectedCategory: this.$route.hash.length === 0 ? 'music' : this.$route.hash.toLowerCase().substr(1),
       commandLoader: 0,
       search: ''
     }
   },
+  watch: {
+    selectedCategory () {
+      this.refreshCategory()
+    }
+  },
   mounted () {
     document.getElementById('searchinput').focus()
+    this.refreshCategory()
   },
   methods: {
-    categoryClick (event) {
-      const clicked = event.target
-      if (clicked === undefined || clicked.name === undefined) { return }
-      if (this.selectedCategory === clicked.name.toLowerCase()) {
-        return
-      } else {
-        this.selectedCategory = clicked.name.toLowerCase()
-      }
-
+    refreshCategory () {
       for (let i = 0; i < this.commands.length; i++) {
         const entry = this.commands[i]
-        if (entry[0].toLowerCase() === clicked.name.toLowerCase()) {
+        if (entry[0].toLowerCase() === this.selectedCategory) {
           this.activeCommands = entry[1]
         }
+      }
+    },
+    categoryClick (event) {
+      const clicked = event.target
+      if (clicked === undefined || clicked.id === undefined) { return }
+      if (this.selectedCategory !== clicked.id.toLowerCase()) {
+        this.selectedCategory = clicked.id.toLowerCase()
       }
     },
     isVisible (cmd) {
@@ -135,8 +140,7 @@ export default {
         {
           hid: 'description',
           name: 'description',
-          content:
-            'Documentation for Melijn\'s commands.'
+          content: 'Documentation for Melijn\'s commands.'
         },
         {
           hid: 'og:title',
@@ -233,9 +237,16 @@ export default {
   }
   .category {
     display: none;
+    .cmd {
+      display: none;
+      margin-bottom: 16px;
+    }
   }
   .category.visible {
     display: block;
+    .cmd.visible {
+      display: block;
+    }
   }
 }
 </style>

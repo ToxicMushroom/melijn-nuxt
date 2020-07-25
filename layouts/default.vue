@@ -43,6 +43,13 @@ html, body {
   flex-direction: column;
 }
 
+#__content {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  justify-content: space-between;
+}
+
 .text-link {
   color: var(--blue-darker) !important;
   text-decoration: none;
