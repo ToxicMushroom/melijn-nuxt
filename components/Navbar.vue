@@ -52,11 +52,11 @@
           </nuxt-link>
         </div>
       </div>
-      <div class="navbar-item">
+      <div v-if="loggedIn == false" class="navbar-item">
         <div class="buttons" disabled>
-          <a class="button is-primary" disabled>
+          <nuxt-link to="/login" class="button is-primary">
             <strong>Login</strong>
-          </a>
+          </nuxt-link>
         </div>
       </div>
     </div>
@@ -94,10 +94,48 @@
 </template>
 
 <script>
+
 export default {
+  async asyncData ({ $cookies, $config }) {
+    const jwt = require('jsonwebtoken')
+    console.log('help')
+    const cookie = $cookies.get('sdt')
+    console.log(cookie)
+    let avatarUrl = 'https://discord.com/assets/e0c782560fd96acd7f01fda1f8c6ff24.svg'
+    let error = false
+    let loggedIn = false
+
+    if (cookie) {
+      try {
+        const obj = await jwt.verify(cookie, $config.signingkey)
+        console.log(obj)
+        avatarUrl = 'https://cdn.discordapp.com/avatars/' + obj.id + '/' + obj.avatarUrl + '.webp?size=128'
+        loggedIn = true
+      } catch (err) {
+        console.error(err)
+        error = true
+      }
+      console.log(cookie)
+    }
+    console.log('no cookie')
+
+    return { loggedIn, avatarUrl, error }
+  },
   data () {
     return {
       showNav: false
+    }
+  },
+  watch: {
+    error () {
+      if (this.error === true) {
+        window.location.replace('https://www.youtube.com/watch?v=dQw4w9WgXcQ')
+      }
+    }
+  },
+  mounted () {
+    if (this.error === true) {
+      window.location.replace('https://www.youtube.com/watch?v=dQw4w9WgXcQ')
     }
   }
 }

@@ -1,13 +1,14 @@
 <template>
   <div class="wrapper">
-    Redirecting..
+    Loggin in..
   </div>
 </template>
 
 <script>
 export default {
   mounted () {
-    this.$cookies.set('test', 'test')
+    window.location.replace('https://discord.com/oauth2/authorize?client_id=368362411591204865&scope=identify%20guilds&redirect_uri=' +
+    window.location.origin + '/callback&response_type=code')
   },
   head () {
     return {
@@ -38,3 +39,9 @@ export default {
   }
 }
 </script>
+
+<style lang="scss" scoped>
+.wrapper {
+  text-align: center;
+}
+</style>

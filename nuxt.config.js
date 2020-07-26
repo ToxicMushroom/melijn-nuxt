@@ -2,7 +2,7 @@ export default {
   mode: 'universal',
   server: {
     port: 3000, // default: 3000
-    host: '0.0.0.0' // default: localhost
+    host: 'localhost' // default: localhost
   },
   /*
    ** Headers of the page
@@ -62,14 +62,6 @@ export default {
     '@nuxtjs/pwa',
     '@nuxt/content',
     'cookie-universal-nuxt',
-    ['nuxt-compress', {
-      gzip: {
-        cache: true
-      },
-      brotli: {
-        threshold: 10240
-      }
-    }],
     // Doc: https://github.com/nuxt-community/dotenv-module
     '@nuxtjs/dotenv',
     ['nuxt-fontawesome', {
@@ -146,13 +138,15 @@ export default {
         theme: false
       }
     }
-  },  
+  },
   publicRuntimeConfig: {
-    discordAPI: process.env.DISCORD_API
+    discordAPI: process.env.DISCORD_API,
+    baseURL: process.env.BASE_URL
   },
   privateRuntimeConfig: {
-    melijnSecret: process.env.MELIJN_SECRET, 
-    melijnId: process.env.MELIJN_ID
+    melijnSecret: process.env.MELIJN_SECRET,
+    melijnId: process.env.MELIJN_ID,
+    signingkey: process.env.COOKIE_SIGNING_KEY
   },
 
   // Style resource module
@@ -167,7 +161,9 @@ export default {
    ** Axios module configuration
    ** See https://axios.nuxtjs.org/options
    */
-  axios: {},
+  axios: {
+    baseURL: 'http://localhost:3000'
+  },
   /*
    ** Build configuration
    */
