@@ -27,7 +27,7 @@ export default {
    ** Customize the progress-bar color
    */
   loading: {
-    color: '#cedb9d'
+    color: '#A1B4ED'
   },
   /*
    ** Global CSS
@@ -86,7 +86,10 @@ export default {
             'faImages',
             'faToriiGate',
             'faPaw',
-            'faLink'
+            'faLink',
+            'faCog',
+            'faSignOutAlt',
+            'faArrowLeft'
           ]
         },
         {
@@ -122,10 +125,16 @@ export default {
   },
   proxy: {
     '/api': {
-      target: 'http://localhost:8181',
+      target: 'http://localhost:2607',
       pathRewrite: {
-        '^/api': '/fullCommands'
+        '^/api': '/commands'
       }
+    },
+    '/cookie/encrypt/code': {
+      target: 'http://localhost:2607'
+    },
+    '/cookie/decrypt/user': {
+      target: 'http://localhost:2607'
     }
   },
   content: {

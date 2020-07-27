@@ -23,11 +23,9 @@
     "@nuxtjs/pwa": "^3.0.0-0",
     "@nuxtjs/style-resources": "^1.0.0",
     "cookie-universal-nuxt": "^2.1.4",
-    "jsonwebtoken": "^8.5.1",
     "nuxt": "^2.13.0",
     "nuxt-compress": "^2.0.0",
-    "nuxt-fontawesome": "^0.4.0",
-    "qs": "^6.9.4"
+    "nuxt-fontawesome": "^0.4.0"
   },
   "devDependencies": {
     "@nuxtjs/eslint-config": "^2.0.0",

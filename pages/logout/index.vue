@@ -1,28 +1,28 @@
 <template>
   <div class="wrapper">
-    Loggin in..
+    Loggin out..
   </div>
 </template>
 
 <script>
 export default {
   mounted () {
-    window.location.replace('https://discord.com/oauth2/authorize?client_id=368362411591204865&scope=identify%20guilds&redirect_uri=' +
-    window.location.origin + '/callback&response_type=code&prompt=none')
+    this.$cookies.remove('sdt')
+    window.location.replace(window.location.origin)
   },
   head () {
     return {
-      title: 'Melijn - Login',
+      title: 'Melijn - Logout',
       meta: [
         {
           hid: 'description',
           name: 'description',
-          content: 'Login on Melijn with your discord account.'
+          content: 'Logout from Melijn.'
         },
         {
           hid: 'og:title',
           property: 'og:title',
-          content: 'Melijn - Login'
+          content: 'Melijn - Logout'
         },
         {
           hid: 'og:url',
@@ -32,7 +32,7 @@ export default {
         {
           hid: 'og:description',
           property: 'og:description',
-          content: 'Login on Melijn with your discord account.'
+          content: 'Logout from Melijn.'
         }
       ]
     }

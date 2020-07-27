@@ -1,6 +1,6 @@
 <template>
   <div id="__content">
-    <navbar />
+    <navbar :loggedin="loggedIn" :tag="tag" :avatar="avatar" :hover-avatar="hoverAvatar" />
     <nuxt />
     <foot />
   </div>
@@ -14,6 +14,24 @@ export default {
   components: {
     navbar,
     foot: footer
+  },
+  data () {
+    return {
+      loggedIn: false,
+      tag: '',
+      avatar: '',
+      hoverAvatar: ''
+    }
+  },
+  mounted () {
+    if (this.$cookies.get('sdt')) {
+      this.$axios.$post('/cookie/decrypt/user', { jwt: this.$cookies.get('sdt') }).then((res) => {
+        this.loggedIn = true
+        this.tag = res.tag
+        this.avatar = res.avatar + '.webp?size=64'
+        this.hoverAvatar = res.avatar + (res.isGif ? '.gif' : '.webp') + '?size=64'
+      })
+    }
   }
 }
 </script>
@@ -51,11 +69,11 @@ html, body {
 }
 
 .text-link {
-  color: var(--blue-darker) !important;
+  color: var(--blue-dark) !important;
   text-decoration: none;
 }
 
 .text-link:hover {
-  color: var(--blue-dark) !important;
+  color: var(--blue-light) !important;
 }
 </style>

@@ -1,5 +1,5 @@
 <template>
-  <nav class="navbar" role="navigation" aria-label="main navigation">
+  <nav class="navbar" role="navigation" aria-label="main navigation" :style="cssProps">
     <div class="navbar-brand">
       <nuxt-link to="/" class="navbar-item">
         <img src="@/static/img/icon.svg" alt="Melijn icon" width="60" height="60">
@@ -33,7 +33,7 @@
           More
         </a>
 
-        <div class="navbar-dropdown" disabled>
+        <div class="navbar-dropdown is-right" disabled>
           <nuxt-link to="/about" class="navbar-item">
             About
           </nuxt-link>
@@ -52,14 +52,37 @@
           </nuxt-link>
         </div>
       </div>
-      <div v-if="loggedIn == false" class="navbar-item">
+      <div v-if="!loggedin" class="navbar-item">
         <div class="buttons" disabled>
           <nuxt-link to="/login" class="button is-primary">
             <strong>Login</strong>
           </nuxt-link>
         </div>
       </div>
+      <div v-else class="navbar-item has-dropdown user-badge is-hoverable">
+        <a class="navbar-link is-arrowless">
+          <div class="avatar" />
+        </a>
+
+        <div class="navbar-dropdown is-right" disabled>
+          <div class="navbar-item">
+            {{ tag }}
+          </div>
+          <nuxt-link class="navbar-item" to="/dashboard">
+            <span class="icon is-small">
+              <fa :icon="['fas', 'cog']" />
+            </span> Dashboard
+          </nuxt-link>
+          <nuxt-link class="navbar-item" to="/logout">
+            <span class="icon is-small">
+              <fa :icon="['fas', 'sign-out-alt']" />
+            </span> Logout
+          </nuxt-link>
+        </div>
+      </div>
     </div>
+
+    <!-- mobile navbar -->
     <div class="navbar-menu" :class="{ 'is-active': showNav }">
       <div class="navbar-end">
         <nuxt-link to="/" class="navbar-item" @click="showNav = !showNav">
@@ -88,6 +111,13 @@
         <nuxt-link class="navbar-item" to="/invite" target="_blank" @click="showNav = !showNav">
           Invite Melijn
         </nuxt-link>
+        <div v-if="!loggedin" class="navbar-item">
+          <div class="buttons" disabled>
+            <nuxt-link to="/login" class="button is-primary">
+              <strong>Login</strong>
+            </nuxt-link>
+          </div>
+        </div>
       </div>
     </div>
   </nav>
@@ -96,34 +126,40 @@
 <script>
 
 export default {
-  async asyncData ({ $cookies, $config }) {
-    const jwt = require('jsonwebtoken')
-    console.log('help')
-    const cookie = $cookies.get('sdt')
-    console.log(cookie)
-    let avatarUrl = 'https://discord.com/assets/e0c782560fd96acd7f01fda1f8c6ff24.svg'
-    let error = false
-    let loggedIn = false
-
-    if (cookie) {
-      try {
-        const obj = await jwt.verify(cookie, $config.signingkey)
-        console.log(obj)
-        avatarUrl = 'https://cdn.discordapp.com/avatars/' + obj.id + '/' + obj.avatarUrl + '.webp?size=128'
-        loggedIn = true
-      } catch (err) {
-        console.error(err)
-        error = true
-      }
-      console.log(cookie)
+  props: {
+    loggedin: {
+      type: Boolean,
+      required: true
+    },
+    tag: {
+      type: String,
+      required: false,
+      default: ''
+    },
+    avatar: {
+      type: String,
+      required: false,
+      default: ''
+    },
+    hoverAvatar: {
+      type: String,
+      required: false,
+      default: ''
     }
-    console.log('no cookie')
-
-    return { loggedIn, avatarUrl, error }
   },
   data () {
     return {
-      showNav: false
+      showNav: false,
+      activeUserBadge: false,
+      avatarHover: false
+    }
+  },
+  computed: {
+    cssProps () {
+      return {
+        '--avatar-url': 'url(' + this.avatar + ')',
+        '--avatar-hover-url': 'url(' + this.hoverAvatar + ')'
+      }
     }
   },
   watch: {
@@ -209,6 +245,36 @@ hr {
         }
       }
       color: $grey-lite;
+    }
+    .user-badge {
+      margin: 0 5px;
+      a.is-arrowless {
+        display: flex;
+        justify-content: center;
+        width: 52px;
+        height: 52px;
+        padding: 0;
+        background: none;
+        div.avatar {
+          background-image: var(--avatar-url);
+          &:hover {
+            background-image: var(--avatar-hover-url);
+          }
+          background-size: contain;
+          width: 85%;
+          height: 85%;
+          max-width: 52px;
+          max-height: 52px;
+        }
+      }
+      .navbar-dropdown {
+        .navbar-item {
+          span.icon {
+            margin-left: 0;
+            margin-right: 6px;
+          }
+        }
+      }
     }
   }
   .navbar-menu {
