@@ -220,17 +220,26 @@ $color3: #505056;
     color: $grey-light;
     text-align: left;
     border-radius: 8px;
+    &:last-child {
+      margin-bottom: 15px;
+    }
     @media (max-width: $tablet) {
       font-size: 16px;
       padding: 12px;
       border-radius: 6px;
       margin: 12px 0 0 0;
+      &:last-child {
+        margin-bottom: 12px;
+      }
     }
     @media (max-width: $phone) {
       font-size: 14px;
       padding: 8px;
       margin: 8px 0 0 0;
       border-radius: 4px;
+      &:last-child {
+        margin-bottom: 8px;
+      }
     }
   }
 

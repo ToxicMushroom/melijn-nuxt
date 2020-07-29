@@ -6,43 +6,43 @@
       </p>
       <ul class="menu-list">
         <li>
-          <a id="music" :class="{'active': 'music' == selectedCategory}" @click="categoryClick">Music <span class="icon">
-            <fa :icon="['fas', 'music']" /></span></a>
+          <a id="music" :class="{'active': 'music' == selectedCategory}" @click="categoryClick"><span class="icon">
+            <fa :icon="['fas', 'music']" /></span> Music</a>
         </li>
         <li>
-          <a id="moderation" :class="{'active': 'moderation' == selectedCategory}" @click="categoryClick">Moderation <span class="icon">
+          <a id="moderation" :class="{'active': 'moderation' == selectedCategory}" @click="categoryClick"><span class="icon">
             <fa :icon="['fas', 'hammer']" />
-          </span></a>
+          </span> Moderation</a>
         </li>
         <li>
-          <a id="administration" :class="{'active': 'administration' == selectedCategory}" @click="categoryClick">Administration <span class="icon">
+          <a id="administration" :class="{'active': 'administration' == selectedCategory}" @click="categoryClick"><span class="icon">
             <fa :icon="['fas', 'wrench']" />
-          </span></a>
+          </span> Administration</a>
         </li>
         <li>
-          <a id="utility" :class="{'active': 'utility' == selectedCategory}" @click="categoryClick">Utility <span class="icon">
+          <a id="utility" :class="{'active': 'utility' == selectedCategory}" @click="categoryClick"><span class="icon">
             <fa :icon="['fas', 'info']" />
-          </span></a>
+          </span> Utility</a>
         </li>
         <li>
-          <a id="image" :class="{'active': 'image' == selectedCategory}" @click="categoryClick">Image <span class="icon">
+          <a id="image" :class="{'active': 'image' == selectedCategory}" @click="categoryClick"><span class="icon">
             <fa :icon="['fas', 'images']" />
-          </span></a>
+          </span> Image</a>
         </li>
         <li>
-          <a id="anime" :class="{'active': 'anime' == selectedCategory}" @click="categoryClick">Anime <span class="icon">
+          <a id="anime" :class="{'active': 'anime' == selectedCategory}" @click="categoryClick"><span class="icon">
             <fa :icon="['fas', 'torii-gate']" />
-          </span></a>
+          </span> Anime</a>
         </li>
         <li>
-          <a id="economy" :class="{'active': 'economy' == selectedCategory}" @click="categoryClick">Economy <span class="icon">
+          <a id="economy" :class="{'active': 'economy' == selectedCategory}" @click="categoryClick"><span class="icon">
             <fa :icon="['far', 'money-bill-alt']" />
-          </span></a>
+          </span> Economy</a>
         </li>
         <li>
-          <a id="animal" :class="{'active': 'animal' == selectedCategory}" @click="categoryClick">Animal <span class="icon">
+          <a id="animal" :class="{'active': 'animal' == selectedCategory}" @click="categoryClick"><span class="icon">
             <fa :icon="['fas', 'paw']" />
-          </span></a>
+          </span> Animal</a>
         </li>
       </ul>
     </aside>
@@ -166,7 +166,7 @@ export default {
 <style lang="scss" scoped>
 
 .icon {
-  display: inline;
+  display: inline-flex;
   margin-left: 4px;
 }
 
@@ -211,7 +211,12 @@ export default {
   .menu-list {
     li {
       a {
+        padding: 0.5em 0.75em 0.5em 0.15em;
         color: $grey-laite;
+        span.icon {
+          width: 30px;
+          padding-right: 10px;
+        }
       }
 
       a:hover {

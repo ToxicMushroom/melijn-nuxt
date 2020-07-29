@@ -44,13 +44,13 @@ export default {
   },
   watch: {
     gohome () {
-      if (this.gohome && this.error === false) {
+      if (!this.error) {
         window.location.replace(window.location.origin)
       }
     }
   },
   mounted () {
-    if (this.gohome && this.error === false) {
+    if (!this.error) {
       window.location.replace(window.location.origin)
     }
   }

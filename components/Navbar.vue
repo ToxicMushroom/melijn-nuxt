@@ -59,6 +59,7 @@
           </nuxt-link>
         </div>
       </div>
+      <!-- user button-->
       <div v-else class="navbar-item has-dropdown user-badge is-hoverable">
         <a class="navbar-link is-arrowless">
           <div class="avatar" />
@@ -111,6 +112,7 @@
         <nuxt-link class="navbar-item" to="/invite" target="_blank" @click="showNav = !showNav">
           Invite Melijn
         </nuxt-link>
+        <hr>
         <div v-if="!loggedin" class="navbar-item">
           <div class="buttons" disabled>
             <nuxt-link to="/login" class="button is-primary">
@@ -118,6 +120,22 @@
             </nuxt-link>
           </div>
         </div>
+        <div v-if="loggedin" class="navbar-item user-info">
+          <div class="avatar" />
+          <div class="name">
+            {{ tag }}
+          </div>
+        </div>
+        <nuxt-link v-if="loggedin" class="navbar-item" to="/dashboard">
+          <span class="icon is-small">
+            <fa :icon="['fas', 'cog']" />
+          </span> Dashboard
+        </nuxt-link>
+        <nuxt-link v-if="loggedin" class="navbar-item" to="/logout">
+          <span class="icon is-small">
+            <fa :icon="['fas', 'sign-out-alt']" />
+          </span> Logout
+        </nuxt-link>
       </div>
     </div>
   </nav>
@@ -257,14 +275,17 @@ hr {
         background: none;
         div.avatar {
           background-image: var(--avatar-url);
+          transition: ease-in-out 0.3s;
           &:hover {
             background-image: var(--avatar-hover-url);
+            opacity: 0.5;
           }
           background-size: contain;
           width: 85%;
           height: 85%;
           max-width: 52px;
           max-height: 52px;
+          border-radius: 50%;
         }
       }
       .navbar-dropdown {
@@ -277,10 +298,40 @@ hr {
       }
     }
   }
+  // Mobile
   .navbar-menu {
     .navbar-item {
       margin: 4px 10px;
       border-radius: 4px;
+      &.user-info {
+        display: flex;
+        justify-content: flex-start;
+        div.avatar {
+          background-image: var(--avatar-url);
+          &:hover {
+            background-image: var(--avatar-hover-url);
+          }
+          background-size: contain;
+          width: 32px;
+          height: 32px;
+          max-width: 32px;
+          max-height: 32px;
+          margin-right: 5px;
+          border-radius: 50%;
+        }
+        div.name {
+          margin: auto 0;
+        }
+      }
+      span.icon {
+        margin-left: 0;
+        margin-right: 6px;
+      }
+    }
+    div.navbar-item {
+      margin: 12px 22px;
+      padding: 0px;
+      color: $grey-lite;
     }
     @media (min-width: $desktop) {
       display: none;

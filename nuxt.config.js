@@ -135,6 +135,12 @@ export default {
     },
     '/cookie/decrypt/user': {
       target: 'http://localhost:2607'
+    },
+    '/cookie/decrypt/guilds': {
+      target: 'http://localhost:2607'
+    },
+    '/cookie/decrypt/guild': {
+      target: 'http://localhost:2607'
     }
   },
   content: {
@@ -152,11 +158,6 @@ export default {
     discordAPI: process.env.DISCORD_API,
     baseURL: process.env.BASE_URL
   },
-  privateRuntimeConfig: {
-    melijnSecret: process.env.MELIJN_SECRET,
-    melijnId: process.env.MELIJN_ID,
-    signingkey: process.env.COOKIE_SIGNING_KEY
-  },
 
   // Style resource module
   // https://github.com/nuxt-community/style-resources-module
@@ -171,7 +172,7 @@ export default {
    ** See https://axios.nuxtjs.org/options
    */
   axios: {
-    baseURL: 'http://localhost:3000'
+    baseURL: process.env.BASE_URL
   },
   /*
    ** Build configuration
