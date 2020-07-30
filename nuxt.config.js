@@ -89,7 +89,9 @@ export default {
             'faLink',
             'faCog',
             'faSignOutAlt',
-            'faArrowLeft'
+            'faArrowLeft',
+            'faClipboardList',
+            'faDoorOpen'
           ]
         },
         {
