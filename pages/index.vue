@@ -146,23 +146,23 @@
                   Melijn
                 </h1>
                 <h2 class="subtitle">
-                  Another multipurpose bot for <span><a class="text-link" href="https://discordapp.com" target="_blank">discord</a></span>
+                  Another multipurpose bot for <span><a class="text-link" href="https://discordapp.com" rel="noopener noreferrer nofollow" target="_blank">discord</a></span>
                 </h2>
 
                 <div class="buttons">
-                  <a href="https://discord.com/oauth2/authorize?client_id=368362411591204865&scope=bot&permissions=457043158" target="_blank" class="button is-primary is-focused is-medium">
+                  <a href="https://discord.com/oauth2/authorize?client_id=368362411591204865&scope=bot&permissions=457043158" rel="noopener noreferrer nofollow" target="_blank" class="button is-primary is-focused is-medium">
                     <span class="icon is-small">
                       <fa :icon="['fas', 'plus-square']" />
                     </span>
                     <span>Invite</span>
                   </a>
-                  <a href="https://discord.com/invite/tfQ9s7u" target="_blank" class="button is-link is-medium">
+                  <a href="https://discord.com/invite/tfQ9s7u" rel="noopener noreferrer nofollow" target="_blank" class="button is-link is-medium">
                     <span class="icon is-small">
                       <fa :icon="['fas', 'question-circle']" />
                     </span>
                     <span>Support</span>
                   </a>
-                  <a href="https://www.patreon.com/melijn" target="_blank" class="button is-info is-medium">
+                  <a href="https://www.patreon.com/melijn" rel="noopener noreferrer nofollow" target="_blank" class="button is-info is-medium">
                     <span class="icon is-small">
                       <fa :icon="['fab', 'patreon']" />
                     </span>
@@ -199,7 +199,7 @@
                 Audio
               </h1>
               <h2 class="subtitle">
-                We have dedicated servers for audio streaming. Supports YouTube, SoundCloud, Spotify, Twitch, Discord Attachments and <a class="text-link" href="https://bintray.com/sedmelluq/com.sedmelluq/lavaplayer" target="_blank">more...</a><br>
+                We have dedicated servers for audio streaming. Supports YouTube, SoundCloud, Spotify, Twitch, Discord Attachments and <a class="text-link" href="https://bintray.com/sedmelluq/com.sedmelluq/lavaplayer" rel="noopener noreferrer nofollow" target="_blank">more...</a><br>
                 Melijn has many <nuxt-link class="text-link" to="/commands#music">
                   commands
                 </nuxt-link> to make listening with others fun.
