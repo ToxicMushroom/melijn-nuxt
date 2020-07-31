@@ -21,6 +21,12 @@ export default {
       type: 'image/png',
       sizes: '100x100',
       href: '/fabicon.png'
+    },
+    {
+      rel: 'icon',
+      type: 'image/png',
+      sizes: '200x200',
+      href: '/fabicon-200x.png'
     }]
   },
   /*

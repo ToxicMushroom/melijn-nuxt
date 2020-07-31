@@ -40,6 +40,15 @@ export default {
 html, body {
   background-color: $bg-color;
 }
+
+.text-link {
+  color: $blue-minimal-contrast !important;
+  text-decoration: none;
+}
+
+.text-link:hover {
+  color: $blue-good-contrast !important;
+}
 </style>
 
 <style>
@@ -66,14 +75,5 @@ html, body {
   flex-direction: column;
   min-height: 100vh;
   justify-content: space-between;
-}
-
-.text-link {
-  color: var(--blue-dark) !important;
-  text-decoration: none;
-}
-
-.text-link:hover {
-  color: var(--blue-light) !important;
 }
 </style>
