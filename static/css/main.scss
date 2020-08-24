@@ -2,11 +2,15 @@
 @import '~bulma/sass/utilities/functions';
 
 // Colours
+
 $primary: $blue-dark;
 $blue: $blue-darker;
 $scheme-main: $bar-color;
 $info: $patreon-orange;
+$text: $grey-lite;
+$text-light: $grey;
+$text-strong: $grey-laite;
 
 /* Import the rest of Bulma */
 @import '~bulma/bulma';
-
+@import "~buefy/src/scss/buefy";

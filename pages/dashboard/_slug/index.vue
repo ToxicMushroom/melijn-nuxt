@@ -1,16 +1,17 @@
 <template>
   <div class="wrapper">
-    <div class="title" :style="guild.avatarVariables">
-      <h1>
-        <nuxt-link to="/dashboard" class="text-link">
-          <span class="icon is-medium">
-            <fa :icon="['fas', 'arrow-left']" />
-          </span>
-          back
-        </nuxt-link> / Dashboard: <div class="dashboard-brand">
-          <div class="avatar" />{{ guild.name }}
-        </div>
-      </h1>
+    <div id="navigator" class="title" :style="guild.avatarVariables">
+      <nuxt-link to="/dashboard" class="text-link back">
+        <span class="icon is-medium">
+          <fa :icon="['fas', 'arrow-left']" />
+        </span>
+        <p>
+          all
+        </p>
+      </nuxt-link>
+      <p>/</p>
+      <div class="avatar" />
+      <p>{{ guild.name }}</p>
     </div>
     <div class="columns is-mobile is-multiline is-centered">
       <nuxt-link :to="'/dashboard/' + id + '/general'">
@@ -139,28 +140,36 @@ export default {
   @media (max-width: $tablet) {
     margin: 5px;
   }
-  .title {
+  #navigator.title {
     color: white;
     text-align: start;
     margin-top: 3rem;
     margin-left: 3rem;
-    .icon {
-      display: inline-block;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    & > * {
+      margin: auto 12px auto 0;
     }
-    .dashboard-brand {
-      display: inline-flex;
-      justify-content: center;
-      flex-direction: column;
 
-      .avatar {
-        border-radius: 50%;
-        background-size: contain;
-        background-image: var(--guild-avatar);
-        height: 3rem;
-        width: 3rem;
-        &:hover{
-          background-image: var(--guild-avatar-hover);
-        }
+    .back {
+      .icon {
+        display: inline-block;
+      }
+      p {
+        display: inline-block;
+      }
+    }
+    .avatar {
+      border-radius: 50%;
+      background-size: contain;
+      background-image: var(--guild-avatar);
+      height: 5rem;
+      width: 5rem;
+      margin: auto 6px auto 0;
+      &:hover{
+        background-image: var(--guild-avatar-hover);
       }
     }
   }

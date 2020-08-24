@@ -68,6 +68,7 @@ export default {
     '@nuxtjs/pwa',
     '@nuxt/content',
     'cookie-universal-nuxt',
+    'nuxt-buefy',
     // Doc: https://github.com/nuxt-community/dotenv-module
     '@nuxtjs/dotenv',
     ['nuxt-fontawesome', {
@@ -81,6 +82,7 @@ export default {
           set: '@fortawesome/free-solid-svg-icons',
           icons: [
             'faPlusSquare',
+            'faTimes',
             'faAngleDown',
             'faQuestionCircle',
             'faMusic',
@@ -148,6 +150,9 @@ export default {
       target: 'http://localhost:2607'
     },
     '/cookie/decrypt/guild': {
+      target: 'http://localhost:2607'
+    },
+    '/postsettings/general': {
       target: 'http://localhost:2607'
     }
   },

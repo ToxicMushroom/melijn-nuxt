@@ -123,7 +123,7 @@ export default {
   flex-wrap: wrap;
   div.card {
     display: flex;
-    justify-content: flex-start;
+    justify-content: space-between;
     flex-direction: column;
     border-radius: 5px;
     margin: 10px;
