@@ -50,7 +50,9 @@ export default {
   /*
    ** Plugins to load before mounting the App
    */
-  plugins: [],
+  plugins: [
+    '~/plugins/directives.js'
+  ],
   /*
    ** Nuxt.js dev-modules
    */
@@ -68,7 +70,7 @@ export default {
     '@nuxtjs/pwa',
     '@nuxt/content',
     'cookie-universal-nuxt',
-    'nuxt-buefy',
+    ['nuxt-buefy', { css: false, materialDesignIcons: false }],
     // Doc: https://github.com/nuxt-community/dotenv-module
     '@nuxtjs/dotenv',
     ['nuxt-fontawesome', {

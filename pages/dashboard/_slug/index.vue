@@ -10,8 +10,14 @@
         </p>
       </nuxt-link>
       <p>/</p>
-      <div class="avatar" />
-      <p>{{ guild.name }}</p>
+      <div class="avatar">
+        <b-skeleton circle width="5rem" :active="!guild.name" height="5rem" />
+      </div>
+
+      <p v-if="guild.name">
+        {{ guild.name }}
+      </p>
+      <b-skeleton width="15rem" height="36px" :active="!guild.name" />
     </div>
     <div class="columns is-mobile is-multiline is-centered">
       <nuxt-link :to="'/dashboard/' + id + '/general'">
@@ -158,7 +164,7 @@ export default {
         display: inline-block;
       }
       p {
-        display: inline-block;
+        display: inline-flex;
       }
     }
     .avatar {
@@ -168,9 +174,15 @@ export default {
       height: 5rem;
       width: 5rem;
       margin: auto 6px auto 0;
-      &:hover{
+      &:hover {
         background-image: var(--guild-avatar-hover);
       }
+    }
+    div {
+      display: inline-flex;
+    }
+    .b-skeleton {
+      width: auto;
     }
   }
   .columns  {

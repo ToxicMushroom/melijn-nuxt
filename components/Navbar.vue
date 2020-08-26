@@ -18,7 +18,7 @@
         <span aria-hidden="true" />
       </a>
     </div>
-    <div class="navbar-end">
+    <div v-if="notSwitchingPage" class="navbar-end">
       <nuxt-link to="/" class="navbar-item">
         Home
       </nuxt-link>
@@ -169,7 +169,8 @@ export default {
     return {
       showNav: false,
       activeUserBadge: false,
-      avatarHover: false
+      avatarHover: false,
+      notSwitchingPage: true
     }
   },
   computed: {
@@ -185,6 +186,13 @@ export default {
       if (this.error === true) {
         window.location.replace('https://www.youtube.com/watch?v=dQw4w9WgXcQ')
       }
+    },
+    $route () {
+      this.notSwitchingPage = false
+      this.showNav = false
+      setTimeout(() => {
+        this.notSwitchingPage = true
+      }, 1)
     }
   },
   mounted () {

@@ -3,7 +3,7 @@
     <h1 class="title">
       Guilds ({{ guilds.length }})
     </h1>
-    <div class="guilds card-list">
+    <div v-if="loggedIn" class="guilds card-list">
       <div v-for="guild in guilds" :key="guild.id" class="guild-card card" :style="guild.avatarVariables">
         <div class="avatar" />
         <p class="name">
@@ -15,10 +15,12 @@
       </div>
     </div>
 
+    <b-progress v-else />
+
     <h1 class="title">
       User settings
     </h1>
-    <div class="users card-list">
+    <div v-if="loggedIn" class="users card-list">
       <div class="user-card card" :style="user.avatarVariables">
         <div class="avatar" />
         <p class="name">
@@ -29,6 +31,7 @@
         </nuxt-link>
       </div>
     </div>
+    <b-progress v-else />
   </div>
 </template>
 
@@ -102,6 +105,15 @@ export default {
   }
 }
 </script>
+<style>
+.progress-wrapper {
+  margin: 20px 10vw 1.5rem 10vw;
+}
+progress.progress:indeterminate {
+  background-color: #242529;
+  background-image: linear-gradient(to right, #45536a 30%, #242529 30%);
+}
+</style>
 
 <style lang="scss" scoped>
 .wrapper {
@@ -145,10 +157,7 @@ export default {
       word-wrap: break-word;
     }
   }
-}
-
-.card-list {
-  .guild-card {
+  div.card.guild-card {
     .avatar {
       background-image: var(--guild-avatar);
       &:hover{
@@ -156,7 +165,11 @@ export default {
       }
     }
   }
-  .user-card  {
+  div.card.user-card  {
+    width: 250px;
+    .name{
+      font-size: 16px;
+    }
     .avatar {
       background-image: var(--user-avatar);
       &:hover{

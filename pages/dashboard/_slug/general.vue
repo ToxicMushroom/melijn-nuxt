@@ -10,71 +10,91 @@
         </p>
       </nuxt-link>
       <p>/</p>
-      <div class="avatar" />
-      <nuxt-link :to="'/dashboard/' + id" class="text-link back">
+      <div class="avatar">
+        <b-skeleton circle width="5rem" :active="!guild.name" height="5rem" />
+      </div>
+
+      <nuxt-link v-if="guild.name" :to="'/dashboard/' + id" class="text-link back">
         {{ guild.name }}
       </nuxt-link>
+      <b-skeleton width="15rem" height="36px" :active="!guild.name" />
       <p>/</p>
       <p>general</p>
     </div>
     <div id="settings-box" class="container">
       <form id="general-form">
-        <input type="number" name="id" style="display: none" :value="id">
-        <div class="field">
-          <label class="label">Prefixes</label>
+        <b-field label="Prefixes" class="bonk" grouped>
           <div v-for="(prefix, index) in settings.prefixes" :key="index" class="control">
             <div class="vertically-centered-line prefix-entry">
               <p>{{ index + 1 }} </p>
-              <input class="input" type="text" placeholder="a prefix.." :value="prefix" disabled>
+              <input
+                class="input"
+                type="text"
+                placeholder="a prefix.."
+                :value="prefix"
+                disabled
+                expanded
+              >
               <span class="icon is-medium hover-pointer" @click="close(index)">
                 <fa :icon="['fas', 'times']" class="fa-2x" />
               </span>
             </div>
           </div>
           <div class="vertically-centered-line">
-            <button class="button is-primary" type="button" :disabled="(prefixAddInput.length == 0 || settings.prefixes.includes(prefixAddInput))" @click="addPrefix()">
+            <button class="button is-primary" type="button" :disabled="cantAddPrefix()" @click="addPrefix()">
               Add
             </button>
             <input v-model="prefixAddInput" class="input" type="text" placeholder="a prefix..">
           </div>
+        </b-field>
+        <div class="field flex-row">
+          <b-switch
+            v-model="settings.allowSpacePrefix"
+          >
+            Spaced Prefix Support
+          </b-switch><b-tooltip type="is-dark" label="When enabled you can put one or more spaces between the prefix and the command" multilined>
+            <span class="icon is-small">
+              <fa :icon="['fas', 'question-circle']" />
+            </span>
+          </b-tooltip>
         </div>
         <br>
-        <div class="field">
-          <label class="label">Spaced Prefix Support</label>
-          <label class="control switch">
-            <input v-model="settings.allowSpacePrefix" type="checkbox">
-            <span class="slider round" />
-          </label>
-        </div>
-        <br>
-        <b-field label="Embed Color (HEX)">
+        <b-field label="Embed Color (HEX)" :message="errors.hex" grouped>
           <b-input
             v-model="settings.embedColor"
             placeholder="#FFF / #AB9944"
             type="text"
-            validation-message="Please match #XXX | #XXXXXX"
-            pattern="#?([a-fA-F]|\d){3}(([a-fA-F]|\d){3})?"
+            name="hex"
+            expanded
           />
+          <p class="control">
+            <a href="https://www.google.com/search?q=color+picker" target="_blank">
+              <button class="button is-primary" type="button">
+                Color-Picker
+              </button>
+            </a>
+          </p>
         </b-field>
-
-        <br>
-        <div class="field">
-          <label class="label">Disable Embeds (leave off unless you have problems with embeds)</label>
-          <label class="control switch">
-            <input v-model="settings.embedsDisabled" type="checkbox">
-            <span class="slider round" />
-          </label>
+        <div class="field flex-row">
+          <b-switch
+            v-model="settings.embedsDisabled"
+            type="is-danger"
+          >
+            Disable Embeds
+          </b-switch><b-tooltip type="is-dark" label="Only disable embeds if they're causing an issue" multilined>
+            <span class="icon is-small">
+              <fa :icon="['fas', 'question-circle']" />
+            </span>
+          </b-tooltip>
         </div>
         <br>
-        <div class="field">
-          <label class="label">TimeZone</label>
-          <div class="control flex-row">
-            <input v-model="settings.timeZone" class="input timezone-selected" type="text" placeholder="GMT" disabled>
-            <button type="button" class="button is-primary" @click="openTimezonePicker = !openTimezonePicker">
-              Change
-            </button>
-          </div>
-        </div>
+        <b-field label="TimeZone">
+          <input v-model="settings.timeZone" class="input timezone-selected" type="text" placeholder="GMT" disabled>
+          <button type="button" class="button is-primary" @click="openTimezonePicker = !openTimezonePicker">
+            Change
+          </button>
+        </b-field>
+        <br>
         <button class="button is-primary" type="button" @click="submit()">
           Save
         </button>
@@ -131,11 +151,14 @@ export default {
         embedsDisabled: false
       },
       provided: {
-        timeZones: []
+        timeZones: [],
+        premiumPrefixLimit: 0,
+        prefixLimit: 0
       },
       timeZoneFilter: '',
       prefixAddInput: '',
-      openTimezonePicker: false
+      openTimezonePicker: false,
+      errors: {}
     }
   },
   mounted () {
@@ -153,6 +176,7 @@ export default {
         this.guild = guild
         this.settings = res.settings
         this.provided.timeZones = res.provided.timezones
+        this.provided.prefixLimit = res.provided.prefixLimit
       }).catch((error) => {
         console.log(error)
         window.location.replace(window.location.origin)
@@ -198,6 +222,11 @@ export default {
           type: 'is-danger'
         })
       })
+    },
+    cantAddPrefix () {
+      return (this.prefixAddInput.length === 0 ||
+       this.settings.prefixes.includes(this.prefixAddInput) ||
+         this.settings.prefixes.length >= this.provided.prefixLimit)
     }
   },
   head () {
@@ -229,6 +258,24 @@ export default {
   }
 }
 </script>
+
+<style>
+  #general-form .field .control input {
+    border: none;
+  }
+  #general-form .field .switch input[type="checkbox"]:not(:checked) + .check {
+    background-color: #72767d;
+  }
+  #general-form .field.bonk .field-body .field {
+    display: flex;
+    flex-direction: column;
+  }
+  .tooltip-trigger {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+</style>
 
 <style lang="scss" scoped>
 .wrapper {
@@ -279,16 +326,17 @@ export default {
         background-image: var(--guild-avatar-hover);
       }
     }
+    div {
+      display: inline-flex;
+    }
+    .b-skeleton {
+      width: auto;
+    }
   }
   #general-form {
+    width: 80vw;
+    max-width: 600px;
     margin-bottom: 40px;
-    .field {
-      .control {
-        input.input {
-          border: none;
-        }
-      }
-    }
     input {
       border: none;
       color: $grey-laite;
@@ -300,7 +348,7 @@ export default {
       }
     }
     .prefix-entry {
-      margin: 10px;
+      margin: 0 0 10px 10px;
       .icon {
         font-size: 14px;
       }
@@ -317,61 +365,6 @@ export default {
     }
     .timezone-selected {
       margin-right: 10px;
-    }
-    .switch {
-      position: relative;
-      display: inline-block;
-      width: 60px;
-      height: 34px;
-      input {
-        opacity: 0;
-        width: 0;
-        height: 0;
-      }
-      input:checked + .slider {
-          background-color: #7594D1;
-        }
-      input:focus + .slider {
-        box-shadow: 0 0 1px #7594D1;
-      }
-      input:checked + .slider:before {
-        -webkit-transform: translateX(26px);
-        -ms-transform: translateX(26px);
-        transform: translateX(26px);
-      }
-      .slider {
-        position: absolute;
-        cursor: pointer;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        background-color: #72767d;
-        -webkit-transition: .2s;
-        transition: .2s;
-        &:before {
-          position: absolute;
-          content: "";
-          height: 26px;
-          width: 26px;
-          left: 4px;
-          bottom: 4px;
-          background-color: white;
-          -webkit-box-shadow: 0 2px 4px rgba(0,0,0,.3);
-          box-shadow: 0 2px 4px rgba(0,0,0,.3);
-          -webkit-transition: .2s;
-          transition: .2s;
-        }
-      }
-
-      /* Rounded sliders */
-      .slider.round {
-        border-radius: 34px;
-      }
-
-      .slider.round:before {
-        border-radius: 50%;
-      }
     }
   }
   .modal {
