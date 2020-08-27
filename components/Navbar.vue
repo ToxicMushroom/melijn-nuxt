@@ -210,7 +210,7 @@ hr {
 }
 .navbar {
   background: none;
-  height: 60px;
+  height: 52px;
   .navbar-brand {
     .navbar-item {
       padding: 0;
@@ -223,8 +223,8 @@ hr {
       }
     }
     .navbar-burger {
-      height: 60px;
-      width: 60px;
+      height: 52px;
+      width: 52px;
       color: $grey-light;
     }
   }

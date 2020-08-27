@@ -28,8 +28,13 @@ export default {
       this.$axios.$post('/cookie/decrypt/user', { jwt: this.$cookies.get('sdt') }).then((res) => {
         this.loggedIn = true
         this.tag = res.tag
-        this.avatar = res.avatar + '.webp?size=64'
-        this.hoverAvatar = res.avatar + (res.isGif ? '.gif' : '.webp') + '?size=64'
+        if (res.isDefault) {
+          this.avatar = res.avatar
+          this.hoverAvatar = res.avatar
+        } else {
+          this.avatar = res.avatar + '.webp?size=64'
+          this.hoverAvatar = res.avatar + (res.isGif ? '.gif' : '.webp') + '?size=64'
+        }
       })
     }
   }

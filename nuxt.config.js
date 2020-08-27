@@ -50,9 +50,7 @@ export default {
   /*
    ** Plugins to load before mounting the App
    */
-  plugins: [
-    '~/plugins/directives.js'
-  ],
+  plugins: [],
   /*
    ** Nuxt.js dev-modules
    */
@@ -101,7 +99,8 @@ export default {
             'faSignOutAlt',
             'faArrowLeft',
             'faClipboardList',
-            'faDoorOpen'
+            'faDoorOpen',
+            'faCalendarDay'
           ]
         },
         {
@@ -148,6 +147,9 @@ export default {
     '/cookie/decrypt/user': {
       target: 'http://localhost:2607'
     },
+    '/cookie/decrypt/user/settings': {
+      target: 'http://localhost:2607'
+    },
     '/cookie/decrypt/guilds': {
       target: 'http://localhost:2607'
     },
@@ -155,6 +157,9 @@ export default {
       target: 'http://localhost:2607'
     },
     '/postsettings/general': {
+      target: 'http://localhost:2607'
+    },
+    '/postsettings/user': {
       target: 'http://localhost:2607'
     }
   },

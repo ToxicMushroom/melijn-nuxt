@@ -1,6 +1,8 @@
 <template>
-  <div class="wrapper">
-    Loggin in..
+  <div>
+    <h1 class="title">
+      Loading login page..
+    </h1>
   </div>
 </template>
 
@@ -39,9 +41,9 @@ export default {
   }
 }
 </script>
-
 <style lang="scss" scoped>
-.wrapper {
+h1 {
   text-align: center;
+  color: $grey-light;
 }
 </style>

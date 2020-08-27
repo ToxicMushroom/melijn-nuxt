@@ -45,13 +45,13 @@ export default {
   watch: {
     gohome () {
       if (!this.error) {
-        window.location.replace(window.location.origin)
+        window.location.replace(window.location.origin + '/dashboard')
       }
     }
   },
   mounted () {
     if (!this.error) {
-      window.location.replace(window.location.origin)
+      window.location.replace(window.location.origin + '/dashboard')
     }
   }
 }

@@ -1,6 +1,8 @@
 <template>
-  <div class="wrapper">
-    Redirecting..
+  <div>
+    <h1 class="title">
+      Redirecting to discord to invite Melijn..
+    </h1>
   </div>
 </template>
 
@@ -39,3 +41,9 @@ export default {
   }
 }
 </script>
+<style lang="scss" scoped>
+h1 {
+  text-align: center;
+  color: $grey-light;
+}
+</style>

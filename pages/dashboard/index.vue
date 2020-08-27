@@ -26,7 +26,7 @@
         <p class="name">
           {{ user.tag }}
         </p>
-        <nuxt-link :to="'/dashboard/' + user.id" class="button is-link">
+        <nuxt-link to="/dashboard/me" class="button is-link">
           Configure
         </nuxt-link>
       </div>
@@ -62,9 +62,16 @@ export default {
 
         const user = {}
         user.tag = res.tag
-        user.avatarVariables = {
-          '--user-avatar': 'url(' + res.avatar + '.webp?size=128)',
-          '--user-avatar-hover': 'url(' + res.avatar + (res.isGif ? '.gif' : '.webp') + '?size=128)'
+        if (res.isDefault) {
+          user.avatarVariables = {
+            '--user-avatar': 'url(' + res.avatar + ')',
+            '--user-avatar-hover': 'url(' + res.avatar + ')'
+          }
+        } else {
+          user.avatarVariables = {
+            '--user-avatar': 'url(' + res.avatar + '.webp?size=128' + ')',
+            '--user-avatar-hover': 'url(' + res.avatar + (res.isGif ? '.gif' : '.webp') + '?size=128' + ')'
+          }
         }
 
         this.user = user

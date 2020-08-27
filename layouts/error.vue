@@ -12,9 +12,13 @@
     <h1 v-else class="title">
       An error occurred. Please report this to the developers.
     </h1>
-    <nuxt-link to="/" class="text-link">
-      <fa :icon="['fas', 'arrow-left']" /> Go home
-    </nuxt-link>
+
+    <p>
+      <fa :icon="['fas', 'arrow-left']" /> <span class="text-link" @click="back()">Go back</span>
+      or <nuxt-link to="/" class="text-link">
+        home
+      </nuxt-link>
+    </p>
   </div>
 </template>
 
@@ -22,7 +26,12 @@
 export default {
   // eslint-disable-next-line vue/require-prop-types
   props: ['error'],
-  layout: 'default' // you can set a custom layout for the error page
+  layout: 'default', // you can set a custom layout for the error page
+  methods: {
+    back () {
+      window.history.back()
+    }
+  }
 }
 </script>
 

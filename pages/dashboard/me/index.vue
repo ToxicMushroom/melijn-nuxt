@@ -1,6 +1,6 @@
 <template>
   <div class="wrapper">
-    <div id="navigator" class="title vertically-centered-line wrap" :style="guild.avatarVariables">
+    <div id="navigator" class="title vertically-centered-line wrap" :style="user.avatarVariables">
       <nuxt-link to="/dashboard" class="text-link back">
         <span class="icon is-medium">
           <fa :icon="['fas', 'arrow-left']" />
@@ -11,24 +11,37 @@
       </nuxt-link>
       <p>/</p>
       <div class="avatar">
-        <b-skeleton circle width="5rem" :active="!guild.name" height="5rem" />
+        <b-skeleton circle width="5rem" :active="!user.tag" height="5rem" />
       </div>
 
-      <nuxt-link v-if="guild.name" :to="'/dashboard/' + id" class="text-link back">
-        {{ guild.name }}
-      </nuxt-link>
-      <b-skeleton width="15rem" height="36px" :active="!guild.name" />
-      <p>/</p>
-      <p>general</p>
+      <p v-if="user.tag">
+        {{ user.tag }}
+      </p>
+      <b-skeleton width="15rem" height="36px" :active="!user.tag" />
     </div>
     <div id="settings-box" class="container">
       <form id="general-form">
+        <!-- <b-field label="Birthday" grouped>
+          <b-datepicker
+            ref="birthdaypicker"
+            placeholder="Type or select a date..."
+            locale="en-CA"
+            editable
+            :open-on-focus="false"
+            expanded
+          />
+          <button type="button" class="button is-primary" @click="$refs.birthdaypicker.toggle()">
+            <span class="icon is-small">
+              <fa :icon="['fas', 'calendar-day']" />
+            </span>
+          </button>
+        </b-field>
+        <br> -->
         <b-field label="Prefixes" class="bonk" grouped>
           <div v-for="(prefix, index) in settings.prefixes" :key="index" class="control">
             <div class="vertically-centered-line prefix-entry">
               <p>{{ index + 1 }} </p>
               <input
-                ref="prefixInput"
                 class="input"
                 type="text"
                 placeholder="a prefix.."
@@ -45,7 +58,7 @@
             <button class="button is-primary" type="button" :disabled="cantAddPrefix()" @click="addPrefix()">
               Add
             </button>
-            <input ref="prefixInput" v-model="prefixAddInput" class="input" type="text" placeholder="a prefix..">
+            <input v-model="prefixAddInput" class="input" type="text" placeholder="a prefix..">
           </div>
         </b-field>
         <div class="field flex-row">
@@ -76,18 +89,6 @@
             </a>
           </p>
         </b-field>
-        <div class="field flex-row">
-          <b-switch
-            v-model="settings.embedsDisabled"
-            type="is-danger"
-          >
-            Disable Embeds
-          </b-switch><b-tooltip type="is-dark" label="Only disable embeds if they're causing an issue" multilined>
-            <span class="icon is-small">
-              <fa :icon="['fas', 'question-circle']" />
-            </span>
-          </b-tooltip>
-        </div>
         <br>
         <b-field label="TimeZone">
           <input v-model="settings.timeZone" class="input timezone-selected" type="text" placeholder="GMT" disabled>
@@ -136,24 +137,20 @@
 
 <script>
 export default {
-  asyncData ({ $content, params }) {
-    return { id: params.slug }
-  },
   data () {
     return {
       loggedIn: false,
-      guild: {},
+      user: {},
       settings: {
         prefixes: [],
         allowSpacePrefix: false,
         embedColor: '',
         timeZone: '',
         language: 'EN',
-        embedsDisabled: false
+        birthday: ''
       },
       provided: {
         timeZones: [],
-        premiumPrefixLimit: 0,
         prefixLimit: 0
       },
       timeZoneFilter: '',
@@ -164,17 +161,24 @@ export default {
   },
   mounted () {
     if (this.$cookies.get('sdt')) {
-      this.$axios.$post('/cookie/decrypt/guild/general', { jwt: this.$cookies.get('sdt'), id: this.id }).then((res) => {
+      this.$axios.$post('/cookie/decrypt/user/settings', { jwt: this.$cookies.get('sdt') }).then((res) => {
         this.loggedIn = true
 
-        const isGif = res.guild.icon.startsWith('a_')
-        const guild = {}
-        guild.name = res.guild.name
-        guild.avatarVariables = {
-          '--guild-avatar': 'url(https://cdn.discordapp.com/icons/' + res.guild.id + '/' + res.guild.icon + '.webp?size=128)',
-          '--guild-avatar-hover': 'url(https://cdn.discordapp.com/icons/' + res.guild.id + '/' + res.guild.icon + (isGif ? '.gif' : '.webp') + '?size=128)'
+        const isGif = res.user.avatarId.startsWith('a_')
+        const user = {}
+        user.tag = res.user.tag
+        if (res.user.avatarId !== 'null') {
+          user.avatarVariables = {
+            '--guild-avatar': 'url(https://cdn.discordapp.com/avatars/' + res.user.id + '/' + res.user.avatarId + '.webp?size=128)',
+            '--guild-avatar-hover': 'url(https://cdn.discordapp.com/avatars/' + res.user.id + '/' + res.user.avatarId + (isGif ? '.gif' : '.webp') + '?size=128)'
+          }
+        } else {
+          user.avatarVariables = {
+            '--guild-avatar': 'url(https://cdn.discordapp.com/embed/avatars/' + res.user.defaultAvatarId + '.png)',
+            '--guild-avatar-hover': 'url(https://cdn.discordapp.com/embed/avatars/' + res.user.defaultAvatarId + '.png)'
+          }
         }
-        this.guild = guild
+        this.user = user
         this.settings = res.settings
         this.provided.timeZones = res.provided.timezones
         this.provided.prefixLimit = res.provided.prefixLimit
@@ -201,7 +205,7 @@ export default {
       return res
     },
     submit () {
-      this.$axios.$post('/postsettings/general', { jwt: this.$cookies.get('sdt'), id: this.id, settings: this.settings }).then((res) => {
+      this.$axios.$post('/postsettings/user', { jwt: this.$cookies.get('sdt'), settings: this.settings }).then((res) => {
         if (res.success) {
           this.$buefy.toast.open({
             message: 'Saved!',
@@ -234,17 +238,17 @@ export default {
   },
   head () {
     return {
-      title: 'Melijn - Dashboard - General',
+      title: 'Melijn - Dashboard - User',
       meta: [
         {
           hid: 'description',
           name: 'description',
-          content: 'General category of the Melijn dashboard to configure most common server settings.'
+          content: 'User category of the Melijn dashboard to configure your private settings.'
         },
         {
           hid: 'og:title',
           property: 'og:title',
-          content: 'Melijn - Dashboard - General'
+          content: 'Melijn - Dashboard - User'
         },
         {
           hid: 'og:url',
@@ -254,7 +258,7 @@ export default {
         {
           hid: 'og:description',
           property: 'og:description',
-          content: 'General category of the Melijn dashboard to configure most common server settings.'
+          content: 'User category of the Melijn dashboard to configure your private settings.'
         }
       ]
     }
