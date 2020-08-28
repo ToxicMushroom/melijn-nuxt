@@ -21,9 +21,10 @@
     </div>
     <div id="settings-box" class="container">
       <form id="general-form">
-        <!-- <b-field label="Birthday" grouped>
+        <b-field label="Birthday" grouped>
           <b-datepicker
             ref="birthdaypicker"
+            v-model="vBirthday"
             placeholder="Type or select a date..."
             locale="en-CA"
             editable
@@ -36,7 +37,7 @@
             </span>
           </button>
         </b-field>
-        <br> -->
+        <br>
         <b-field label="Prefixes" class="bonk" grouped>
           <div v-for="(prefix, index) in settings.prefixes" :key="index" class="control">
             <div class="vertically-centered-line prefix-entry">
@@ -58,7 +59,7 @@
             <button class="button is-primary" type="button" :disabled="cantAddPrefix()" @click="addPrefix()">
               Add
             </button>
-            <input v-model="prefixAddInput" class="input" type="text" placeholder="a prefix..">
+            <input ref="prefixInput" v-model="prefixAddInput" class="input" type="text" placeholder="a prefix..">
           </div>
         </b-field>
         <div class="field flex-row">
@@ -153,10 +154,22 @@ export default {
         timeZones: [],
         prefixLimit: 0
       },
+      vBirthday: null,
       timeZoneFilter: '',
       prefixAddInput: '',
       openTimezonePicker: false,
       errors: {}
+    }
+  },
+  watch: {
+    vBirthday () {
+      const bDay = this.vBirthday
+      if (bDay) {
+        this.settings.birthday = bDay.getFullYear() + '-' + (bDay.getMonth() + 1) + '-' + bDay.getDate()
+      } else {
+        this.settings.birthday = ''
+      }
+      console.log(this.settings.birthday)
     }
   },
   mounted () {
@@ -180,6 +193,11 @@ export default {
         }
         this.user = user
         this.settings = res.settings
+        const givenDate = new Date(res.settings.birthday)
+        if (givenDate) {
+          console.log(givenDate)
+          this.vBirthday = givenDate
+        }
         this.provided.timeZones = res.provided.timezones
         this.provided.prefixLimit = res.provided.prefixLimit
       }).catch((error) => {
