@@ -215,7 +215,6 @@ $color3: #505056;
     font-size: 18px;
     width: 100%;
     padding: 15px;
-    margin: 15px 0 0 0;
     border: none;
     color: $grey-light;
     text-align: left;
@@ -274,6 +273,7 @@ $color3: #505056;
     font-size: 18px;
     display: none;
     overflow: auto;
+    margin: 0 0 15px 0;
 
     padding: 15px 10px 0 15px;
     @media (max-width: $tablet) {
