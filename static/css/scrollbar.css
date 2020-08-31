@@ -1,3 +1,4 @@
 :root {
     scrollbar-color: rgba(175,175,175,.5) #1d1d1d !important;
+    scrollbar-width: thin !important;
 }

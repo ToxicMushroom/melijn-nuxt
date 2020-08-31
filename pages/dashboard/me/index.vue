@@ -207,6 +207,9 @@ export default {
     } else {
       window.location.replace(window.location.origin)
     }
+    document.getElementsByClassName('mdi-chevron-right')[0].outerHTML =
+    console.log()
+    console.log(document.getElementsByClassName('mdi-chevron-left')[0])
   },
   methods: {
     close (index) {
@@ -299,6 +302,15 @@ export default {
     display: flex;
     flex-direction: column;
     justify-content: center;
+  }
+  .select select option {
+    color: #F1F1F1;
+  }
+  .datepicker .datepicker-table .datepicker-body .datepicker-cell.is-selectable {
+    color: #F1F1F1;
+  }
+  .datepicker .datepicker-table .datepicker-body .datepicker-cell.is-unselectable {
+    color: grey;
   }
 </style>
 

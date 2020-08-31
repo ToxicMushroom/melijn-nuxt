@@ -321,7 +321,7 @@ export default {
         {
           hid: 'og:url',
           property: 'og:url',
-          content: `https://v2.melijn.com/${this.$route.params.id}`
+          content: 'https://v2.melijn.com/'
         },
         {
           hid: 'og:description',

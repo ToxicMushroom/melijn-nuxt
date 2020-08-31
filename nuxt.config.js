@@ -29,6 +29,27 @@ export default {
       href: '/fabicon-200x.png'
     }]
   },
+  render: {
+    csp: {
+      hashAlgorithm: 'sha256',
+      policies: {
+        'script-src': [
+          "'self'",
+          "'unsafe-inline'",
+          "'unsafe-eval'",
+          'http://www.google.com'
+        ],
+        'frame-ancestors': [
+          'https://top.gg/',
+          'https://discord.boats',
+          'https://botsfordiscord.com'
+        ],
+        'report-uri': [
+          'https://v2.melijn.com/csp'
+        ]
+      }
+    }
+  },
   /*
    ** Customize the progress-bar color
    */
