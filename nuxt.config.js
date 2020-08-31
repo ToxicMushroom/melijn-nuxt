@@ -35,9 +35,13 @@ export default {
       policies: {
         'script-src': [
           "'self'",
-          "'unsafe-inline'",
-          "'unsafe-eval'",
-          'http://www.google.com'
+          "'unsafe-eval'"
+        ],
+        'object-src': [
+          "'none'"
+        ],
+        'require-trusted-types-for': [
+          "'script'"
         ],
         'frame-ancestors': [
           'https://top.gg/',
