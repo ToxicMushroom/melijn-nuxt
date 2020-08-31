@@ -37,11 +37,8 @@ export default {
           "'self'",
           "'unsafe-eval'"
         ],
-        'object-src': [
-          "'none'"
-        ],
-        'require-trusted-types-for': [
-          "'script'"
+        'trusted-types': [
+          'default'
         ],
         'frame-ancestors': [
           'https://top.gg/',
@@ -49,7 +46,7 @@ export default {
           'https://botsfordiscord.com'
         ],
         'report-uri': [
-          'https://v2.melijn.com/csp'
+          'https://v2.melijn.com'
         ]
       }
     }
