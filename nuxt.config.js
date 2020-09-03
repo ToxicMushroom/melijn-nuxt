@@ -175,6 +175,9 @@ export default {
     '/cookie/decrypt/guilds': {
       target: 'http://localhost:2607'
     },
+    '/cookie/decrypt/verifyguilds': {
+      target: 'http://localhost:2607'
+    },
     '/cookie/decrypt/guild': {
       target: 'http://localhost:2607'
     },

@@ -164,7 +164,7 @@ export default {
   watch: {
     vBirthday () {
       const bDay = this.vBirthday
-      if (bDay) {
+      if (bDay && !isNaN(bDay.getFullYear())) {
         this.settings.birthday = bDay.getFullYear() + '-' + (bDay.getMonth() + 1) + '-' + bDay.getDate()
       } else {
         this.settings.birthday = ''
@@ -194,8 +194,7 @@ export default {
         this.user = user
         this.settings = res.settings
         const givenDate = new Date(res.settings.birthday)
-        if (givenDate) {
-          console.log(givenDate)
+        if (!isNaN(givenDate.getFullYear())) {
           this.vBirthday = givenDate
         }
         this.provided.timeZones = res.provided.timezones
@@ -207,9 +206,8 @@ export default {
     } else {
       window.location.replace(window.location.origin)
     }
-    document.getElementsByClassName('mdi-chevron-right')[0].outerHTML =
-    console.log()
-    console.log(document.getElementsByClassName('mdi-chevron-left')[0])
+    document.getElementsByClassName('mdi-chevron-right')[0].outerHTML = '>'
+    document.getElementsByClassName('mdi-chevron-left')[0].outerHTML = '<'
   },
   methods: {
     close (index) {
@@ -253,8 +251,8 @@ export default {
     },
     cantAddPrefix () {
       return (this.prefixAddInput.length === 0 ||
-       this.settings.prefixes.includes(this.prefixAddInput) ||
-         this.settings.prefixes.length >= this.provided.prefixLimit)
+        this.settings.prefixes.includes(this.prefixAddInput) ||
+        this.settings.prefixes.length >= this.provided.prefixLimit)
     }
   },
   head () {
