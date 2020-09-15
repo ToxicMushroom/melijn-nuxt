@@ -1,9 +1,12 @@
+import theme from '@nuxt/content-theme-docs'
+
 export default {
   mode: 'universal',
   server: {
     port: 3000, // default: 3000
     host: 'localhost' // default: localhost
   },
+  theme: theme(),
   /*
    ** Headers of the page
    */
@@ -190,10 +193,9 @@ export default {
   },
   content: {
     apiPrefix: '_content',
+    liveEdit: false,
     markdown: {
       remarkPlugins: [],
-      remarkExternalLinks: [],
-      rehypePlugins: [],
       prism: {
         theme: false
       }
