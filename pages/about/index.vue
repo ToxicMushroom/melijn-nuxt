@@ -119,7 +119,7 @@
           </div>
 
           <div class="jobs">
-            Music, Deployment
+            Music, Deployment, Monitoring
           </div>
           <div class="links">
             <a href="https://github.com/xavinlol" target="_blank">
@@ -144,7 +144,7 @@
           </div>
 
           <div class="jobs">
-            Music
+            Music, Hosting
           </div>
           <div class="links">
             <a href="https://github.com/ByteAlex" target="_blank">
