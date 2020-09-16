@@ -195,7 +195,10 @@ export default {
     apiPrefix: '_content',
     liveEdit: false,
     markdown: {
-      remarkPlugins: [],
+      remarkPlugins: (plugins) => {
+        const denyList = ['remark-autolink-headings']
+        return plugins.filter(plugin => !denyList.includes(plugin))
+      },
       prism: {
         theme: false
       }
