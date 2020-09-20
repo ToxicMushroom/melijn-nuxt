@@ -1,25 +1,35 @@
 <template>
-  <ul>
-    <li
-      v-for="link of article.toc"
-      :key="link.id"
-      :class="{ 'toc2': link.depth === 2, 'toc3': link.depth === 3 }"
+  <div class="container">
+    <nuxt-link
+      v-for="link in guides"
+      :key="link.path"
+      :to="link.path"
     >
-      <NuxtLink :to="`#${link.id}`">
-        {{ link.text }}
-      </NuxtLink>
-    </li>
-  </ul>
+      <div class="card">
+        <div class="author-row">
+          <img :src="'/img/users/' + link.author.toLowerCase() + '.png'">
+          <p>{{ link.author }}</p>
+        </div>
+        <h1 class="title">
+          {{ link.title }}
+        </h1>
+        <h2 class="subtitle">
+          {{ link.description }}
+        </h2>
+      </div>
+    </nuxt-link>
+  </div>
 </template>
 
 <script>
 export default {
   async asyncData ({ $content, params }) {
-    const article = await $content('guides', params.slug)
+    const guides = await $content('guides', params.slug)
       .fetch()
 
+    console.log(guides)
     return {
-      article
+      guides
     }
   },
   head () {
@@ -51,3 +61,29 @@ export default {
   }
 }
 </script>
+
+<style lang="scss" scoped>
+.container {
+  flex-direction: column;
+  display: flex;
+  margin-top: 16px;
+  margin-bottom: 16px;
+  .card {
+    text-decoration: none;
+    padding: 16px;
+    border-radius: 6px;
+    .author-row {
+      display: flex;
+      flex-direction: row;
+      img {
+        height: 32px;
+        width: 32px;
+        margin-right: 6px;
+      }
+      p {
+        margin: auto 0;
+      }
+    }
+  }
+}
+</style>

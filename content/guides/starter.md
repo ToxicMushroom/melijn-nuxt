@@ -1,6 +1,8 @@
 ---
 title: Getting started with Melijn
 description: In this guide we'll learn about how Melijn does certain stuff and basic configuration.
+author: ToxicMushroom
+tags: start
 ---
 
 # 1. Setting up the bot
