@@ -7,6 +7,9 @@ export default {
     host: 'localhost' // default: localhost
   },
   theme: theme(),
+  router: {
+    prefetchLinks: false
+  },
   /*
    ** Headers of the page
    */

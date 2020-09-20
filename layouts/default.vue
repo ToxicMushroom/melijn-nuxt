@@ -26,6 +26,7 @@ export default {
   mounted () {
     if (this.$cookies.get('sdt')) {
       this.$axios.$post('/cookie/decrypt/user', { jwt: this.$cookies.get('sdt') }).then((res) => {
+        if (res.status !== 'success') { return }
         this.loggedIn = true
         this.tag = res.tag
         if (res.isDefault) {
