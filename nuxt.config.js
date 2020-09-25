@@ -90,7 +90,7 @@ export default {
   /*
    ** Nuxt.js modules
    */
-  modules: [
+  modules: [   
     // Doc: https://axios.nuxtjs.org/usage
     '@nuxtjs/axios',
     '@nuxtjs/pwa',
@@ -142,7 +142,8 @@ export default {
         }
       ]
     }],
-    '@nuxtjs/proxy'
+    '@nuxtjs/proxy',
+    '@nuxtjs/sitemap'
   ],
   generate: {
     async routes () {
