@@ -20,7 +20,8 @@ export default {
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
       { name: 'theme-color', content: '#A1B4ED' },
       { name: 'msapplication-TileColor', content: '#A1B4ED' },
-      { hid: 'description', name: 'description', content: process.env.npm_package_description || '' }
+      { hid: 'description', name: 'description', content: process.env.npm_package_description || '' },
+      { name: 'keywords', content: 'melijn,meljin,melina,melijnbot,meljinbot,melijn bot,meljin bot,toxicmushroom' }
     ],
     link: [{
       rel: 'icon',
