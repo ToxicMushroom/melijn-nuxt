@@ -53,7 +53,7 @@ export default {
           'https://botsfordiscord.com'
         ],
         'report-uri': [
-          'https://v2.melijn.com'
+          'https://melijn.com'
         ]
       }
     }
