@@ -148,14 +148,14 @@ export default {
   generate: {
     async routes () {
       const content = await require('@nuxt/content')
-      const articles = content
+      const articles = await content
         .$content('articles')
         .only(['path'])
-        .feth()
-      const guides = content
+        .fetch()
+      const guides = await content
         .$content('guides')
         .only(['path'])
-        .feth()
+        .fetch()
       return [].concat(
         articles.map(article => article.patch),
         guides.map(guide => guide.patch)
