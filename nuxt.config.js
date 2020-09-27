@@ -144,8 +144,7 @@ export default {
       ]
     }],
     '@nuxtjs/proxy',
-    '@nuxtjs/sitemap',
-    '@nuxtjs/robots'
+    '@nuxtjs/sitemap'
   ],
   generate: {
     async routes () {
