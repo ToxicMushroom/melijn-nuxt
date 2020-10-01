@@ -20,7 +20,8 @@ export default {
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
       { name: 'theme-color', content: '#A1B4ED' },
       { name: 'msapplication-TileColor', content: '#A1B4ED' },
-      { hid: 'description', name: 'description', content: process.env.npm_package_description || '' }
+      { hid: 'description', name: 'description', content: process.env.npm_package_description || '' },
+      { name: 'keywords', content: 'melijn,meljin,melina,melijnbot,meljinbot,melijn bot,meljin bot,toxicmushroom' }
     ],
     link: [{
       rel: 'icon',
@@ -52,7 +53,7 @@ export default {
           'https://botsfordiscord.com'
         ],
         'report-uri': [
-          'https://v2.melijn.com'
+          'https://melijn.com'
         ]
       }
     }
@@ -90,7 +91,7 @@ export default {
   /*
    ** Nuxt.js modules
    */
-  modules: [   
+  modules: [
     // Doc: https://axios.nuxtjs.org/usage
     '@nuxtjs/axios',
     '@nuxtjs/pwa',
@@ -148,14 +149,14 @@ export default {
   generate: {
     async routes () {
       const content = await require('@nuxt/content')
-      const articles = content
+      const articles = await content
         .$content('articles')
         .only(['path'])
-        .feth()
-      const guides = content
+        .fetch()
+      const guides = await content
         .$content('guides')
         .only(['path'])
-        .feth()
+        .fetch()
       return [].concat(
         articles.map(article => article.patch),
         guides.map(guide => guide.patch)

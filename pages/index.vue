@@ -321,7 +321,7 @@ export default {
         {
           hid: 'og:url',
           property: 'og:url',
-          content: 'https://v2.melijn.com/'
+          content: 'https://melijn.com/'
         },
         {
           hid: 'og:description',
