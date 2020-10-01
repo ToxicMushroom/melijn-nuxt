@@ -195,9 +195,9 @@
         <div class="container">
           <div class="columns">
             <div class="column is-6 text-column-hero">
-              <h1 class="title">
+              <h2 class="title">
                 Audio
-              </h1>
+              </h2>
               <h2 class="subtitle">
                 We have dedicated servers for audio streaming. Supports YouTube, SoundCloud, Spotify, Twitch, Discord Attachments and <a class="text-link" href="https://bintray.com/sedmelluq/com.sedmelluq/lavaplayer" rel="noopener noreferrer nofollow" target="_blank">more...</a><br>
                 Melijn has many <nuxt-link class="text-link" to="/commands#music">
@@ -224,9 +224,9 @@
               </span>
             </div>
             <div class="column is-6 text-column-hero">
-              <h1 class="title">
+              <h2 class="title">
                 Moderation
-              </h1>
+              </h2>
               <h2 class="subtitle">
                 Moderate your server with chat-filters, automated punishment system, fullfills all your punishment needs like ban, tempban, softban, ..mute, ..kick etc<br>
                 Easily view and remove punishment cases.
@@ -241,9 +241,9 @@
         <div class="container">
           <div class="columns">
             <div class="column is-6 text-column-hero">
-              <h1 class="title">
+              <h2 class="title">
                 Verification
-              </h1>
+              </h2>
               <h2 class="subtitle">
                 To keep spammers, self-bots, raids and people that tell you: "I didn't find the rules" from infiltrating your server. Or to simply have a password protected private server.<br>
                 You can require users to pass a verification check (supports: password, reaction or google-recaptchaV2)
@@ -268,9 +268,9 @@
               </span>
             </div>
             <div class="column is-6 text-column-hero">
-              <h1 class="title">
+              <h2 class="title">
                 Reaction Roles
-              </h1>
+              </h2>
               <h2 class="subtitle">
                 Create role groups. Setup emotes that grant a role or multiple roles or one out of many roles by chance.<br>
                 Auto create a nicelly formatted role menu. You can even customize te line format.<br>
@@ -284,11 +284,11 @@
     <section class="hero is-dark">
       <div class="hero-body">
         <div class="container">
-          <h1 class="title">
+          <h2 class="title">
             And much more which you can <nuxt-link class="text-link" to="/commands">
               discover
             </nuxt-link>.
-          </h1>
+          </h2>
         </div>
       </div>
     </section>
