@@ -86,9 +86,9 @@ export default {
   },
   data () {
     return {
-      selectedCategory: this.$route.hash.length === 0 ? 'music' : this.$route.hash.toLowerCase().substr(1),
+      selectedCategory: this.$route.query.c ? this.$route.query.c : 'music',
       commandLoader: 0,
-      search: ''
+      search: this.$route.query.q ? this.$route.query.q : ''
     }
   },
   watch: {
@@ -209,6 +209,9 @@ export default {
   }
 
   .menu-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
     li {
       a {
         padding: 0.5em 0.75em 0.5em 0.15em;

@@ -5,10 +5,13 @@
       :key="link.path"
       :to="link.path"
     >
-      <div class="card">
+      <div class="card" :style="link.style">
         <div class="author-row">
           <img :src="'/img/users/' + link.author.toLowerCase() + '.png'">
           <p>{{ link.author }}</p>
+          <p style="margin-left: auto">
+            {{ new Date(link.createdAt).toLocaleDateString() }}
+          </p>
         </div>
         <h1 class="title">
           {{ link.title }}
@@ -24,10 +27,9 @@
 <script>
 export default {
   async asyncData ({ $content, params }) {
-    const guides = await $content('guides', params.slug)
-      .fetch()
+    const guides = (await $content('guides', params.slug)
+      .fetch()).reverse()
 
-    console.log(guides)
     return {
       guides
     }
@@ -69,9 +71,10 @@ export default {
   margin-top: 16px;
   margin-bottom: 16px;
   .card {
+    margin: 8px;
     text-decoration: none;
     padding: 16px;
-    border-radius: 6px;
+    border-radius: 4px;
     .author-row {
       display: flex;
       flex-direction: row;

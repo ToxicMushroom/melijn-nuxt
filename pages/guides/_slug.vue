@@ -21,8 +21,8 @@
 export default {
   async asyncData ({ $content, params }) {
     const guide = await $content('guides', params.slug).fetch()
-    const createdAt = new Date(guide.createdAt).toLocaleDateString('en-UK')
-    const updatedAt = new Date(guide.updatedAt).toLocaleDateString('en-UK')
+    const createdAt = new Date(guide.createdAt).toLocaleDateString()
+    const updatedAt = new Date(guide.updatedAt).toLocaleDateString()
     return { guide, createdAt, updatedAt }
   }
 }
