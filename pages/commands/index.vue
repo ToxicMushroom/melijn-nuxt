@@ -40,7 +40,7 @@
           </span> Economy</a>
         </li>
         <li>
-          <a id="games" :class="{'active': 'games' == selectedCategory}" @click="categoryClick"><span class="icon">
+          <a id="game" :class="{'active': 'game' == selectedCategory}" @click="categoryClick"><span class="icon">
             <fa :icon="['fas', 'dice']" />
           </span> Games</a>
         </li>
