@@ -30,7 +30,7 @@
           </p>
         </div>
       </nuxt-link>
-      <nuxt-link :to="'/dashboard/' + id + '/welcomer'">
+      <nuxt-link :to="'/dashboard/' + id + '/welcomer'" class="hidden">
         <div class="column is-narrow">
           <span class="icon is-large">
             <fa :icon="['fas', 'door-open']" class="fa-3x" />
@@ -40,7 +40,7 @@
           </p>
         </div>
       </nuxt-link>
-      <nuxt-link :to="'/dashboard/' + id + '/verification'">
+      <nuxt-link :to="'/dashboard/' + id + '/verification'" class="hidden">
         <div class="column is-narrow">
           <span class="icon is-large">
             <fa :icon="['fas', 'shield-alt']" class="fa-3x" />
@@ -50,7 +50,7 @@
           </p>
         </div>
       </nuxt-link>
-      <nuxt-link :to="'/dashboard/' + id + '/logs'">
+      <nuxt-link :to="'/dashboard/' + id + '/logs'" class="hidden">
         <div class="column is-narrow">
           <span class="icon is-large">
             <fa :icon="['fas', 'hammer']" class="fa-3x" />
@@ -60,7 +60,7 @@
           </p>
         </div>
       </nuxt-link>
-      <nuxt-link :to="'/dashboard/' + id + '/logs'">
+      <nuxt-link :to="'/dashboard/' + id + '/logs'" class="hidden">
         <div class="column is-narrow">
           <span class="icon is-large">
             <fa :icon="['fas', 'clipboard-list']" class="fa-3x" />
@@ -186,6 +186,9 @@ export default {
     }
   }
   .columns  {
+    .hidden {
+      display: none;
+    }
     .column {
       background-color: $box-color;
       border-radius: 5px;
