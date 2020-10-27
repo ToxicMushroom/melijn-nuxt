@@ -130,7 +130,8 @@ export default {
             'faClipboardList',
             'faDoorOpen',
             'faCalendarDay',
-            'faDice'
+            'faDice',
+            'faBorderAll'
           ]
         },
         {
