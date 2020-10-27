@@ -6,6 +6,11 @@
       </p>
       <ul class="menu-list">
         <li>
+          <a id="all" :class="{'active': 'all' == selectedCategory}" @click="categoryClick"><span class="icon">
+            <fa :icon="['fas', 'border-all']" />
+          </span> All</a>
+        </li>
+        <li>
           <a id="music" :class="{'active': 'music' == selectedCategory}" @click="categoryClick"><span class="icon">
             <fa :icon="['fas', 'music']" /></span> Music</a>
         </li>
@@ -66,7 +71,7 @@
 
     <div class="categories">
       <!-- <client-only placeholder="Loading..."> -->
-      <div v-for="category in commands" :id="category[0]" :key="category[0]" class="category" :class="{'visible': category[0].toLowerCase() == selectedCategory}">
+      <div v-for="category in commands" :id="category[0]" :key="category[0]" class="category" :class="{'visible': category[0].toLowerCase() == selectedCategory || selectedCategory == 'all'}">
         <div v-for="cmd in category[1]" :key="cmd[0]">
           <node-tree class="cmd" :class="{'visible': isVisible(cmd) }" :node="cmd" :level="0" />
         </div>
