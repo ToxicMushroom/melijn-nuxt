@@ -19,8 +19,21 @@
 
 <script>
 export default {
+  async validate ({ params, query, $content }) {
+    try {
+      await $content('guides', params.slug)
+        .fetch()
+      return true
+    } catch (error) {
+      return false
+    }
+  },
   async asyncData ({ $content, params }) {
-    const guide = await $content('guides', params.slug).fetch()
+    const guide = await $content('guides', params.slug)
+      .fetch()
+      .catch((error) => {
+        error({ statusCode: 404, message: 'Guide not found' })
+      })
     const createdAt = new Date(guide.createdAt).toLocaleDateString()
     const updatedAt = new Date(guide.updatedAt).toLocaleDateString()
     return { guide, createdAt, updatedAt }
@@ -28,7 +41,7 @@ export default {
 }
 </script>
 
-// only works on stuff inside this slug and outside the markdown
+<!-- only works on stuff inside this slug and outside the markdown -->
 <style lang="scss" scoped>
 h1.title {
   color: $grey-light;
@@ -38,7 +51,7 @@ h3.subtitle {
 }
 </style>
 
-// works on stuff inside and outside the markdown on this page
+<!-- works on stuff inside and outside the markdown on this page -->
 <style>
 a[ariahidden=true] {
   display: none;
