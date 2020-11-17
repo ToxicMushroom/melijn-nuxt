@@ -6,7 +6,14 @@ export default {
     port: 3000, // default: 3000
     host: '0.0.0.0' // default: localhost
   },
-  theme: theme(),
+  theme: theme({
+    docs: {
+      primaryColor: '#A1B4ED'
+    },
+    loading: {
+      color: '#A1B4ED'
+    }
+  }),
   router: {
     prefetchLinks: false
   },
@@ -85,12 +92,45 @@ export default {
    */
   buildModules: [
     // Doc: https://github.com/nuxt-community/eslint-module
-    '@nuxtjs/eslint-module',
     '@nuxtjs/style-resources'
   ],
-  /*
-   ** Nuxt.js modules
-   */
+  sitemap: {
+    hostname: 'https://melijn.com',
+    gzip: true,
+    exclude: [
+      '/dashboard/**',
+      '/'
+    ],
+    routes: async () => {
+      const { $content } = require('@nuxt/content')
+
+      const guides = await $content('guides').fetch()
+      const articles = await $content('articles').fetch()
+
+      // Setup an empty array we will push to.
+      const routes = []
+
+      // Add an entry for the item including lastmod and priorty
+      articles.forEach(w =>
+        routes.push({
+          url: w.path,
+          priority: 0.8,
+          lastmod: w.updatedAt
+        })
+      )
+
+      guides.forEach(p =>
+        routes.push({
+          url: p.path,
+          priority: 0.8,
+          lastmod: p.updatedAt
+        })
+      )
+
+      // return all routes
+      return routes
+    }
+  },
   modules: [
     // Doc: https://axios.nuxtjs.org/usage
     '@nuxtjs/axios',
@@ -241,19 +281,19 @@ export default {
      ** You can extend webpack config here
      */
 
-    extend (config, ctx) {
-      if (ctx.isDev && ctx.isClient) {
-        config.module.rules.push({
-          enforce: 'pre',
-          test: /\.(js|vue)$/,
-          loader: 'eslint-loader',
-          exclude: /(node_modules)/,
-          options: {
-            fix: true
-          }
-        })
-      }
-    },
+    // extend (config, ctx) {
+    //   if (ctx.isDev && ctx.isClient) {
+    //     config.module.rules.push({
+    //       enforce: 'pre',
+    //       test: /\.(js|vue)$/,
+    //       loader: 'eslint-loader',
+    //       exclude: /(node_modules)/,
+    //       options: {
+    //         fix: true
+    //       }
+    //     })
+    //   }
+    // },
     postcss: {
       preset: {
         features: {

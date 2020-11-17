@@ -24,9 +24,9 @@
 
 <script>
 export default {
+  layout: 'default',
   // eslint-disable-next-line vue/require-prop-types
-  props: ['error'],
-  layout: 'default', // you can set a custom layout for the error page
+  props: ['error'], // you can set a custom layout for the error page
   methods: {
     back () {
       window.history.back()

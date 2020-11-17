@@ -30,7 +30,7 @@
       <h3>1.5 How you can protect your data</h3>
 
       If you the user see Melijn online in the channel you are in and you type "&lt;@368362411591204865&gt; loginfo" then Melijn will show you if you're being logged or not.
-      You can email us (contact@melijn.me) or contact us through discord to get your data deleteded. We may ask for proof of ownership of the account when using email.
+      You can email us (contact@melijn.com) or contact us through discord to get your data deleteded. We may ask for proof of ownership of the account when using email.
       Having your data deleted multiple times might result in a ban from using our bot and your userid being stored. This way we can ensure that the users of our bot
       know why Melijn is not working as it should when users that delete their data join their server.
 

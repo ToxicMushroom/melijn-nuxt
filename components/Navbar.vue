@@ -43,7 +43,7 @@
           <a class="navbar-item" rel="noopener noreferrer nofollow" href="https://discord.com/invite/tfQ9s7u" target="_blank">
             Support server
           </a>
-          <a class="navbar-item" rel="noopener noreferrer nofollow" href="mailto:contact@melijn.me" target="_blank">
+          <a class="navbar-item" rel="noopener noreferrer nofollow" href="mailto:contact@melijn.com" target="_blank">
             Email Contact
           </a>
           <hr class="navbar-divider">
@@ -105,7 +105,7 @@
         <a class="navbar-item" rel="noopener noreferrer nofollow" href="https://discord.com/invite/tfQ9s7u" target="_blank" @click="showNav = !showNav">
           Support server
         </a>
-        <a class="navbar-item" rel="noopener noreferrer nofollow" href="mailto:contact@melijn.me" target="_blank" @click="showNav = !showNav">
+        <a class="navbar-item" rel="noopener noreferrer nofollow" href="mailto:contact@melijn.com" target="_blank" @click="showNav = !showNav">
           Email Contact
         </a>
         <hr>
