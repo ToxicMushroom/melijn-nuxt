@@ -99,7 +99,12 @@ export default {
     gzip: true,
     exclude: [
       '/dashboard/**',
-      '/'
+      '/dashboard',
+      '/login',
+      '/logout',
+      '/callback',
+      '/invite',
+      '/recaptcha'
     ],
     routes: async () => {
       const { $content } = require('@nuxt/content')
