@@ -1,64 +1,20 @@
 <template>
-  <div id="container" class="columns">
-    <div class="column">
+  <div id="container" class="container">
+    <div>
       <div class="menu">
         <p class="menu-label">
           Categories
         </p>
-        <ul class="menu-list">
-          <li>
-            <a id="all" :class="{'active': 'all' == selectedCategory}" @click="categoryClick"><span class="icon">
-              <fa :icon="['fas', 'border-all']" />
-            </span> All</a>
-          </li>
-          <li>
-            <a id="music" :class="{'active': 'music' == selectedCategory}" @click="categoryClick"><span class="icon">
-              <fa :icon="['fas', 'music']" /></span> Music</a>
-          </li>
-          <li>
-            <a id="moderation" :class="{'active': 'moderation' == selectedCategory}" @click="categoryClick"><span class="icon">
-              <fa :icon="['fas', 'hammer']" />
-            </span> Moderation</a>
-          </li>
-          <li>
-            <a id="administration" :class="{'active': 'administration' == selectedCategory}" @click="categoryClick"><span class="icon">
-              <fa :icon="['fas', 'wrench']" />
-            </span> Administration</a>
-          </li>
-          <li>
-            <a id="utility" :class="{'active': 'utility' == selectedCategory}" @click="categoryClick"><span class="icon">
-              <fa :icon="['fas', 'info']" />
-            </span> Utility</a>
-          </li>
-          <li>
-            <a id="image" :class="{'active': 'image' == selectedCategory}" @click="categoryClick"><span class="icon">
-              <fa :icon="['fas', 'images']" />
-            </span> Image</a>
-          </li>
-          <li>
-            <a id="anime" :class="{'active': 'anime' == selectedCategory}" @click="categoryClick"><span class="icon">
-              <fa :icon="['fas', 'torii-gate']" />
-            </span> Anime</a>
-          </li>
-          <li>
-            <a id="economy" :class="{'active': 'economy' == selectedCategory}" @click="categoryClick"><span class="icon">
-              <fa :icon="['far', 'money-bill-alt']" />
-            </span> Economy</a>
-          </li>
-          <li>
-            <a id="game" :class="{'active': 'game' == selectedCategory}" @click="categoryClick"><span class="icon">
-              <fa :icon="['fas', 'dice']" />
-            </span> Games</a>
-          </li>
-          <li>
-            <a id="animal" :class="{'active': 'animal' == selectedCategory}" @click="categoryClick"><span class="icon">
-              <fa :icon="['fas', 'paw']" />
-            </span> Animal</a>
-          </li>
-        </ul>
+        <div class="menu-list">
+          <div class="menu-item" v-for="category in categories" :key="category.name">
+            <a :id="category.name" :class="{'active': category.name == selectedCategory}" @click="categoryClick(category.name)"><span class="icon">
+              <fa :icon="category.icon" />
+            </span> {{ category.name.charAt(0).toUpperCase() + category.name.slice(1) }}</a>
+          </div>
+        </div>
       </div>
     </div>
-    <div class="column is-three-quarters is-full-mobile">
+    <div>
       <div id="searchbar" class="field is-grouped">
         <p class="control is-expanded">
           <input
@@ -101,7 +57,40 @@ export default {
     return {
       selectedCategory: this.$route.query.c ? this.$route.query.c : 'music',
       commandLoader: 0,
-      search: this.$route.query.q ? this.$route.query.q : ''
+      search: this.$route.query.q ? this.$route.query.q : '',
+      categories: [
+        {
+          name: 'all',
+          icon: ['fas', 'border-all']
+        }, {
+          name: 'music',
+          icon: ['fas', 'music']
+        }, {
+          name: 'moderation',
+          icon: ['fas', 'hammer']
+        }, {
+          name: 'administration',
+          icon: ['fas', 'wrench']
+        }, {
+          name: 'utility',
+          icon: ['fas', 'info']
+        }, {
+          name: 'image',
+          icon: ['fas', 'images']
+        }, {
+          name: 'anime',
+          icon: ['fas', 'torii-gate']
+        }, {
+          name: 'economy',
+          icon: ['far', 'money-bill-alt']
+        }, {
+          name: 'game',
+          icon: ['fas', 'dice']
+        }, {
+          name: 'animal',
+          icon: ['fas', 'paw']
+        }
+      ]
     }
   },
   watch: {
@@ -122,11 +111,9 @@ export default {
         }
       }
     },
-    categoryClick (event) {
-      const clicked = event.target
-      if (clicked === undefined || clicked.id === undefined) { return }
-      if (this.selectedCategory !== clicked.id.toLowerCase()) {
-        this.selectedCategory = clicked.id.toLowerCase()
+    categoryClick (clicked) {
+      if (this.selectedCategory !== clicked.toLowerCase()) {
+        this.selectedCategory = clicked.toLowerCase()
       }
     },
     isVisible (cmd) {
@@ -185,31 +172,37 @@ export default {
 
 #container {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   flex-wrap: wrap;
   .menu {
     display: flex;
     flex-direction: column;
-    padding: 10px;
-    margin: 30px;
-    background-color: $darkr;
-    border-radius: 5px;
+    justify-content: flex-start;
+    margin: 25px 30px 20px 30px;
+
     @media (max-width: $tablet) {
-      margin: 30px 15px;
+      margin: 25px 15px 25px 15px;
     }
     @media (max-width: $phone) {
-      margin: 20px 10px;
+      margin: 25px 10px 20px 10px;
       padding: 5px;
     }
+
     .menu-label {
       color: white;
+      text-align: left;
     }
 
     .menu-list {
-      list-style: none;
-      padding: 0;
-      margin: 0;
-      li {
+      padding: 10px;
+      background-color: $darkr;
+      border-radius: 5px;
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+     
+      .menu-item {
+        margin: 0 8px 0 0;
         a {
           padding: 0.5em 0.75em 0.5em 0.15em;
           color: $grey-laite;
