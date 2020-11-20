@@ -5,27 +5,17 @@
       :key="link.path"
       :to="link.path"
     >
-      <div class="card" :style="link.style">
-        <div class="author-row">
-          <img :src="'/img/users/' + link.author.toLowerCase() + '.png'">
-          <p>{{ link.author }}</p>
-          <p style="margin-left: auto">
-            {{ new Date(link.createdAt).toLocaleDateString() }}
-          </p>
-        </div>
-        <h1 class="title">
-          {{ link.title }}
-        </h1>
-        <h2 class="subtitle">
-          {{ link.description }}
-        </h2>
-      </div>
+      <articlecard :card="link"></articlecard>
     </nuxt-link>
   </div>
 </template>
 
 <script>
+import articlecard from '@/components/ArticleCard'
 export default {
+  components: {
+    articlecard
+  },
   async asyncData ({ $content, params }) {
     const guides = (await $content('guides', params.slug)
       .fetch()).reverse()

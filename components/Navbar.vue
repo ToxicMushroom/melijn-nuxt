@@ -34,17 +34,24 @@
         </a>
 
         <div class="navbar-dropdown is-right" disabled>
+          <nuxt-link to="/articles" class="navbar-item">
+            Articles
+          </nuxt-link>
           <nuxt-link to="/about" class="navbar-item">
             About
           </nuxt-link>
           <nuxt-link to="/legal" class="navbar-item">
             Privacy & Terms
           </nuxt-link>
+          <hr class="navbar-divider">
           <a class="navbar-item" rel="noopener noreferrer nofollow" href="https://discord.com/invite/tfQ9s7u" target="_blank">
             Support server
           </a>
           <a class="navbar-item" rel="noopener noreferrer nofollow" href="mailto:contact@melijn.com" target="_blank">
             Email Contact
+          </a>
+          <a class="navbar-item" rel="noopener noreferrer nofollow" href="i18n.melijn.com" target="_blank">
+            Help Translation
           </a>
           <hr class="navbar-divider">
           <nuxt-link class="navbar-item" to="/invite" target="_blank">
@@ -96,17 +103,24 @@
           Guides
         </nuxt-link>
         <hr>
+        <nuxt-link to="/articles" class="navbar-item">
+          Articles
+        </nuxt-link>
         <nuxt-link to="/about" class="navbar-item" @click="showNav = !showNav">
           About
         </nuxt-link>
         <nuxt-link to="/legal" class="navbar-item" @click="showNav = !showNav">
           Privacy & Terms
         </nuxt-link>
+        <hr>
         <a class="navbar-item" rel="noopener noreferrer nofollow" href="https://discord.com/invite/tfQ9s7u" target="_blank" @click="showNav = !showNav">
           Support server
         </a>
         <a class="navbar-item" rel="noopener noreferrer nofollow" href="mailto:contact@melijn.com" target="_blank" @click="showNav = !showNav">
           Email Contact
+        </a>
+        <a class="navbar-item" rel="noopener noreferrer nofollow" href="i18n.melijn.com" target="_blank" @click="showNav = !showNav">
+          Help Translation
         </a>
         <hr>
         <nuxt-link class="navbar-item" to="/invite" target="_blank" @click="showNav = !showNav">
