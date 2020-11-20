@@ -50,7 +50,7 @@
           <a class="navbar-item" rel="noopener noreferrer nofollow" href="mailto:contact@melijn.com" target="_blank">
             Email Contact
           </a>
-          <a class="navbar-item" rel="noopener noreferrer nofollow" href="i18n.melijn.com" target="_blank">
+          <a class="navbar-item" rel="noopener noreferrer nofollow" href="https://i18n.melijn.com" target="_blank">
             Help Translation
           </a>
           <hr class="navbar-divider">
@@ -119,7 +119,7 @@
         <a class="navbar-item" rel="noopener noreferrer nofollow" href="mailto:contact@melijn.com" target="_blank" @click="showNav = !showNav">
           Email Contact
         </a>
-        <a class="navbar-item" rel="noopener noreferrer nofollow" href="i18n.melijn.com" target="_blank" @click="showNav = !showNav">
+        <a class="navbar-item" rel="noopener noreferrer nofollow" href="https://i18n.melijn.com" target="_blank" @click="showNav = !showNav">
           Help Translation
         </a>
         <hr>

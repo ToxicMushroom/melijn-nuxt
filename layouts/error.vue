@@ -13,7 +13,7 @@
       An error occurred. Please report this to the developers.
     </h1>
 
-    <p>
+    <p class="backorhome">
       <fa :icon="['fas', 'arrow-left']" /> <span class="text-link" @click="back()">Go back</span>
       or <nuxt-link to="/" class="text-link">
         home
@@ -36,6 +36,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+
 .container {
     display: flex;
     flex: 1;
@@ -49,6 +50,9 @@ export default {
         &:last-child {
             margin-bottom: 52px;
         }
+    }
+    .backorhome {
+      font-size: 1.5rem;
     }
     .text-link {
       font-size: 1.5rem;
