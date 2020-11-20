@@ -15,6 +15,7 @@
     </h2>
 </div>    
 </template>
+<!-- thx windows -->
 
 <script>
 export default {
