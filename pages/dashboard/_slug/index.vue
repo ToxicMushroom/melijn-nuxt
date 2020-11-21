@@ -50,7 +50,7 @@
           </p>
         </div>
       </nuxt-link>
-      <nuxt-link :to="'/dashboard/' + id + '/logs'" class="hidden">
+      <nuxt-link :to="'/dashboard/' + id + '/punishments'" class="hidden">
         <div class="column is-narrow">
           <span class="icon is-large">
             <fa :icon="['fas', 'hammer']" class="fa-3x" />
@@ -60,7 +60,7 @@
           </p>
         </div>
       </nuxt-link>
-      <nuxt-link :to="'/dashboard/' + id + '/logs'" class="hidden">
+      <nuxt-link :to="'/dashboard/' + id + '/logging'">
         <div class="column is-narrow">
           <span class="icon is-large">
             <fa :icon="['fas', 'clipboard-list']" class="fa-3x" />
@@ -90,7 +90,8 @@ export default {
       this.$axios.$post('/cookie/decrypt/guild', { jwt: this.$cookies.get('sdt'), id: this.id }).then((res) => {
         this.loggedIn = true
 
-        const isGif = res.icon.startsWith('a_')
+
+        const isGif = res.icon ? res.icon.startsWith('a_') : false
         const guild = {}
         guild.name = res.name
         guild.avatarVariables = {

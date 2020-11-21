@@ -1,4 +1,6 @@
 import theme from '@nuxt/content-theme-docs'
+require('events').EventEmitter.prototype._maxListeners = 70;
+require('events').defaultMaxListeners = 70;
 
 export default {
   mode: 'universal',
@@ -225,6 +227,12 @@ export default {
       target: 'http://localhost:2607'
     },
     '/cookie/decrypt/user/settings': {
+      target: 'http://localhost:2607'
+    },
+    '/getsettings/logging': {
+      target: 'http://localhost:2607'
+    },
+    '/setsettings/logging': {
       target: 'http://localhost:2607'
     },
     '/cookie/decrypt/guilds': {

@@ -174,6 +174,7 @@ export default {
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
+  width: 100%;
   .menu {
     display: flex;
     flex-direction: column;
@@ -208,7 +209,7 @@ export default {
           color: $grey-laite;
           span.icon {
             width: 30px;
-            padding-right: 10px;
+            padding-right: 0px;
           }
         }
 

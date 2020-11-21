@@ -167,7 +167,7 @@ export default {
       this.$axios.$post('/cookie/decrypt/guild/general', { jwt: this.$cookies.get('sdt'), id: this.id }).then((res) => {
         this.loggedIn = true
 
-        const isGif = res.guild.icon.startsWith('a_')
+        const isGif = res.guild.icon ? res.guild.icon.startsWith('a_') : false
         const guild = {}
         guild.name = res.guild.name
         guild.avatarVariables = {

@@ -13,7 +13,7 @@
     <h2 class="subtitle">
         {{ card.description }}
     </h2>
-</div>    
+</div>
 </template>
 <!-- thx windows -->
 
