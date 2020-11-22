@@ -22,24 +22,28 @@
       <p>logging</p>
     </div>
       <form id="general-form">
-        <b-field :label="logChannelGroup.group" class="bonk" v-for="(logChannelGroup) in settings.logchannels" :key="logChannelGroup.group">
-          <table>
-            <tr>
-              <th>Type</th>
-              <th>TextChannel</th>
-            </tr>
-            <tr v-for="(logChannel, index) in logChannelGroup.channels" :key="index" class="control">
-              <td><p>{{ logChannel.textType }}</p></td>
-              <td>
-                <b-select v-model="logChannel.value">
-                  <option v-bind:value="null">Select a textchannel</option>
-                  
-                  <optgroup :label="entry.category" v-for="entry in provided.channelStructure" :key="entry.category">
-                    <option v-bind:value="channel.id" v-for="channel in entry.channels" :key="channel.id">{{ channel.name }}</option>
-                  </optgroup>
-                </b-select>
-              </td>
-            </tr>
+        <b-field :label="logChannelGroup.group" class="bonk table-container" v-for="(logChannelGroup) in settings.logchannels" :key="logChannelGroup.group">
+          <table class="table button-table">
+            <thead>
+              <tr>
+                <th>Type</th>
+                <th>TextChannel</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr v-for="(logChannel, index) in logChannelGroup.channels" :key="index" class="control">
+                <td><p>{{ logChannel.textType }}</p></td>
+                <td>
+                  <b-select v-model="logChannel.value">
+                    <option v-bind:value="null">Select a textchannel</option>
+                    
+                    <optgroup :label="entry.category" v-for="entry in provided.channelStructure" :key="entry.category">
+                      <option v-bind:value="channel.id" v-for="channel in entry.channels" :key="channel.id">#{{ channel.name }}</option>
+                    </optgroup>
+                  </b-select>
+                </td>
+              </tr>
+            </tbody>
           </table>
         </b-field>
         <br>
@@ -166,6 +170,15 @@ export default {
     flex-direction: column;
     justify-content: center;
   }
+  .select > select {
+    border-color: black;
+  }
+  .select > select:hover {
+    border-color: #72767d;
+  }
+  .select select option {
+    color: #d2d6dd;
+  }
 </style>
 
 <style lang="scss" scoped>
@@ -174,81 +187,94 @@ export default {
   .select select optgroup {
     background-color: black;
   }
+  .bonk {
+    margin: 20px auto;
+    width: max-content;
+    .table {
+      th, td {
+        border-color: black;
+      }
+      td {
+        vertical-align: middle;
+      }
+      background-color: $darkr;
+    }
+  }
 }
 
-  .vertically-centered-line {
+.vertically-centered-line {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  text-align: start;
+  & > * {
+    margin: auto 10px auto 0;
+  }
+  &.wrap {
+    flex-wrap: wrap;
+  }
+  &.logChannel-entry {
+    margin-bottom: 8px;
+  }
+}
+
+#navigator.title {
+  color: white;
+  margin-top: 3rem;
+  margin-left: 3rem;
+  & > * {
+    margin: auto 12px auto 0;
+  }
+
+  .back {
+    .icon {
+      display: inline-block;
+    }
+    p {
+      display: inline-block;
+    }
+  }
+  .avatar {
+    border-radius: 50%;
+    background-size: contain;
+    background-image: var(--guild-avatar);
+    height: 5rem;
+    width: 5rem;
+    margin: auto 6px auto 0;
+    &:hover{
+      background-image: var(--guild-avatar-hover);
+    }
+  }
+  div {
+    display: inline-flex;
+  }
+  .b-skeleton {
+    width: auto;
+  }
+}
+#general-form {
+  margin: auto;
+  max-width: 600px;
+  margin-bottom: 40px;
+  input {
+    border: none;
+    color: $grey-laite;
+    &::placeholder {
+      color: $grey;
+    }
+    &[disabled="disabled"] {
+      background-color: black;
+    }
+  }
+  .label {
+    color: white;
+  }
+  .hover-pointer {
+    cursor: pointer;
+  }
+  .flex-row {
     display: flex;
     flex-direction: row;
-    justify-content: flex-start;
-    text-align: start;
-    & > * {
-      margin: auto 10px auto 0;
-    }
-    &.wrap {
-      flex-wrap: wrap;
-    }
-    &.logChannel-entry {
-      margin-bottom: 8px;
-    }
   }
-
-  #navigator.title {
-    color: white;
-    margin-top: 3rem;
-    margin-left: 3rem;
-    & > * {
-      margin: auto 12px auto 0;
-    }
-
-    .back {
-      .icon {
-        display: inline-block;
-      }
-      p {
-        display: inline-block;
-      }
-    }
-    .avatar {
-      border-radius: 50%;
-      background-size: contain;
-      background-image: var(--guild-avatar);
-      height: 5rem;
-      width: 5rem;
-      margin: auto 6px auto 0;
-      &:hover{
-        background-image: var(--guild-avatar-hover);
-      }
-    }
-    div {
-      display: inline-flex;
-    }
-    .b-skeleton {
-      width: auto;
-    }
-  }
-  #general-form {
-    width: 80vw;
-    max-width: 600px;
-    margin-bottom: 40px;
-    input {
-      border: none;
-      color: $grey-laite;
-      &::placeholder {
-        color: $grey;
-      }
-      &[disabled="disabled"] {
-        background-color: black;
-      }
-    }
-    .label {
-      color: white;
-    }
-    .hover-pointer {
-      cursor: pointer;
-    }
-    .flex-row {
-      display: flex;
-      flex-direction: row;
-    }
-  }
+}
 </style>
