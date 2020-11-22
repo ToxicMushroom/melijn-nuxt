@@ -38,7 +38,7 @@
 
       We do not condone the use of general cheats, hacks, bots or any type of malicious or exploitative behaviour. This includes but does not limit to:<br>
 
-      Using “self bots” to periodically interract with Melijn.<br>
+      Using “self bots” to interract with Melijn.<br>
       Abusing glitches to personally gain from it.<br>
       Abusing our open source platform to exploit systems.
 
