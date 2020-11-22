@@ -5,8 +5,8 @@ require('events').defaultMaxListeners = 70;
 export default {
   mode: 'universal',
   server: {
-    port: 3000, // default: 3000
-    host: '0.0.0.0' // default: localhost
+    port: process.env.PORT, // default: 3000
+    host: process.env.BIND_ADDRESS // default: localhost
   },
   theme: theme({
     docs: {
@@ -215,40 +215,40 @@ export default {
   },
   proxy: {
     '/api': {
-      target: 'http://localhost:2607',
+      target: process.env.BACKEND_BASE_URL,
       pathRewrite: {
         '^/api': '/commands'
       }
     },
     '/cookie/encrypt/code': {
-      target: 'http://localhost:2607'
+      target: process.env.BACKEND_BASE_URL
     },
     '/cookie/decrypt/user': {
-      target: 'http://localhost:2607'
+      target: process.env.BACKEND_BASE_URL
     },
     '/cookie/decrypt/user/settings': {
-      target: 'http://localhost:2607'
+      target: process.env.BACKEND_BASE_URL
     },
     '/getsettings/logging': {
-      target: 'http://localhost:2607'
+      target: process.env.BACKEND_BASE_URL
     },
     '/setsettings/logging': {
-      target: 'http://localhost:2607'
+      target: process.env.BACKEND_BASE_URL
     },
     '/cookie/decrypt/guilds': {
-      target: 'http://localhost:2607'
+      target: process.env.BACKEND_BASE_URL
     },
     '/cookie/decrypt/verifyguilds': {
-      target: 'http://localhost:2607'
+      target: process.env.BACKEND_BASE_URL
     },
     '/cookie/decrypt/guild': {
-      target: 'http://localhost:2607'
+      target: process.env.BACKEND_BASE_URL
     },
     '/postsettings/general': {
-      target: 'http://localhost:2607'
+      target: process.env.BACKEND_BASE_URL
     },
     '/postsettings/user': {
-      target: 'http://localhost:2607'
+      target: process.env.BACKEND_BASE_URL
     }
   },
   content: {
