@@ -51,7 +51,10 @@ export default {
       policies: {
         'script-src': [
           "'self'",
-          "'unsafe-eval'"
+          "'unsafe-eval'",
+          "'unsafe-inline'",
+          "https://www.gstatic.com/",
+          "https://www.google.com/recaptcha/api.js"
         ],
         'trusted-types': [
           'default'
@@ -239,6 +242,9 @@ export default {
       target: process.env.BACKEND_BASE_URL
     },
     '/cookie/decrypt/verifyguilds': {
+      target: process.env.BACKEND_BASE_URL
+    },
+    '/verifyguild': {
       target: process.env.BACKEND_BASE_URL
     },
     '/cookie/decrypt/guild': {

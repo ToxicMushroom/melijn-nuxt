@@ -1,17 +1,29 @@
 <template>
   <div class="wrapper">
-    <h1 class="title">
-      Guilds ({{ guilds.length }})
-    </h1>
+    <div>
+      <h1 class="title has-text-centered">
+        Guilds ({{ guilds.length }})
+      </h1>
+      <h2 class="subtitle has-text-centered" v-if="guilds.length == 0">
+        You are verified in all servers :>
+      </h2>
+      <h2 class="subtitle has-text-centered" v-else>
+        Complete the captcha below before using the verify buttons :3
+      </h2>
+    </div>
+    <div v-if="guilds.length > 0" style="margin: auto">
+        <form action="?" method="POST" id="recaptcha">
+        </form>
+    </div>
     <div v-if="loggedIn" class="guilds card-list">
       <div v-for="guild in guilds" :key="guild.id" class="guild-card card" :style="guild.avatarVariables">
         <div class="avatar" />
         <p class="name">
           {{ guild.name }}
         </p>
-        <nuxt-link class="button is-link" @click="verify(guild.id)">
+        <button class="button is-link" @click="verify(guild.id)">
           Verify me
-        </nuxt-link>
+        </button>
       </div>
     </div>
     <b-progress v-else />
@@ -23,8 +35,7 @@ export default {
   data () {
     return {
       loggedIn: false,
-      guilds: [],
-      user: {}
+      guilds: []
     }
   },
   mounted () {
@@ -42,33 +53,89 @@ export default {
           finalGuilds.push(guild)
         }
         this.guilds = finalGuilds
-
-        const user = {}
-        user.tag = res.tag
-        if (res.isDefault) {
-          user.avatarVariables = {
-            '--user-avatar': 'url(' + res.avatar + ')',
-            '--user-avatar-hover': 'url(' + res.avatar + ')'
-          }
-        } else {
-          user.avatarVariables = {
-            '--user-avatar': 'url(' + res.avatar + '.webp?size=128' + ')',
-            '--user-avatar-hover': 'url(' + res.avatar + (res.isGif ? '.gif' : '.webp') + '?size=128' + ')'
-          }
-        }
-
-        this.user = user
       }).catch((error) => {
-        console.log(error)
-        window.location.replace(window.location.origin)
+        window.location.replace('https://discord.com/oauth2/authorize?client_id=368362411591204865&scope=identify%20guilds&redirect_uri=' +
+          window.location.origin + '/callback&response_type=code&prompt=none')
       })
     } else {
-      window.location.replace(window.location.origin)
+      window.location.replace('https://discord.com/oauth2/authorize?client_id=368362411591204865&scope=identify%20guilds&redirect_uri=' +
+        window.location.origin + '/callback&response_type=code&prompt=none')
     }
+
+    this.renderRecaptcha()
+    
   },
   methods: {
-    verify (guildId) {
-      console.log(guildId)
+     verify (guildId) {
+        console.log(guildId)
+        if (!grecaptcha) {
+          this.$buefy.toast.open({
+            duration: 5000,
+            message: 'The captcha might be missing, try waiting a bit and completing it.',
+            position: 'is-bottom',
+            type: 'is-danger'
+          })
+          return;
+        }
+        const response = grecaptcha.getResponse()
+        if (response == "") {
+          this.$buefy.toast.open({
+            duration: 5000,
+            message: 'Complete the captcha first!',
+            position: 'is-bottom',
+            type: 'is-danger'
+          })
+          return
+        }
+
+        if (this.$cookies.get('sdt')) {
+          this.$axios.$post('/verifyguild', { jwt: this.$cookies.get('sdt'), guild: guildId, recaptcha: response }).then((res) => {
+            
+            this.guilds.splice(this.guilds.findIndex(function(i){
+                return i.id === guildId;
+            }), 1);
+            this.$buefy.toast.open({
+              duration: 5000,
+              message: 'Verified!',
+              position: 'is-bottom',
+              type: 'is-success'
+            })
+          }).catch((error) => {
+            console.log(error)
+            this.$buefy.toast.open({
+              duration: 5000,
+              message: 'Verify failed! Try again after refreshing.',
+              position: 'is-bottom',
+              type: 'is-danger'
+            })
+          })
+        } else {
+          window.location.replace('https://discord.com/oauth2/authorize?client_id=368362411591204865&scope=identify%20guilds&redirect_uri=' +
+            window.location.origin + '/callback&response_type=code&prompt=none')
+        }
+       
+       
+        
+    },
+    renderRecaptcha() {
+      setTimeout(function () {
+        if (!grecaptcha) {
+          console.log(grecaptcha)
+          renderRecaptcha()
+          return;
+        }
+        console.log(grecaptcha)
+        grecaptcha.render('recaptcha', {
+          'sitekey': '6LfjA4YUAAAAAEz0-8oXgAqcRobNGsFQ-wEsiFrw',
+          'theme': 'dark',
+          'size': 'compact'
+        });
+      }, 1000)
+    }
+  },
+  computed: {
+    pageUrl() {
+      return `https://melijn.com${this.$route.fullPath}`
     }
   },
   head () {
@@ -83,17 +150,22 @@ export default {
         {
           hid: 'og:title',
           property: 'og:title',
-          content: 'Melijn - Dashboard'
+          content: 'Melijn - Verification'
         },
         {
           hid: 'og:url',
           property: 'og:url',
-          content: `https://melijn.com/${this.$route.params.id}`
+          content: this.pageUrl
         },
         {
           hid: 'og:description',
           property: 'og:description',
           content: 'Verification page of Melijn, verify your account and get access to servers.'
+        }
+      ],
+      script: [
+        {
+          src: 'https://www.google.com/recaptcha/api.js?render=explicit'
         }
       ]
     }
@@ -115,11 +187,6 @@ progress.progress:indeterminate {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  .title {
-    text-align: center;
-    margin: 5rem 0 0 0;
-    color: $grey-light;
-  }
 }
 
 .card-list {

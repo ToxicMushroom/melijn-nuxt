@@ -29,6 +29,9 @@
         <nuxt-link to="/dashboard/me" class="button is-link">
           Configure
         </nuxt-link>
+        <nuxt-link to="/recaptcha" class="button is-link" style="margin-top: 8px">
+          Verify Servers
+        </nuxt-link>
       </div>
     </div>
     <b-progress v-else />
@@ -76,11 +79,12 @@ export default {
 
         this.user = user
       }).catch((error) => {
-        console.log(error)
-        window.location.replace(window.location.origin)
+        window.location.replace('https://discord.com/oauth2/authorize?client_id=368362411591204865&scope=identify%20guilds&redirect_uri=' +
+          window.location.origin + '/callback&response_type=code&prompt=none')
       })
     } else {
-      window.location.replace(window.location.origin)
+      window.location.replace('https://discord.com/oauth2/authorize?client_id=368362411591204865&scope=identify%20guilds&redirect_uri=' +
+        window.location.origin + '/callback&response_type=code&prompt=none')
     }
   },
   head () {
