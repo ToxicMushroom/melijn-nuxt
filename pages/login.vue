@@ -10,7 +10,7 @@
 export default {
   mounted () {
     window.location.replace('https://discord.com/oauth2/authorize?client_id=368362411591204865&scope=identify%20guilds&redirect_uri=' +
-    window.location.origin + '/callback&response_type=code&prompt=none')
+    window.location.origin + '/callback/dashboard&response_type=code&prompt=none')
   },
   head () {
     return {

@@ -15,43 +15,58 @@
 let response
 
 export default {
-  async asyncData ({ route, $axios, $cookies }) {
+  data() {
+    return {
+      state: ''
+    }
+  },
+  async asyncData ({ route, $axios, $cookies, params }) {
     let success = false
     let cancelled = false
     let error = false
+    let state = ''
+    const dest = '/' + params.slug
+    
 
     if (route.query) {
       if (route.query.code) {
         try {
-          response = await $axios.$post('/cookie/encrypt/code', { code: route.query.code })
+          response = await $axios.$post('/cookie/encrypt/code', { code: route.query.code, route: dest })
           if (response.error) {
             error = true
-            console.log(response)
-            return { success, cancelled, error }
+            state = 'error'
+            return { success, cancelled, error, dest }
           }
 
           $cookies.set('sdt', response.jwt, { maxAge: response.lifeTime })
+          state = 'success'
           success = true
         } catch (err) {
-          console.error(err)
+          state = 'error'
           error = true
         }
       } else if (route.query.error && route.query.error_description) {
+        state = 'cancelled'
         cancelled = true
       }
     }
-    return { success, cancelled, error }
+    
+    return { success, cancelled, error, state }
   },
   watch: {
-    gohome () {
-      if (!this.error) {
-        window.location.replace(window.location.origin + '/dashboard')
+    state () {
+      if (this.state == 'success') {
+        this.$router.push('/' + this.$route.params.slug)
+      } else {
+        this.$router.push('/')
       }
     }
   },
-  mounted () {
-    if (!this.error) {
-      window.location.replace(window.location.origin + '/dashboard')
+  mounted() {
+    if (this.state == 'success') {
+      this.$router.push('/' + this.$route.params.slug)
+    } else {
+      this.$router.push('/')
     }
   }
 }
