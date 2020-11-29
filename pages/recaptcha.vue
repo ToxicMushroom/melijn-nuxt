@@ -22,7 +22,7 @@
           {{ guild.name }}
         </p>
         <button class="button is-link" @click="verify(guild.id)">
-          Verify me
+          Verify
         </button>
       </div>
     </div>
@@ -67,7 +67,6 @@ export default {
   },
   methods: {
      verify (guildId) {
-        console.log(guildId)
         if (!grecaptcha) {
           this.$buefy.toast.open({
             duration: 5000,
@@ -113,18 +112,13 @@ export default {
           window.location.replace('https://discord.com/oauth2/authorize?client_id=368362411591204865&scope=identify%20guilds&redirect_uri=' +
             window.location.origin + '/callback&response_type=code&prompt=none')
         }
-       
-       
-        
     },
     renderRecaptcha() {
       setTimeout(function () {
         if (!grecaptcha) {
-          console.log(grecaptcha)
           renderRecaptcha()
           return;
         }
-        console.log(grecaptcha)
         grecaptcha.render('recaptcha', {
           'sitekey': '6LfjA4YUAAAAAEz0-8oXgAqcRobNGsFQ-wEsiFrw',
           'theme': 'dark',
