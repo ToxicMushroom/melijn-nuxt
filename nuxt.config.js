@@ -181,6 +181,8 @@ export default {
             'faDoorOpen',
             'faCalendarDay',
             'faDice',
+            'faStar',
+            'faChartBar',
             'faBorderAll'
           ]
         },
@@ -222,6 +224,12 @@ export default {
       pathRewrite: {
         '^/api': '/commands'
       }
+    },  
+    '/statsApi': {
+      target: process.env.BACKEND_BASE_URL,
+      pathRewrite: {
+        '^/statsApi': '/publicStats'
+      }
     },
     '/cookie/encrypt/code': {
       target: process.env.BACKEND_BASE_URL
@@ -236,6 +244,12 @@ export default {
       target: process.env.BACKEND_BASE_URL
     },
     '/setsettings/logging': {
+      target: process.env.BACKEND_BASE_URL
+    },   
+    '/getsettings/starboard': {
+      target: process.env.BACKEND_BASE_URL
+    },
+    '/setsettings/starboard': {
       target: process.env.BACKEND_BASE_URL
     },
     '/cookie/decrypt/guilds': {

@@ -70,6 +70,16 @@
           </p>
         </div>
       </nuxt-link>
+      <nuxt-link :to="'/dashboard/' + id + '/starboard'" class="hidden">
+        <div class="column is-narrow">
+          <span class="icon is-large">
+            <fa :icon="['fas', 'star']" class="fa-3x" />
+          </span>
+          <p>
+            Starboard
+          </p>
+        </div>
+      </nuxt-link>
     </div>
   </div>
 </template>

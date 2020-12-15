@@ -40,6 +40,9 @@
           <nuxt-link to="/about" class="navbar-item">
             About
           </nuxt-link>
+          <nuxt-link to="/stats" class="navbar-item">
+            Stats
+          </nuxt-link>
           <nuxt-link to="/legal" class="navbar-item">
             Privacy & Terms
           </nuxt-link>
@@ -103,11 +106,14 @@
           Guides
         </nuxt-link>
         <hr>
-        <nuxt-link to="/articles" class="navbar-item">
+        <nuxt-link to="/articles" class="navbar-item" @click="showNav = !showNav">
           Articles
         </nuxt-link>
         <nuxt-link to="/about" class="navbar-item" @click="showNav = !showNav">
           About
+        </nuxt-link>     
+        <nuxt-link to="/stats" class="navbar-item" @click="showNav = !showNav">
+          Stats
         </nuxt-link>
         <nuxt-link to="/legal" class="navbar-item" @click="showNav = !showNav">
           Privacy & Terms
@@ -243,7 +249,7 @@ hr {
     }
   }
   .navbar-end {
-    @media (max-width: $desktop) {
+    @media (max-width: $tablet) {
       display: none;
     }
     a.navbar-item {
@@ -355,11 +361,11 @@ hr {
       padding: 0px;
       color: $grey-lite;
     }
-    @media (min-width: $desktop) {
+    @media (min-width: $tablet) {
       display: none;
     }
     &.is-active .navbar-end {
-      @media (max-width: $desktop) {
+      @media (max-width: $tablet) {
         display: block;
       }
     }
