@@ -34,7 +34,7 @@
   "devDependencies": {
     "node-sass": "^5.0.0",
     "nuxt-purgecss": "^1.0.0",
-    "sass-loader": "^10.1.0",
+    "sass-loader": "^11.0.1",
     "webpack-cli": "^4.2.0"
   }
 }
