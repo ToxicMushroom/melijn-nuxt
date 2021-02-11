@@ -16,7 +16,7 @@
     "@fortawesome/free-regular-svg-icons": "^5.15.1",
     "@fortawesome/free-solid-svg-icons": "^5.15.1",
     "@nuxt/content": "^1.11.1",
-    "@nuxt/content-theme-docs": "^0.7.2",
+    "@nuxt/content-theme-docs": "^0.10.1",
     "@nuxtjs/axios": "^5.12.2",
     "@nuxtjs/dotenv": "^1.4.1",
     "@nuxtjs/proxy": "^2.0.1",
@@ -34,7 +34,7 @@
   "devDependencies": {
     "node-sass": "^5.0.0",
     "nuxt-purgecss": "^1.0.0",
-    "sass-loader": "^10.1.0",
+    "sass-loader": "^11.0.1",
     "webpack-cli": "^4.2.0"
   }
 }
