@@ -12,6 +12,7 @@ I would recommend having a dedicated role for the bot so you can manage each bot
 
 <a class='text-link' rel="noopener noreferrer nofollow" href='https://support.discord.com/hc/en-us/articles/206029707-How-do-I-set-up-Permissions-'>Permissions</a> that melijn requires for certain features are as followed.
 - **View channels**, **Read Text** & **Send Messages** (Make sure these permissions aren't overriden in channels)
+- **Message History** (All commands that have to response with reactions)
 - **Manage Roles** (not needed if you set the mute role yourself and don't use setRoleColor)
 - **Manage Channels** (clearchannel)
 - **View Audit Log** (logchannels, sending banned/kicked messages in the banned and kicked message channels)
