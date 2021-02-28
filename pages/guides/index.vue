@@ -18,7 +18,12 @@ export default {
   },
   async asyncData ({ $content, params }) {
     const guides = (await $content('guides', params.slug)
-      .fetch()).reverse()
+      .fetch()).sort(function(a,b){
+        // Turn your strings into dates, and then subtract them
+        // to get a value that is either negative, positive, or zero.
+        return new Date(a.createdAt) - new Date(b.createdAt);
+      });
+    console.log(guides);
 
     return {
       guides
