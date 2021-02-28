@@ -8,7 +8,6 @@ tags: start
 # 1. Setting up the bot
 After <nuxt-link to='/invite' class='text-link'>inviting</nuxt-link> the bot please verify that Melijn has the required permissions for you needs.
 I would recommend having a dedicated role for the bot so you can manage each bot individually.
-<br><br>
 
 <a class='text-link' rel="noopener noreferrer nofollow" href='https://support.discord.com/hc/en-us/articles/206029707-How-do-I-set-up-Permissions-'>Permissions</a> that melijn requires for certain features are as followed.
 - **View channels**, **Read Text** & **Send Messages** (Make sure these permissions aren't overriden in channels)
