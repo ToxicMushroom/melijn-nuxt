@@ -4,6 +4,7 @@ description: In this guide we'll learn about how to general spam bots out your s
 author: ToxicMushroom
 tags: start
 style: 'border-left: 4px solid green'
+createdAt: 2021-02-28T13:50:00.000Z
 ---
 
 # 3. Verification types
@@ -38,9 +39,12 @@ For **Password**
 `5.` Set the password you want to use with `>setVerificationPassword <password: string*>`
 `6.` Write a message you want in **Verification Channel** and react to it with the emote or emoji you set in step 5
 
-### Notes
+### Related commands
 - You can manually verify users with `>verify <user*>`
-- If you want a verified or members role then please follow our joinroles guide, joinroles are applied after verification.
+- If you want a role for verified users then please follow our joinroles guide, joinroles are applied after verification.
 - If you want logs about who is verified use `>slc verification <channel*>`
-- If you want join messages for users who aren verified: `>preVerificationJoinMessage` or `>pvjm` if you want to type less. (Dont forget to set the channel `>sc Pre_Verification_Join <textChannel*>`)
-- Normal join messages will be sent after verification
+- If you want join messages for users who aren't verified: `>preVerificationJoinMessage` or `>pvjm` if you want to type less. (Don't forget to set the channel `>sc Pre_Verification_Join <textChannel*>`)
+- If you want leave messages for users who aren't verified: `>preVerificationLeaveMessage` or `>pvlm` if you want to type less. (Don't forget to set the channel `>sc Pre_Verification_Leave <textChannel*>`)
+- `>joinMessage` Normal join messages will be sent after verification | `>setChannel Join <textChannel*>`
+- `>leaveMessage` Normal leave messages will be sent after verification | `>setChannel Leave <textChannel*>`
+- `>limitRoleToChannel <role*> <channel*>` Should be used on the unverified role with verification channel if you don't want to restrict permissions yourself.

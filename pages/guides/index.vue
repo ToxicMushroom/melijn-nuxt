@@ -23,7 +23,6 @@ export default {
         // to get a value that is either negative, positive, or zero.
         return new Date(a.createdAt) - new Date(b.createdAt);
       });
-    console.log(guides);
 
     return {
       guides

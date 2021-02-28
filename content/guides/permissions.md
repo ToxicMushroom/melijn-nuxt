@@ -4,6 +4,7 @@ description: In this guide you'll learn about how to correctly setup permissions
 author: ToxicMushroom
 tags: permissions
 style: 'border-left: 4px solid'
+createdAt: 2020-09-25T01:00:00.000Z
 ---
 
 # 2. Our permission system
