@@ -1,7 +1,7 @@
 <template>
   <div class="foot">
     <div class="left">
-      © 2020, ToxicMushroom#2610. All rights reserved.
+      © {{ new Date().getFullYear() }}, ToxicMushroom#2610. All rights reserved.
     </div>
 
     <div class="right">
