@@ -23,7 +23,7 @@
     </div>
       <form id="general-form">
         <b-field label="Starboard Channel" class="bonk table-container">
-            <b-select v-model="starboardChannel">
+            <b-select v-model="settings.starboardChannel">
             <option v-bind:value="null">Select a textchannel</option>
             
             <optgroup :label="entry.category" v-for="entry in provided.channelStructure" :key="entry.category">
@@ -32,8 +32,8 @@
             </b-select>
         </b-field>
         <br>
-        <b-field label="Excluded Channels" class="bonk table-container">
-            <b-select v-model="excludedChannels">
+        <b-field label="Excluded Channels" class="bonk table-container big">
+            <b-select v-model="settings.excludedChannels" multiple>
             
             
             <optgroup :label="entry.category" v-for="entry in provided.channelStructure" :key="entry.category">
@@ -186,6 +186,27 @@ computed: {
 <style lang="scss" scoped>
 .container {
   width: 100%;
+  /deep/.big {
+    width: 100% !important;
+    div.control {
+      width: 100%;
+      span.select {
+        width: 100%;
+        height: 70vh;
+        select {
+          width: 100%;
+          height: 70vh;
+          optgroup {
+            padding: 1rem;
+            background-color: black;
+            option {
+              background-color: grey;
+            }
+          }
+        }
+      }
+    }
+  }
   .select select optgroup {
     background-color: black;
   }
