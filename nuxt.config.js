@@ -147,7 +147,12 @@ export default {
     '@nuxtjs/pwa',
     '@nuxt/content',
     'cookie-universal-nuxt',
-    ['nuxt-buefy', { css: false, materialDesignIcons: false }],
+    ['nuxt-buefy', { 
+      css: false,
+      materialDesignIcons: false,
+      defaultIconComponent: "fa",
+      defaultIconPack: "fas",
+    }],
     // Doc: https://github.com/nuxt-community/dotenv-module
     '@nuxtjs/dotenv',
     ['nuxt-fontawesome', {
@@ -183,7 +188,9 @@ export default {
             'faDice',
             'faStar',
             'faChartBar',
-            'faBorderAll'
+            'faBorderAll',
+            'faMinus',
+            'faPlus'
           ]
         },
         {

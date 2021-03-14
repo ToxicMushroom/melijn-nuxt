@@ -22,7 +22,7 @@
       <p>starboard</p>
     </div>
       <form id="general-form">
-        <b-field label="Starboard Channel" class="bonk table-container">
+        <b-field label="Starboard Channel" class="bonk table-container big-width">
             <b-select v-model="settings.starboardChannel">
             <option v-bind:value="null">Select a textchannel</option>
             
@@ -31,16 +31,20 @@
             </optgroup>
             </b-select>
         </b-field>
-        <br>
+        
         <b-field label="Excluded Channels" class="bonk table-container big">
-            <b-select v-model="settings.excludedChannels" multiple>
-            
-            
+          <p>You can use ctrl + click or ctrl + drag to select multiple channels</p>
+          <b-select v-model="settings.excludedChannels" multiple>
             <optgroup :label="entry.category" v-for="entry in provided.channelStructure" :key="entry.category">
                 <option v-bind:value="channel.id" v-for="channel in entry.channels" :key="channel.id">#{{ channel.name }}</option>
             </optgroup>
-            </b-select>
+          </b-select>
         </b-field>
+       
+        <b-field label="Minimum Stars" class="bonk table-container big-width">
+          <input class="input" type="number" placeholder="3" v-model="settings.minStarCount" min=0 max=100>
+        </b-field>
+        
         <br>
         <button class="button is-primary" type="button" @click="submit()">
           Save
@@ -121,7 +125,7 @@ export default {
       })
     }
   },
-computed: {
+  computed: {
     pageUrl() {
       return `https://melijn.com${this.$route.fullPath}`
     }
@@ -198,11 +202,23 @@ computed: {
           height: 70vh;
           optgroup {
             padding: 1rem;
-            background-color: black;
+            background-color: rgb(31, 31, 31);
             option {
-              background-color: grey;
+              background-color: rgb(65, 65, 65);
             }
           }
+        }
+      }
+    }
+  }
+  /deep/.big-width {
+    width: 100% !important;
+    div.control {
+      width: 100%;
+      span.select {
+        width: 100%;
+        select {
+          width: 100%;
         }
       }
     }

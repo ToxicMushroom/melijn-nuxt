@@ -37,7 +37,6 @@ For **Reaction**
 For **Password**
 `4.` Set the **Verification Type** to Password with `>setVerificationType Password`
 `5.` Set the password you want to use with `>setVerificationPassword <password: string*>`
-`6.` Write a message you want in **Verification Channel** and react to it with the emote or emoji you set in step 5
 
 ### Related commands
 - You can manually verify users with `>verify <user*>`

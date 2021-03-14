@@ -12,9 +12,9 @@
     "lint": "eslint --ext .js,.vue --ignore-path .gitignore ."
   },
   "dependencies": {
-    "@fortawesome/free-brands-svg-icons": "^5.15.1",
-    "@fortawesome/free-regular-svg-icons": "^5.15.1",
-    "@fortawesome/free-solid-svg-icons": "^5.15.1",
+    "@fortawesome/free-brands-svg-icons": "^5.15.2",
+    "@fortawesome/free-regular-svg-icons": "^5.15.2",
+    "@fortawesome/free-solid-svg-icons": "^5.15.2",
     "@nuxt/content": "^1.11.1",
     "@nuxt/content-theme-docs": "^0.10.1",
     "@nuxtjs/axios": "^5.12.2",
@@ -26,7 +26,7 @@
     "@nuxtjs/style-resources": "^1.0.0",
     "cookie-universal-nuxt": "^2.1.4",
     "detab": "^2.0.3",
-    "nuxt": "^2.14.7",
+    "nuxt": "^2.15.2",
     "nuxt-buefy": "^0.4.4",
     "nuxt-compress": "^4.1.0",
     "nuxt-fontawesome": "^0.4.0"
