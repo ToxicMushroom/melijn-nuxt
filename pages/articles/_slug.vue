@@ -21,33 +21,42 @@
 export default {
   async asyncData ({ $content, params }) {
     const article = await $content('articles', params.slug).fetch()
-
-    return { article }
+      .catch((error) => {
+        error({ statusCode: 404, message: 'Article not found' })
+      })
+    const createdAt = new Date(article.createdAt).toLocaleDateString()
+    const updatedAt = new Date(article.updatedAt).toLocaleDateString()
+    return { article, createdAt, updatedAt, params }
   },
   head () {
     return {
-      title: 'Melijn - Article',
+      title: 'Melijn - ' + this.article.title,
+      description: this.article.description,
       meta: [
         {
           hid: 'description',
           name: 'description',
-          content: 'List of articles about Melijn.'
+          content: this.article.description
         },
         {
           hid: 'og:title',
           property: 'og:title',
-          content: 'Melijn - Article'
+          content: 'Melijn - ' + this.article.title
         },
         {
           hid: 'og:url',
           property: 'og:url',
-          content: `https://melijn.com/${this.$route.params.id}`
+          content: `https://melijn.com/articles/${this.params.slug}`
         },
         {
           hid: 'og:description',
           property: 'og:description',
-          content: 'List of articles about Melijn.'
-        }
+          content:  this.article.description
+        },
+        { hid: 'og:type', property: 'og:type', content: 'article' },
+        { hid: 'og:article:author', property: 'og:article:author', content: this.article.author },
+        { hid: 'og:article:published_time', property: 'og:article:published_time', content: this.article.createdAt },
+        { hid: 'og:article:tag', property: 'og:article:tag', content: this.article.tags }
       ]
     }
   }

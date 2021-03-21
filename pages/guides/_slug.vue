@@ -2,7 +2,12 @@
 <template>
   <section class="section">
     <div class="container">
-      <p class="is-size-7">Created at: {{ createdAt }}<span v-if="createdAt !== updatedAt">, last updated: {{ updatedAt }}</span></p>
+      <div class="navigation-and-info">
+        <nuxt-link to="/guides">
+          <fa :icon="['fas', 'arrow-left']" />
+        </nuxt-link>
+        <p class="is-size-7">Created at: {{ createdAt }}<span v-if="createdAt !== updatedAt">, last updated: {{ updatedAt }}</span></p>
+      </div>
       <h1 class="title">
         {{ guide.title }}
       </h1>
@@ -34,7 +39,39 @@ export default {
       })
     const createdAt = new Date(guide.createdAt).toLocaleDateString()
     const updatedAt = new Date(guide.updatedAt).toLocaleDateString()
-    return { guide, createdAt, updatedAt }
+    return { guide, createdAt, updatedAt, params }
+  },
+  head () {
+    return {
+      title: 'Melijn - ' + this.guide.title,
+      description: this.guide.description,
+      meta: [
+        {
+          hid: 'description',
+          name: 'description',
+          content: this.guide.description
+        },
+        {
+          hid: 'og:title',
+          property: 'og:title',
+          content: 'Melijn - ' + this.guide.title
+        },
+        {
+          hid: 'og:url',
+          property: 'og:url',
+          content: `https://melijn.com/guides/${this.params.slug}`
+        },
+        {
+          hid: 'og:description',
+          property: 'og:description',
+          content:  this.guide.description
+        },
+        { hid: 'og:type', property: 'og:type', content: 'article' },
+        { hid: 'og:article:author', property: 'og:article:author', content: this.guide.author },
+        { hid: 'og:article:published_time', property: 'og:article:published_time', content: this.guide.createdAt },
+        { hid: 'og:article:tag', property: 'og:article:tag', content: this.guide.tags }
+      ]
+    }
   }
 }
 </script>
@@ -46,6 +83,17 @@ h1.title {
 }
 h3.subtitle {
   color: $grey-liter;
+}
+.navigation-and-info {
+  display: flex;
+  flex-direction: row;
+  justify-content: start;
+  nuxt-link {
+    margin: auto 0;
+  }
+  p {
+    margin: auto 0 auto 8px;
+  }
 }
 /deep/ {
   

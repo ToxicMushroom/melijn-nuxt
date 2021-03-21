@@ -4,6 +4,8 @@ description: Article explaining what articles are for and the things you can fin
 author: ToxicMushroom
 tags: news
 style: 'border-left: 4px solid #7594D1'
+createdAt: 2020-07-24T12:00:00.000Z
+updatedAt: 2020-07-24T12:00:00.000Z
 ---
 
 Welcome to our website and thanks for reading our first article 😎

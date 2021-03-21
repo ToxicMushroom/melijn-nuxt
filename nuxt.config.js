@@ -27,6 +27,8 @@ export default {
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
+      { hid: 'og:type', name: 'og:type', property: 'og:type', content: 'website' },
+      { hid: 'og:image', name: 'og:image', property: 'og:image', content: '/fabicon-200x.png' },
       { name: 'theme-color', content: '#A1B4ED' },
       { name: 'msapplication-TileColor', content: '#A1B4ED' },
       { hid: 'description', name: 'description', content: process.env.npm_package_description || '' },
