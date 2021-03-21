@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div class="wrapper">
     <div id="navigator" class="title vertically-centered-line wrap" :style="guild.avatarVariables">
       <nuxt-link to="/dashboard" class="text-link back">
         <span class="icon is-medium">
@@ -21,7 +21,9 @@
       <p>/</p>
       <p>logging</p>
     </div>
+    <div class="container">
       <form id="general-form">
+        <b-skeleton width="400px" height="1400px" :active="!loggedIn" />
         <b-field :label="logChannelGroup.group" class="bonk table-container" v-for="(logChannelGroup) in settings.logchannels" :key="logChannelGroup.group">
           <table class="table button-table">
             <thead>
@@ -51,6 +53,7 @@
           Save
         </button>
       </form>
+    </div>
   </div>
 </template>
 
@@ -182,6 +185,13 @@ export default {
 </style>
 
 <style lang="scss" scoped>
+.wrapper {
+  margin: 8px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  flex: 1;
+}
 .container {
   width: 100%;
   .select select optgroup {

@@ -282,7 +282,7 @@ export default {
 
 <style lang="scss" scoped>
 .wrapper {
-  margin: 10px;
+  margin: 8px;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;

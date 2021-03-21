@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div class="wrapper">
     <div id="navigator" class="title vertically-centered-line wrap" :style="guild.avatarVariables">
       <nuxt-link to="/dashboard" class="text-link back">
         <span class="icon is-medium">
@@ -21,6 +21,7 @@
       <p>/</p>
       <p>starboard</p>
     </div>
+    <div class="container">
       <form id="general-form">
         <b-field label="Starboard Channel" class="bonk table-container big-width">
             <b-select v-model="settings.starboardChannel">
@@ -40,7 +41,7 @@
             </optgroup>
           </b-select>
         </b-field>
-       
+      
         <b-field label="Minimum Stars" class="bonk table-container big-width">
           <input class="input" type="number" placeholder="3" v-model="settings.minStarCount" min=0 max=100>
         </b-field>
@@ -50,6 +51,7 @@
           Save
         </button>
       </form>
+    </div>
   </div>
 </template>
 
@@ -188,6 +190,13 @@ export default {
 </style>
 
 <style lang="scss" scoped>
+.wrapper {
+  margin: 8px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  flex: 1;
+}
 .container {
   width: 100%;
   /deep/.big {
