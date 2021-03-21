@@ -55,7 +55,7 @@ export default {
   },
   data () {
     return {
-      selectedCategory: this.$route.query.c ? this.$route.query.c : 'music',
+      selectedCategory: this.$route.query.c ? this.$route.query.c : 'all',
       commandLoader: 0,
       search: this.$route.query.q ? this.$route.query.q : '',
       categories: [
@@ -115,6 +115,7 @@ export default {
       if (this.selectedCategory !== clicked.toLowerCase()) {
         this.selectedCategory = clicked.toLowerCase()
       }
+      document.getElementById('searchinput').focus()
     },
     isVisible (cmd) {
       const searchQuery = this.search.toLowerCase()
