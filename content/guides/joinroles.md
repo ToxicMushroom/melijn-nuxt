@@ -39,7 +39,7 @@ The **color** group could contain roles like: **@red**, **@blue**, **@green**, *
 `1.` Creates a **multi** group to put your joinrole in: `>jr group add multi`
 `2.` Adds your **@example1** role to the **multi** group: `>jr add multi @example1`
 `3.` Adds your **@example2** role to the **multi** group: `>jr add multi @example2`
-`4.` Configure the **multi** to give all the roles you added to the group `>jr group setGetAllRole multi true`
+`4.` Configure the **multi** to give all the roles you added to the group `>jr group setGetAllRoles multi true`
 
 # how do chances work?
 If you have set getAllRoles to false -> the bot will add all chances of all roles together
