@@ -54,10 +54,13 @@ export default {
         }
         this.guilds = finalGuilds
       }).catch((error) => {
+        console.log(error)
+        console.log("error, redirecting")
         window.location.replace('https://discord.com/oauth2/authorize?client_id=368362411591204865&scope=identify%20guilds&redirect_uri=' +
           window.location.origin + '/callback/recaptcha&response_type=code&prompt=none')
       })
     } else {
+      console.log("not logged in, redirecting")
       window.location.replace('https://discord.com/oauth2/authorize?client_id=368362411591204865&scope=identify%20guilds&redirect_uri=' +
         window.location.origin + '/callback/recaptcha&response_type=code&prompt=none')
     }

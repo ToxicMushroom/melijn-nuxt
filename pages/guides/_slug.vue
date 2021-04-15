@@ -87,7 +87,7 @@ h3.subtitle {
 .navigation-and-info {
   display: flex;
   flex-direction: row;
-  justify-content: start;
+  justify-content: flex-start;
   nuxt-link {
     margin: auto 0;
   }
