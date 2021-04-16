@@ -3,7 +3,6 @@ require('events').EventEmitter.prototype._maxListeners = 70;
 require('events').defaultMaxListeners = 70;
 
 export default {
-  mode: 'universal',
   server: {
     port: process.env.PORT, // default: 3000
     host: process.env.BIND_ADDRESS // default: localhost
