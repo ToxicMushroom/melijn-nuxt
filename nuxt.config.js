@@ -169,6 +169,8 @@ export default {
             'faPlusSquare',
             'faTimes',
             'faAngleDown',
+            'faAngleLeft',
+            'faAngleRight',
             'faQuestionCircle',
             'faMusic',
             'faHammer',
@@ -276,6 +278,9 @@ export default {
       target: process.env.BACKEND_BASE_URL
     },
     '/postsettings/user': {
+      target: process.env.BACKEND_BASE_URL
+    },
+    '/cookie/decrypt/guild/general': {
       target: process.env.BACKEND_BASE_URL
     }
   },

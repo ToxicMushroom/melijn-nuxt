@@ -100,7 +100,6 @@ export default {
       this.$axios.$post('/cookie/decrypt/guild', { jwt: this.$cookies.get('sdt'), id: this.id }).then((res) => {
         this.loggedIn = true
 
-
         const isGif = res.icon ? res.icon.startsWith('a_') : false
         const guild = {}
         guild.name = res.name
@@ -110,7 +109,6 @@ export default {
         }
         this.guild = guild
       }).catch((error) => {
-        console.log(error)
         window.location.replace(window.location.origin)
       })
     } else {

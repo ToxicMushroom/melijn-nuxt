@@ -206,8 +206,6 @@ export default {
     } else {
       window.location.replace(window.location.origin)
     }
-    document.getElementsByClassName('mdi-chevron-right')[0].outerHTML = '>'
-    document.getElementsByClassName('mdi-chevron-left')[0].outerHTML = '<'
   },
   methods: {
     close (index) {
