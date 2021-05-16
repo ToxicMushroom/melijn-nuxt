@@ -85,11 +85,7 @@ function createPermissions (extra, perms) {
 function createConditions (extra, conditions) {
   return conditions.map((total, element) => {
     let condition = extra.runconditions[element];
-    return `${total}<b-tooltip label="${condition[1]}"
-            type="is-dark"
-            position="is-bottom">
-            <span class="tag is-purple">${condition[0]}</span>
-        </b-tooltip>`
+    return `${total}<b-tooltip label="${condition[1]}" type="is-dark" position="is-bottom"><span class="tag is-purple">${condition[0]}</span></b-tooltip>`
   }, '');
 }
 
