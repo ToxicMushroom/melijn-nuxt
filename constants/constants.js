@@ -1,5 +1,5 @@
 
-export const red = ['CREATE_INSTANT_INVITE', 'KICK_MEMBERS', 'BAN_MEMBERS', 'ADMINISTRATOR', 'MANAGE_CHANNEL', 'MANAGE_SERVER', 'MANAGE_ROLES', 'MANAGE_PERMISSIONS', 'MESSAGE_MENTION_EVERYONE', 'MESSAGE_TTS']
-export const blue = ['VOICE_MOVE_OTHERS', 'NICKNAME_MANAGE', 'VOICE_DEAF_OTHERS', 'VOICE_MUTE_OTHERS', 'VIEW_GUILD_INSIGHTS', 'VIEW_AUDIT_LOGS']
-export const green = ['VOICE_CONNECT', 'VOICE_SPEAK', 'NICKNAME_CHANGE', 'MESSAGE_EXT_EMOJI']
-export const purple = ['MESSAGE_READ', 'MESSAGE_WRITE', 'MESSAGE_EMBED_LINKS', 'MESSAGE_ATTACH_FILES', 'MESSAGE_HISTORY', 'MESSAGE_EXT_EMOJI', 'VIEW_CHANNEL', 'MESSAGE_ADD_REACTION']
+export const red = ['Create Instant Invite', 'Kick Members', 'Ban Members', 'Administrator', 'Manage Channels', 'Manage Server', 'Manage Roles', 'Manage Permissions', 'Mention Everyone', 'Send TTS Messages']
+export const blue = ['Move Members', 'Manage Nicknames', 'Deafen Members', 'Mute Members', 'View Server Insights', 'View Audit Logs']
+export const green = ['Connect', 'Speak', 'Change Nickname', 'Use External Emojis']
+export const purple = ['Read Messages', 'Send Messages', 'Embed Links', 'Attach Files', 'Read History', 'Use External Emojis', 'Read Text Channels & See Voice Channels', 'Add Reactions']

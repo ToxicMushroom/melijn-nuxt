@@ -31,7 +31,7 @@
         <!-- <client-only placeholder="Loading..."> -->
         <div v-for="category in commands" :id="category[0]" :key="category[0]" class="category" :class="{'visible': category[0].toLowerCase() == selectedCategory || selectedCategory == 'all'}">
           <div v-for="cmd in category[1]" :key="cmd[0]">
-            <node-tree class="cmd" :class="{'visible': isVisible(cmd) }" :node="cmd" :level="0" />
+            <node-tree class="cmd" :class="{'visible': isVisible(cmd) }" :node="cmd" :level="0" :extra="extra" />
           </div>
         </div>
       <!-- </client-only> -->
@@ -49,9 +49,14 @@ export default {
     NodeTree
   },
   async asyncData ({ $axios }) {
-    commands = !commands ? Object.entries(await $axios.$get('api')) : commands
+    let responseObj = await $axios.$get('api');
+    let extra = responseObj.extra;
+    delete responseObj.extra;
+
+    commands = !commands ? Object.entries(responseObj) : commands
+    
     const activeCommands = []
-    return { commands, activeCommands }
+    return { commands, activeCommands, extra }
   },
   data () {
     return {
@@ -151,7 +156,7 @@ export default {
         {
           hid: 'og:url',
           property: 'og:url',
-          content: `https://melijn.com/${this.$route.params.id}`
+          content: `https://melijn.com/commands`
         },
         {
           hid: 'og:description',

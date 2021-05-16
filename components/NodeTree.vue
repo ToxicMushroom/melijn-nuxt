@@ -30,12 +30,8 @@
           <th v-html="permissions" />
         </tr>
         <tr v-if="conditions.length > 0">
-          <th>Runconditions</th>
-          <th>{{ conditions }}</th>
-        </tr>
-        <tr>
-          <th>Permission</th>
-          <th>{{ node[8] }}</th>
+          <th>Requirements</th>
+          <th v-html="conditions" />
         </tr>
         <tr v-if="help.length > 0">
           <th>Extra Help</th>
@@ -47,7 +43,7 @@
         </tr>
       </table>
       <br>
-      <node v-for="child in node[9]" :key="child[0]" :node="child" :level="level + 1" />
+      <node v-for="child in node[8]" :key="child[0]" :node="child" :level="level + 1" :extra="extra" />
     </div>
   </div>
 </template>
@@ -65,24 +61,36 @@ function createName (node) {
   }
 }
 
-function createPermissions (perms) {
+function createPermissions (extra, perms) {
   return perms.reduce((total, element) => {
     let className
+    let permission = extra.discordpermissions[element]
 
-    if (red.includes(element)) {
+    if (red.includes(permission)) {
       className = 'is-danger'
-    } else if (blue.includes(element)) {
+    } else if (blue.includes(permission)) {
       className = 'is-info'
-    } else if (green.includes(element)) {
+    } else if (green.includes(permission)) {
       className = 'is-success'
-    } else if (purple.includes(element)) {
+    } else if (purple.includes(permission)) {
       className = 'is-purple'
     } else {
       className = 'is-light'
     }
 
-    return `<span class="tag ${className}">${element}</span>`
+    return `<span class="tag ${className}">${permission}</span>`
   }, '')
+}
+
+function createConditions (extra, conditions) {
+  return conditions.reduce((total, element) => {
+    let condition = extra.runconditions[element];
+    return `<b-tooltip label="${condition[1]}"
+            type="is-dark"
+            position="is-bottom">
+            <span class="tag is-purple">${condition[0]}</span>
+        </b-tooltip>`
+  }, '');
 }
 
 function createHtml (input) {
@@ -101,6 +109,10 @@ export default {
     },
     level: {
       type: Number,
+      required: true
+    }, 
+    extra: {
+      type: Object,
       required: true
     }
   },
@@ -135,11 +147,11 @@ export default {
       this.cmdName = createName(this.node)
       this.syntax = this.node[2].replace(/%prefix%/g, '>')
       this.args = createHtml(this.node[4])
-      this.channelPermissions = createPermissions(this.node[5])
-      this.permissions = createPermissions(this.node[6])
-      this.conditions = this.node[7].join(' & ')
-      this.help = createHtml(this.node[10])
-      this.examples = createHtml(this.node[11])
+      this.channelPermissions = createPermissions(this.extra, this.node[5])
+      this.permissions = createPermissions(this.extra, this.node[6])
+      this.conditions = createConditions(this.extra, this.node[7])
+      this.help = createHtml(this.node[9])
+      this.examples = createHtml(this.node[10])
       this.className = (this.level % 2) ? 'accordionbtncolor2' : 'accordionbtncolor1'
     }
   }
@@ -148,12 +160,19 @@ export default {
 
 <style lang="scss">
 span.code {
-  padding: 4px;
-  border-radius: 8px;
+  padding: 2px 4px;
+  border-radius: 4px;
   background-color: $darkest;
+  color: $grey-laite;
+  letter-spacing: 0.2px;
 }
 span.is-purple {
-  background-color: pink;
+  background-color: rgb(100, 52, 90);
+  color: $grey-laite;
+  font-weight: bold;
+}
+span.is-danger, span.is-info, span.is-success {
+  color: $grey-laite;
   font-weight: bold;
 }
 </style>
