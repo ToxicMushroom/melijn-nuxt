@@ -83,9 +83,9 @@ function createPermissions (extra, perms) {
 }
 
 function createConditions (extra, conditions) {
-  return conditions.map((total, element) => {
+  return conditions.reduce((total, element) => {
     let condition = extra.runconditions[element];
-    return `${total}<b-tooltip label="${condition[1]}" type="is-dark" position="is-bottom"><span class="tag is-purple">${condition[0]}</span></b-tooltip>`
+    return `${total}<span class="b-tooltip is-dark is-bottom is-medium is-multiline"><div class="tooltip-content" style="display: none;">${condition[1]}</div><div class="tooltip-trigger"><span class="tag is-purple">${condition[0]}</span></div></span>`
   }, '');
 }
 
@@ -167,6 +167,9 @@ span.is-purple {
   color: $grey-laite;
   font-weight: bold;
 }
+.b-tooltip:hover div.tooltip-content {
+  display: block !important;
+}
 span.is-danger, span.is-info, span.is-success {
   color: $grey-laite;
   font-weight: bold;
@@ -235,7 +238,7 @@ $color3: #505056;
     text-align: left;
     border-radius: 8px;
     &:last-child {
-      margin-bottom: 15px;
+      margin-bottom: 16px;
     }
     @media (max-width: $tablet) {
       font-size: 16px;
@@ -288,7 +291,6 @@ $color3: #505056;
     font-size: 18px;
     display: none;
     overflow: auto;
-    margin: 0 0 15px 0;
 
     padding: 15px 10px 0 15px;
     @media (max-width: $tablet) {
