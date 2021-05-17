@@ -170,7 +170,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-
 .icon {
   display: inline-flex;
   margin-left: 4px;

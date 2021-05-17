@@ -187,6 +187,10 @@ $color3: #505056;
   transition: 0.2s ease-in-out;
 }
 
+.accordion .accordion-content {
+  overflow: visible !important;
+}
+
 .accordion {
   box-shadow: 0 0 5px 0 #00000021;
   border-radius: 8px;
@@ -237,9 +241,6 @@ $color3: #505056;
     color: $grey-light;
     text-align: left;
     border-radius: 8px;
-    &:last-child {
-      margin-bottom: 16px;
-    }
     @media (max-width: $tablet) {
       font-size: 16px;
       padding: 12px;
@@ -292,12 +293,12 @@ $color3: #505056;
     display: none;
     overflow: auto;
 
-    padding: 15px 10px 0 15px;
+    padding: 15px 10px 15px 15px;
     @media (max-width: $tablet) {
-      padding: 15px 5px 0 10px;
+      padding: 15px 5px 10px 10px;
     }
     @media (max-width: $phone) {
-      padding: 15px 5px 0 5px;
+      padding: 15px 5px 10px 5px;
     }
 
     color: $grey-lite;
