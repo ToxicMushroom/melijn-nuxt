@@ -25,7 +25,8 @@ export default {
   },
   mounted () {
     if (this.$cookies.get('sdt')) {
-      this.$axios.$post('cookie/decrypt/user', { jwt: this.$cookies.get('sdt') }).then((res) => {
+      let headers = this.$util.getHeaderObject(this, process.server);
+      this.$axios.$post('cookie/decrypt/user', { jwt: this.$cookies.get('sdt') }, { headers: headers }).then((res) => {
         if (res.status !== 'success') { return }
         this.loggedIn = true
         this.tag = res.tag

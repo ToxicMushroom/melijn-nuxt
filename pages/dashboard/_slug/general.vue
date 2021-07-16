@@ -164,7 +164,8 @@ export default {
   },
   mounted () {
     if (this.$cookies.get('sdt')) {
-      this.$axios.$post('/cookie/decrypt/guild/general', { jwt: this.$cookies.get('sdt'), id: this.id }).then((res) => {
+      let headers = this.$util.getHeaderObject(this, process.server);
+      this.$axios.$post('/cookie/decrypt/guild/general', { jwt: this.$cookies.get('sdt'), id: this.id }, { headers: headers }).then((res) => {
         this.loggedIn = true
 
         const isGif = res.guild.icon ? res.guild.icon.startsWith('a_') : false
@@ -201,7 +202,8 @@ export default {
       return res
     },
     submit () {
-      this.$axios.$post('/postsettings/general', { jwt: this.$cookies.get('sdt'), id: this.id, settings: this.settings }).then((res) => {
+      let headers = this.$util.getHeaderObject(this, process.server);
+      this.$axios.$post('/postsettings/general', { jwt: this.$cookies.get('sdt'), id: this.id, settings: this.settings }, { headers: headers }).then((res) => {
         if (res.success) {
           this.$buefy.toast.open({
             message: 'Saved!',

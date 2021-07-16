@@ -174,7 +174,8 @@ export default {
   },
   mounted () {
     if (this.$cookies.get('sdt')) {
-      this.$axios.$post('/cookie/decrypt/user/settings', { jwt: this.$cookies.get('sdt') }).then((res) => {
+      let headers = this.$util.getHeaderObject(this, process.server);
+      this.$axios.$post('/cookie/decrypt/user/settings', { jwt: this.$cookies.get('sdt') }, { headers: headers }).then((res) => {
         this.loggedIn = true
 
         const isGif = res.user.avatarId.startsWith('a_')
@@ -222,7 +223,8 @@ export default {
       return res
     },
     submit () {
-      this.$axios.$post('/postsettings/user', { jwt: this.$cookies.get('sdt'), settings: this.settings }).then((res) => {
+      let headers = this.$util.getHeaderObject(this, process.server);
+      this.$axios.$post('/postsettings/user', { jwt: this.$cookies.get('sdt'), settings: this.settings }, { headers: headers }).then((res) => {
         if (res.success) {
           this.$buefy.toast.open({
             message: 'Saved!',
