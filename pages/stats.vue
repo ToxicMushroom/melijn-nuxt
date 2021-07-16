@@ -117,7 +117,7 @@ export default {
   },
   async asyncData (context) {
     let headers = context.$util.getHeaderObject(context, process.server)
-    stats = await context.$axios.$get('statsApi', { headers: headers })
+    stats = await context.$axios.$get('publicStats', { headers: headers })
     return { stats }
   },
   head () {
