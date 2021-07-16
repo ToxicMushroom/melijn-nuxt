@@ -6,6 +6,8 @@ export default function () {
             if (server) {
                 const { req } = context
                 const headerMap = (req && req.headers) ? Object.assign({}, req.headers) : {}
+                console.log('headerMap: VVV')
+                console.log(headerMap)
                 const xForwardedFor = headerMap['x-forwarded-for']      
                 const xRealIp = headerMap['x-real-ip']
                 headers = {
