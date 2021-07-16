@@ -115,9 +115,9 @@ export default {
       return `https://melijn.com${this.$route.fullPath}`
     }
   },
-  async asyncData ({ $axios }) {
-    stats = await $axios.$get('statsApi')
-    console.log(stats)
+  async asyncData (context) {
+    let headers = context.$util.getHeaderObject(context, process.server)
+    stats = await context.$axios.$get('statsApi', { headers: headers })
     return { stats }
   },
   head () {
