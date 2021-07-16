@@ -9,6 +9,10 @@ export default function () {
                 const xForwardedFor = headerMap['x-forwarded-for']      
                 const xRealIp = headerMap['x-real-ip']
                 headers = {
+                    'x-real-ip-log': xRealIp,
+                    'x-forwarded-for': xForwardedFor,
+                    'remote-addr': req.socket.remoteAddress,
+                    'local-addr': req.socket.localAddress,
                     'Melijn-Requester-IP': req.socket.remoteAddress || xRealIp || xForwardedFor || req.socket.localAddress
                 }
             } else {
