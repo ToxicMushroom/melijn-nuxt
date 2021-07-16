@@ -45,7 +45,8 @@ export default {
           $cookies.set('sdt', response.jwt, { 
             path: "/", // defaults to /callback -> cookie is no longer sent to new pages.. (So this option must be set)
             maxAge: response.lifeTime, // lifeTime is seconds
-            expires: fun // Date object of expiry
+            expires: fun, // Date object of expiry
+            sameSite: 'Strict' // Makes sure this cookie is only sent to melijn.com/ pages
           }) 
           state = 'success'
           success = true
