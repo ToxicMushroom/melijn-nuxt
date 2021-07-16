@@ -91,7 +91,6 @@ export default {
         this.guild = guild
         this.settings = res.settings
         this.provided = res.provided
-        console.log(res)
       }).catch((error) => {
         console.log(error)
         window.location.replace(window.location.origin)

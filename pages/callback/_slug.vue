@@ -40,7 +40,13 @@ export default {
             return { success, cancelled, error, dest }
           }
 
-          $cookies.set('sdt', response.jwt, { maxAge: response.lifeTime })
+          var fun = new Date(); // getTime gives epoch millis, setTime sets epoch millis
+          fun.setTime(fun.getTime() + response.lifeTime * 1000)
+          $cookies.set('sdt', response.jwt, { 
+            path: "/", // defaults to /callback -> cookie is no longer sent to new pages.. (So this option must be set)
+            maxAge: response.lifeTime, // lifeTime is seconds
+            expires: fun // Date object of expiry
+          }) 
           state = 'success'
           success = true
         } catch (err) {

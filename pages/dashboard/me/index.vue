@@ -169,7 +169,6 @@ export default {
       } else {
         this.settings.birthday = ''
       }
-      console.log(this.settings.birthday)
     }
   },
   mounted () {

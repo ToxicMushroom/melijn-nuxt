@@ -91,7 +91,6 @@ export default {
         this.settings = res.settings
         this.logchannels = res.settings.logchannels
         this.provided.channelStructure = res.provided.channelStructure
-        console.log(res)
       }).catch((error) => {
         console.log(error)
         window.location.replace(window.location.origin)
