@@ -48,8 +48,11 @@ export default {
   components: {
     NodeTree
   },
-  async asyncData ({ $axios }) {
-    let responseObj = await $axios.$get('api');
+  async asyncData (context) {
+    let headers = context.$util.getHeaderObject(context, process.server)
+    let responseObj = await context.$axios.$get('commands', {
+      headers: headers
+    });
     let extra = responseObj.extra;
     delete responseObj.extra;
 

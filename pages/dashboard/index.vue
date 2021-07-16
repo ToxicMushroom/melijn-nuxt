@@ -49,7 +49,8 @@ export default {
   },
   mounted () {
     if (this.$cookies.get('sdt')) {
-      this.$axios.$post('/cookie/decrypt/guilds', { jwt: this.$cookies.get('sdt') }).then((res) => {
+      let headers = this.$util.getHeaderObject(this, process.server);
+      this.$axios.$post('/cookie/decrypt/guilds', { jwt: this.$cookies.get('sdt') }, { headers: headers }).then((res) => {
         this.loggedIn = true
         const finalGuilds = []
         for (let j = 0; j < res.guilds.length; j++) {
@@ -79,8 +80,8 @@ export default {
 
         this.user = user
       }).catch((error) => {
-        window.location.replace('https://discord.com/oauth2/authorize?client_id=368362411591204865&scope=identify%20guilds&redirect_uri=' +
-          window.location.origin + '/callback/dashboard&response_type=code&prompt=none')
+        console.log(error)
+        //window.location.replace('https://discord.com/oauth2/authorize?client_id=368362411591204865&scope=identify%20guilds&redirect_uri=' + window.location.origin + '/callback/dashboard&response_type=code&prompt=none')
       })
     } else {
       window.location.replace('https://discord.com/oauth2/authorize?client_id=368362411591204865&scope=identify%20guilds&redirect_uri=' +

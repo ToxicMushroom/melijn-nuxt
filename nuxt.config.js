@@ -16,8 +16,12 @@ export default {
     }
   }),
   router: {
-    prefetchLinks: false
+    prefetchLinks: false,
+    middleware: []
   },
+  serverMiddleware: [
+    '~/server-middleware/cors'
+  ],
   /*
    ** Headers of the page
    */
@@ -55,6 +59,7 @@ export default {
           "'unsafe-eval'",
           "'unsafe-inline'",
           "https://www.gstatic.com/",
+          "http://192.168.0.21:2607",
           "https://www.google.com/recaptcha/api.js"
         ],
         'trusted-types': [
@@ -92,7 +97,9 @@ export default {
   /*
    ** Plugins to load before mounting the App
    */
-  plugins: [],
+  plugins: [
+    '~/plugins/util.js'
+  ],
   /*
    ** Nuxt.js dev-modules
    */
@@ -148,6 +155,9 @@ export default {
     '@nuxtjs/pwa',
     '@nuxt/content',
     'cookie-universal-nuxt',
+    ['cors', {
+      origin: ["http://192.168.0.21:2607"]
+    }],
     ['nuxt-buefy', { 
       css: false,
       materialDesignIcons: false,
@@ -207,7 +217,6 @@ export default {
         }
       ]
     }],
-    '@nuxtjs/proxy',
     '@nuxtjs/sitemap'
   ],
   generate: {
@@ -228,62 +237,6 @@ export default {
     },
     fallback: true
   },
-  proxy: {
-    '/api': {
-      target: process.env.BACKEND_BASE_URL,
-      pathRewrite: {
-        '^/api': '/commands'
-      }
-    },  
-    '/statsApi': {
-      target: process.env.BACKEND_BASE_URL,
-      pathRewrite: {
-        '^/statsApi': '/publicStats'
-      }
-    },
-    '/cookie/encrypt/code': {
-      target: process.env.BACKEND_BASE_URL
-    },
-    '/cookie/decrypt/user': {
-      target: process.env.BACKEND_BASE_URL
-    },
-    '/cookie/decrypt/user/settings': {
-      target: process.env.BACKEND_BASE_URL
-    },
-    '/getsettings/logging': {
-      target: process.env.BACKEND_BASE_URL
-    },
-    '/setsettings/logging': {
-      target: process.env.BACKEND_BASE_URL
-    },   
-    '/getsettings/starboard': {
-      target: process.env.BACKEND_BASE_URL
-    },
-    '/setsettings/starboard': {
-      target: process.env.BACKEND_BASE_URL
-    },
-    '/cookie/decrypt/guilds': {
-      target: process.env.BACKEND_BASE_URL
-    },
-    '/cookie/decrypt/verifyguilds': {
-      target: process.env.BACKEND_BASE_URL
-    },
-    '/verifyguild': {
-      target: process.env.BACKEND_BASE_URL
-    },
-    '/cookie/decrypt/guild': {
-      target: process.env.BACKEND_BASE_URL
-    },
-    '/postsettings/general': {
-      target: process.env.BACKEND_BASE_URL
-    },
-    '/postsettings/user': {
-      target: process.env.BACKEND_BASE_URL
-    },
-    '/cookie/decrypt/guild/general': {
-      target: process.env.BACKEND_BASE_URL
-    }
-  },
   content: {
     apiPrefix: '_content',
     liveEdit: false,
@@ -299,7 +252,8 @@ export default {
   },
   publicRuntimeConfig: {
     discordAPI: process.env.DISCORD_API,
-    baseURL: process.env.BASE_URL
+    baseURL: process.env.BASE_URL,
+    backendBaseURL: process.env.BACKEND_BASE_URL
   },
 
   // Style resource module
@@ -315,7 +269,7 @@ export default {
    ** See https://axios.nuxtjs.org/options
    */
   axios: {
-    baseURL: process.env.BASE_URL,
+    baseURL: process.env.BACKEND_BASE_URL,
     proxyHeaders: true
   },
   /*

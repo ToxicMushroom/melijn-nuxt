@@ -20,7 +20,8 @@ export default {
       state: ''
     }
   },
-  async asyncData ({ route, $axios, $cookies, params }) {
+  async asyncData (context) {
+    let { route, $axios, $cookies, params } = context
     let success = false
     let cancelled = false
     let error = false
@@ -31,7 +32,8 @@ export default {
     if (route.query) {
       if (route.query.code) {
         try {
-          response = await $axios.$post('/cookie/encrypt/code', { code: route.query.code, route: dest })
+          let headers = context.$util.getHeaderObject(context, process.server);
+          response = await $axios.$post('/cookie/encrypt/code', { code: route.query.code, route: dest }, { headers: headers })
           if (response.error) {
             error = true
             state = 'error'
@@ -42,6 +44,7 @@ export default {
           state = 'success'
           success = true
         } catch (err) {
+          console.log(err)
           state = 'error'
           error = true
         }
@@ -58,7 +61,7 @@ export default {
       if (this.state == 'success') {
         this.$router.push('/' + this.$route.params.slug)
       } else {
-        this.$router.push('/')
+        // this.$router.push('/')
       }
     }
   },
@@ -66,7 +69,7 @@ export default {
     if (this.state == 'success') {
       this.$router.push('/' + this.$route.params.slug)
     } else {
-      this.$router.push('/')
+      // this.$router.push('/')
     }
   }
 }

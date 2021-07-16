@@ -40,7 +40,8 @@ export default {
   },
   mounted () {
     if (this.$cookies.get('sdt')) {
-      this.$axios.$post('/cookie/decrypt/verifyguilds', { jwt: this.$cookies.get('sdt') }).then((res) => {
+      let headers = this.$util.getHeaderObject(this, process.server);
+      this.$axios.$post('/cookie/decrypt/verifyguilds', { jwt: this.$cookies.get('sdt') }, { headers:headers }).then((res) => {
         this.loggedIn = true
         const finalGuilds = []
         for (let j = 0; j < res.guilds.length; j++) {
