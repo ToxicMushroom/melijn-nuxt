@@ -10,12 +10,11 @@ export default function () {
                 console.log(headerMap)
                 const xForwardedFor = headerMap['x-forwarded-for']      
                 const xRealIp = headerMap['x-real-ip']
+                const cfConnectingIp = headerMap['cf-connecting-ip']
                 headers = {
-                    'x-real-ip-log': xRealIp,
-                    'x-forwarded-for': xForwardedFor,
-                    'remote-addr': req.socket.remoteAddress,
-                    'local-addr': req.socket.localAddress,
-                    'Melijn-Requester-IP': req.socket.remoteAddress || xRealIp || xForwardedFor || req.socket.localAddress
+                    'melijn-x-real-ip': xRealIp,
+                    'melijn-x-forwarded-for': xForwardedFor,
+                    'Melijn-Requester-IP': cfConnectingIp || req.socket.remoteAddress || xRealIp || xForwardedFor || req.socket.localAddress
                 }
             } else {
                 console.log("client request :)")
