@@ -42,6 +42,8 @@ export default {
 
           var fun = new Date(); // getTime gives epoch millis, setTime sets epoch millis
           fun.setTime(fun.getTime() + response.lifeTime * 1000)
+
+          $cookies.remove('sdt') // Makes sure the old cookie is gone (setting cookies doesnt always override)
           $cookies.set('sdt', response.jwt, { 
             path: "/", // defaults to /callback -> cookie is no longer sent to new pages.. (So this option must be set)
             maxAge: response.lifeTime, // lifeTime is seconds
