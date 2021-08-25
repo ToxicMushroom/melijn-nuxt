@@ -25,7 +25,7 @@
       <h3>1.4 What we do to protect your data</h3>
 
       We make sure our database runs locally and has no way of directly communicating outside the network. Access to the machine is secured with ssh-keys and a unique ssh port.
-      All our database queries are using prepared statements to protect your data from sqlinjection. If you don't feel safe or have an issue with our setup please contact us at contact@melijn.me .
+      All our database queries are using prepared statements to protect your data from sqlinjection. If you don't feel safe or have an issue with our setup please contact us at admin@melijn.com .
 
       <h3>1.5 How you can protect your data</h3>
 
