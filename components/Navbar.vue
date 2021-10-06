@@ -29,9 +29,9 @@
         Guides
       </nuxt-link>
       <div class="navbar-item has-dropdown is-hoverable">
-        <a class="navbar-link">
+        <div class="navbar-link">
           More
-        </a>
+        </div>
 
         <div class="navbar-dropdown is-right" disabled>
           <nuxt-link to="/articles" class="navbar-item">

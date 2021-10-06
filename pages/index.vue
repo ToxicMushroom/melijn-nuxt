@@ -285,9 +285,7 @@
       <div class="hero-body">
         <div class="container">
           <h2 class="title">
-            And more which you can discover <nuxt-link class="text-link" to="/commands">
-              here
-            </nuxt-link>.
+            And more which you can discover on our <nuxt-link class="text-link" to="/commands">commands page</nuxt-link>.
           </h2>
         </div>
       </div>
