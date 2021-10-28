@@ -8,7 +8,7 @@
 
       Your Discord avatar-url<br><br>
 
-      By enableing any of the Message logging features in the Melijn settings, you and your members grant Melijn permission to store the following information for less then 7 days about you:<br>
+      By enabling any of the Message logging features in the Melijn settings, you and your members grant Melijn permission to store the following information for less then 7 days about you:<br>
 
       Your Discord messages<br>
       Your Discord attachment-urls<br><br>
