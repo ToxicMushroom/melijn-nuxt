@@ -20,7 +20,7 @@
 
       <h3>1.3 Tracking</h3>
 
-      In events you break any of the general guidelines your usedid may be tracked to exclude you from using Melijn.
+      In events you break any of the general guidelines your userid may be tracked to exclude you from using Melijn.
 
       <h3>1.4 What we do to protect your data</h3>
 
@@ -38,7 +38,7 @@
 
       We do not condone the use of general cheats, hacks, bots or any type of malicious or exploitative behaviour. This includes but does not limit to:<br>
 
-      Using “self bots” to interract with Melijn.<br>
+      Using “self bots” to interact with Melijn.<br>
       Abusing glitches to personally gain from it.<br>
       Abusing our open source platform to exploit systems.
 
