@@ -37,6 +37,7 @@ export default {
           if (response.error) {
             error = true
             state = 'error'
+            console.log(error)
             return { success, cancelled, error, dest }
           }
 
