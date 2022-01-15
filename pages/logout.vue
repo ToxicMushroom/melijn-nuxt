@@ -9,7 +9,9 @@
 <script>
 export default {
   mounted () {
+    console.log("/logout logging out");
     this.$cookies.remove('sdt')
+    console.log("/logout cookie destroyed, redirecting to prev page");
     window.location.replace(window.location.origin)
   },
   head () {

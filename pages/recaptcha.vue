@@ -113,6 +113,7 @@ export default {
             })
           })
         } else {
+          console.log("not logged in 2 redirecting");
           window.location.replace('https://discord.com/oauth2/authorize?client_id=368362411591204865&scope=identify%20guilds&redirect_uri=' +
             window.location.origin + '/callback/recaptcha&response_type=code&prompt=none')
         }
