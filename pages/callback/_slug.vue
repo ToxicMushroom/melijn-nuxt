@@ -45,12 +45,15 @@ export default {
           fun.setTime(fun.getTime() + response.lifeTime * 1000)
 
           $cookies.remove('sdt') // Makes sure the old cookie is gone (setting cookies doesnt always override)
+          console.log("removed old cookie")
+
           $cookies.set('sdt', response.jwt, { 
             path: "/", // defaults to /callback -> cookie is no longer sent to new pages.. (So this option must be set)
             maxAge: response.lifeTime, // lifeTime is seconds
             expires: fun, // Date object of expiry
             sameSite: 'Strict' // Makes sure this cookie is only sent to melijn.com/ pages
           }) 
+          console.log("set cookie " + response.jwt)
           state = 'success'
           success = true
         } catch (err) {
