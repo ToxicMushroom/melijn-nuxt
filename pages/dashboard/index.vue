@@ -56,9 +56,18 @@ export default {
         for (let j = 0; j < res.guilds.length; j++) {
           const guild = res.guilds[j]
           const isGif = guild.icon.startsWith('a_')
+          let avatarUrl = 'https://cdn.discordapp.com/icons/' + guild.id + '/' + guild.icon;
+          let hoverAvatarUrl = avatarUrl;
+          if (guild.icon == "null") {
+            avatarUrl = ''
+            hoverAvatarUrl = ''
+          } else {
+            avatarUrl += '.webp?size=128'
+            hoverAvatarUrl +=  (isGif ? '.gif' : '.webp') + '?size=128'
+          }
           guild.avatarVariables = {
-            '--guild-avatar': 'url(https://cdn.discordapp.com/icons/' + guild.id + '/' + guild.icon + '.webp?size=128)',
-            '--guild-avatar-hover': 'url(https://cdn.discordapp.com/icons/' + guild.id + '/' + guild.icon + (isGif ? '.gif' : '.webp') + '?size=128)'
+            '--guild-avatar': 'url(' + avatarUrl + ')',
+            '--guild-avatar-hover': 'url(' + hoverAvatarUrl + ')'
           }
           finalGuilds.push(guild)
         }
