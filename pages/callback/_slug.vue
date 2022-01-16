@@ -12,12 +12,28 @@
   </div>
 </template>
 <script>
-let response
+
+function setCookieFromResponse(response, $cookies) {
+  var fun = new Date(); // getTime gives epoch millis, setTime sets epoch millis
+  fun.setTime(fun.getTime() + response.lifeTime * 1000)
+
+  $cookies.remove('sdt') // Makes sure the old cookie is gone (setting cookies doesnt always override)
+  console.log("removed old cookie")
+
+  $cookies.set('sdt', response.jwt, { 
+    path: "/", // defaults to /callback -> cookie is no longer sent to new pages.. (So this option must be set)
+    maxAge: response.lifeTime, // lifeTime is seconds
+    expires: fun, // Date object of expiry
+    sameSite: 'Strict' // Makes sure this cookie is only sent to melijn.com/ pages
+  }) 
+  console.log("set cookie " + response.jwt)
+}
 
 export default {
   data() {
     return {
-      state: ''
+      state: '',
+      response: {}
     }
   },
   async asyncData (context) {
@@ -43,19 +59,7 @@ export default {
             return { success, cancelled, error, dest }
           }
 
-          var fun = new Date(); // getTime gives epoch millis, setTime sets epoch millis
-          fun.setTime(fun.getTime() + response.lifeTime * 1000)
-
-          $cookies.remove('sdt') // Makes sure the old cookie is gone (setting cookies doesnt always override)
-          console.log("removed old cookie")
-
-          $cookies.set('sdt', response.jwt, { 
-            path: "/", // defaults to /callback -> cookie is no longer sent to new pages.. (So this option must be set)
-            maxAge: response.lifeTime, // lifeTime is seconds
-            expires: fun, // Date object of expiry
-            sameSite: 'Strict' // Makes sure this cookie is only sent to melijn.com/ pages
-          }) 
-          console.log("set cookie " + response.jwt)
+          setCookieFromResponse(response, $cookies)
           state = 'success'
           success = true
         } catch (err) {
@@ -75,8 +79,9 @@ export default {
   watch: {
     state () {
       console.log(this.state)
-      console.log(response);
+      console.log(this.response);
       if (this.state == 'success') {
+        setCookieFromResponse(this.response, this.$cookies)
         setTimeout(() => {
          this.$router.push('/' + this.$route.params.slug)
         }, 3000)
@@ -87,8 +92,9 @@ export default {
   },
   mounted() {
     console.log(this.state)
-    console.log(response);
+    console.log(this.response);
     if (this.state == 'success') {
+      setCookieFromResponse(this.response, this.$cookies)
       setTimeout(() => {
         this.$router.push('/' + this.$route.params.slug)
       }, 3000)
