@@ -1,7 +1,7 @@
 <template>
   <div>
     <h1 v-if="success == true" class="title">
-      Logged in
+      Logged in, redirecting in 3s
     </h1>
     <h1 v-if="cancelled == true" class="title">
       Cancelled
@@ -71,16 +71,22 @@ export default {
   },
   watch: {
     state () {
+      console.log(state)
       if (this.state == 'success') {
-        this.$router.push('/' + this.$route.params.slug)
+        setTimeout(() => {
+         this.$router.push('/' + this.$route.params.slug)
+        }, 3000)
       } else {
         // this.$router.push('/')
       }
     }
   },
   mounted() {
+    console.log(state)
     if (this.state == 'success') {
-      this.$router.push('/' + this.$route.params.slug)
+      setTimeout(() => {
+        this.$router.push('/' + this.$route.params.slug)
+      }, 3000)
     } else {
       // this.$router.push('/')
     }
