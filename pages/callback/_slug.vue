@@ -27,6 +27,7 @@ export default {
     let error = false
     let state = ''
     const dest = '/' + params.slug
+    console.log("callback async processing started..")
     
 
     if (route.query) {
@@ -34,6 +35,7 @@ export default {
         try {
           let headers = context.$util.getHeaderObject(context, process.server);
           response = await $axios.$post('/cookie/encrypt/code', { code: route.query.code, route: dest }, { headers: headers })
+          console.log("callback async processing result handling..")
           if (response.error) {
             error = true
             state = 'error'
@@ -67,11 +69,12 @@ export default {
       }
     }
     
+    console.log("callback async processing done!")
     return { success, cancelled, error, state }
   },
   watch: {
     state () {
-      console.log(state)
+      console.log(this.state)
       if (this.state == 'success') {
         setTimeout(() => {
          this.$router.push('/' + this.$route.params.slug)
@@ -82,7 +85,7 @@ export default {
     }
   },
   mounted() {
-    console.log(state)
+    console.log(this.state)
     if (this.state == 'success') {
       setTimeout(() => {
         this.$router.push('/' + this.$route.params.slug)
