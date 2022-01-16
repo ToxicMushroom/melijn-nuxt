@@ -75,6 +75,7 @@ export default {
   watch: {
     state () {
       console.log(this.state)
+      console.log(response);
       if (this.state == 'success') {
         setTimeout(() => {
          this.$router.push('/' + this.$route.params.slug)
@@ -86,6 +87,7 @@ export default {
   },
   mounted() {
     console.log(this.state)
+    console.log(response);
     if (this.state == 'success') {
       setTimeout(() => {
         this.$router.push('/' + this.$route.params.slug)
