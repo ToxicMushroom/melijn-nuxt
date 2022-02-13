@@ -7,7 +7,7 @@
       Cancelled
     </h1>
     <h1 v-if="error == true" class="title">
-      An error has occured, please report this to the devs.
+      Dashboard is under maintenance sorry for the inconvenience.
     </h1>
   </div>
 </template>
