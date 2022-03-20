@@ -150,7 +150,7 @@
                 </h2>
 
                 <div class="buttons">
-                  <a href="https://discord.com/oauth2/authorize?client_id=368362411591204865&scope=bot&permissions=457043158" rel="noopener noreferrer nofollow" target="_blank" class="button is-primary is-focused is-medium">
+                  <a href="https://discord.com/oauth2/authorize?client_id=368362411591204865&scope=bot&permissions=456518870" rel="noopener noreferrer nofollow" target="_blank" class="button is-primary is-focused is-medium">
                     <span class="icon is-small">
                       <fa :icon="['fas', 'plus-square']" />
                     </span>
