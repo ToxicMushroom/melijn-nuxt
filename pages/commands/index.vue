@@ -216,6 +216,9 @@ export default {
           padding: 0.5em 0.75em 0.5em 0.15em;
           color: $grey-laite;
           span.icon {
+            svg {
+              height: 16px;
+            }
             width: 30px;
             padding-right: 0px;
           }

@@ -7,7 +7,7 @@
       Cancelled
     </h1>
     <h1 v-if="error == true" class="title">
-      An error has occured, please report this to the devs.
+      Dashboard is under maintenance sorry for the inconvenience.
     </h1>
   </div>
 </template>
@@ -26,7 +26,7 @@ function setCookieFromResponse(response, $cookies) {
     expires: fun, // Date object of expiry
     sameSite: 'Strict' // Makes sure this cookie is only sent to melijn.com/ pages
   }) 
-  console.log("set cookie " + response.jwt)
+  console.log("set cookie")
 }
 
 export default {
@@ -50,7 +50,7 @@ export default {
       if (route.query.code) {
         try {
           let headers = context.$util.getHeaderObject(context, process.server);
-          response = await $axios.$post('/cookie/encrypt/code', { code: route.query.code, route: dest }, { headers: headers })
+          let response = await $axios.$post('/cookie/encrypt/code', { code: route.query.code, route: dest }, { headers: headers })
           console.log("callback async processing result handling..")
           if (response.error) {
             error = true
@@ -79,12 +79,11 @@ export default {
   watch: {
     state () {
       console.log(this.state)
-      console.log(this.response);
       if (this.state == 'success') {
-        setCookieFromResponse(this.response, this.$cookies)
+        // setCookieFromResponse(this.response, this.$cookies)
         setTimeout(() => {
          this.$router.push('/' + this.$route.params.slug)
-        }, 3000)
+        }, 500)
       } else {
         // this.$router.push('/')
       }
@@ -92,12 +91,11 @@ export default {
   },
   mounted() {
     console.log(this.state)
-    console.log(this.response);
     if (this.state == 'success') {
-      setCookieFromResponse(this.response, this.$cookies)
+      // setCookieFromResponse(this.response, this.$cookies)
       setTimeout(() => {
         this.$router.push('/' + this.$route.params.slug)
-      }, 3000)
+      }, 500)
     } else {
       // this.$router.push('/')
     }

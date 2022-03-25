@@ -10,7 +10,7 @@
 export default {
   mounted () {
     console.log("invite.vue redirecting to discord bot invite");
-    window.location.replace('https://discord.com/oauth2/authorize?client_id=368362411591204865&scope=bot&permissions=457043158&redirect_uri=' +
+    window.location.replace('https://discord.com/oauth2/authorize?client_id=368362411591204865&scope=bot&permissions=456518870&redirect_uri=' +
     window.location.origin + '/')
   },
   head () {
