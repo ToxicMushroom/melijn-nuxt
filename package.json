@@ -23,11 +23,11 @@
     "@nuxtjs/pwa": "^3.3.5",
     "@nuxtjs/robots": "^2.5.0",
     "@nuxtjs/sitemap": "^2.4.0",
-    "@nuxtjs/style-resources": "^1.2.1",
+    "@nuxtjs/style-resources": "^2.0.0",
     "cookie-universal-nuxt": "^2.1.5",
     "cors": "^2.8.5",
     "detab": "^3.0.1",
-    "nuxt": "^2.15.8",
+    "nuxt": "^3.0.0",
     "nuxt-buefy": "^0.4.14",
     "nuxt-compress": "^5.0.0",
     "nuxt-fontawesome": "^0.4.0"
